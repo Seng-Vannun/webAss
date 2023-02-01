@@ -47,7 +47,7 @@
           <li class="nav-item"><a href="FrontEnd/ViewInformation.php" class="nav-link">ViewInformation</a></li>
           <li class="nav-item"><a href="FrontEnd/dashboard.php" class="nav-link">Dash Board</a></li>
           <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-          <li class="nav-item cta mt-3"><a href="FrontEnd/Apply.php"nav-link"><span>Apply Now!</span></a></li>
+          <li class="nav-item cta mt-3"><a href="FrontEnd/multipleForm.php"nav-link><span>Apply Now!</span></a></li>
         </ul>
       </div>
     </div>
