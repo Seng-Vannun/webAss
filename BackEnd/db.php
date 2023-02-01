@@ -2,8 +2,8 @@
 $db="localhost";
 $username="root";
 $password="";
-$dbname="";
-$conn=mysqli_connect($db,$username,$password,$dbname);
+$dbname="btb5eg5studentregistration";
+$conn=mysqli_connect($db,$username,$password,"$dbname");
 if(!$conn)
 {
 echo("Error".mysqli_error($conn));

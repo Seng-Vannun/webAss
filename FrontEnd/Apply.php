@@ -70,7 +70,7 @@
                             <div class="card-body">
                                 <form>
                                     <div class="row mb-3">
-                                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Name</label>
+                                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">KhName</label>
                                         <div class="col-sm-10">
                                             <div class="input-group input-group-merge">
                                               <span id="basic-icon-default-fullname2" class="input-group-text"
@@ -78,10 +78,68 @@
                                                   ></span>
                                                 <input
                                                         type="text"
+                                                        name="khName"
                                                         class="form-control"
                                                         id="basic-icon-default-fullname"
-                                                        placeholder="John Doe"
+                                                        placeholder="សេង វណ្ណនន់"
                                                         aria-label="John Doe"
+                                                        aria-describedby="basic-icon-default-fullname2"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Name in Latin</label>
+                                        <div class="col-sm-10">
+                                            <div class="input-group input-group-merge">
+                                              <span id="basic-icon-default-fullname2" class="input-group-text"
+                                              ><i class="bx bx-user"></i
+                                                  ></span>
+                                                <input
+                                                        type="text"
+                                                        name="NameInLatin"
+                                                        class="form-control"
+                                                        id="basic-icon-default-fullname"
+                                                        placeholder="SENG VANNUN"
+                                                        aria-label="SENG VANNUN"
+                                                        aria-describedby="basic-icon-default-fullname2"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Family Name</label>
+                                        <div class="col-sm-10">
+                                            <div class="input-group input-group-merge">
+                                              <span id="basic-icon-default-fullname2" class="input-group-text"
+                                              ><i class="bx bx-user"></i
+                                                  ></span>
+                                                <input
+                                                        type="text"
+                                                        name="FamilyName"
+                                                        class="form-control"
+                                                        id="basic-icon-default-fullname"
+                                                        placeholder="SENG"
+                                                        aria-label="SENG"
+                                                        aria-describedby="basic-icon-default-fullname2"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Given Name</label>
+                                        <div class="col-sm-10">
+                                            <div class="input-group input-group-merge">
+                                              <span id="basic-icon-default-fullname2" class="input-group-text"
+                                              ><i class="bx bx-user"></i
+                                                  ></span>
+                                                <input
+                                                        type="text"
+                                                        name="GivenName"
+                                                        class="form-control"
+                                                        id="basic-icon-default-fullname"
+                                                        placeholder="VANNUN"
+                                                        aria-label="VANNUN"
                                                         aria-describedby="basic-icon-default-fullname2"
                                                 />
                                             </div>
@@ -96,9 +154,9 @@
                                                         <input
                                                                 class="form-check-input"
                                                                 type="radio"
-                                                                name="inlineRadioOptions"
-                                                                id="inlineRadio1"
-                                                                value="option1"
+                                                                name="Sex"
+                                                                id="Male"
+                                                                value="Male"
                                                         />
                                                         <label class="form-check-label" for="inlineRadio1">Male</label>
                                                     </div>
@@ -106,9 +164,9 @@
                                                         <input
                                                                 class="form-check-input"
                                                                 type="radio"
-                                                                name="inlineRadioOptions"
-                                                                id="inlineRadio2"
-                                                                value="option2"
+                                                                name="Sex"
+                                                                id="Female"
+                                                                value="Female"
                                                         />
                                                         <label class="form-check-label" for="inlineRadio2">Female</label>
                                                     </div>
@@ -312,10 +370,23 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">PAYMENT TRANSACTION (ABA)</label>
+                                        <div class="col-sm-10">
+                                            <div class="input-group input-group-merge">
+                                                <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
+                                                    <option selected>Open this select menu</option>
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="row justify-content-end">
                                         <div class="col-sm-10">
-                                            <button type="submit" class="btn btn-primary">Send</button>
+                                            <button type="submit" name="Submit"class="btn btn-primary">Send</button>
                                             <a type="submit" class="btn btn-outline-danger" href="../index.php">Cancel</a>
                                         </div>
                                     </div>
@@ -323,6 +394,12 @@
                 </div>
             </div>
             <!-- Content wrapper -->
+                    <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
         </div>
         <!-- / Layout page -->
     </div>

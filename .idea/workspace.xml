@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="b73c77c2-c1e9-4c35-bb16-4977fd605d27" name="Changes" comment="" />
+    <list default="true" id="b73c77c2-c1e9-4c35-bb16-4977fd605d27" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/FrontEnd/StudentInfo.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jquery/FacultyDropDown.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Input.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Input.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/db.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/db.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/Apply.php" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/Apply.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/dashboard.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,6 +39,11 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/xampp/htdocs/webAss",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
@@ -43,7 +59,15 @@
       <workItem from="1673438069639" duration="5564000" />
       <workItem from="1673607086572" duration="8471000" />
       <workItem from="1673867354359" duration="7711000" />
-      <workItem from="1674219426154" duration="208000" />
+      <workItem from="1674219426154" duration="1280000" />
+      <workItem from="1674271319574" duration="3280000" />
+      <workItem from="1674288959619" duration="731000" />
+      <workItem from="1674645575205" duration="7071000" />
+      <workItem from="1674731576000" duration="5271000" />
+      <workItem from="1674816664195" duration="7366000" />
+      <workItem from="1675075758588" duration="6966000" />
+      <workItem from="1675085631623" duration="1818000" />
+      <workItem from="1675248768794" duration="674000" />
     </task>
     <servers />
   </component>
