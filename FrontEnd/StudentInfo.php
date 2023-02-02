@@ -81,286 +81,290 @@ $resultFaculty=mysqli_query($conn,$sqlFaculty);
                 <div class="card mb-4">
                     <div class="card-body">
                         <form action="../BackEnd/Input.php" method="post">
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">KhName</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                              <span id="basic-icon-default-fullname2" class="input-group-text"
-                                              ><i class="bx bx-user"></i
-                                                  ></span>
-                                        <input
-                                            type="text"
-                                            name="khName"
-                                            class="form-control"
-                                            id="basic-icon-default-fullname"
-                                            placeholder="សេង វណ្ណនន់"
-                                            aria-label="John Doe"
-                                            aria-describedby="basic-icon-default-fullname2"
-                                        />
+                            <div class="tab"id="tab-1">
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">KhName</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                                  <span id="basic-icon-default-fullname2" class="input-group-text"
+                                                  ><i class="bx bx-user"></i
+                                                      ></span>
+                                            <input
+                                                type="text"
+                                                name="khName"
+                                                class="form-control"
+                                                id="basic-icon-default-fullname"
+                                                placeholder="សេង វណ្ណនន់"
+                                                aria-label="John Doe"
+                                                aria-describedby="basic-icon-default-fullname2"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Name in Latin</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                              <span id="basic-icon-default-fullname2" class="input-group-text"
-                                              ><i class="bx bx-user"></i
-                                                  ></span>
-                                        <input
-                                            type="text"
-                                            name="NameInLatin"
-                                            class="form-control"
-                                            id="basic-icon-default-fullname"
-                                            placeholder="SENG VANNUN"
-                                            aria-label="SENG VANNUN"
-                                            aria-describedby="basic-icon-default-fullname2"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Family Name</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                              <span id="basic-icon-default-fullname2" class="input-group-text"
-                                              ><i class="bx bx-user"></i
-                                                  ></span>
-                                        <input
-                                            type="text"
-                                            name="FamilyName"
-                                            class="form-control"
-                                            id="basic-icon-default-fullname"
-                                            placeholder="SENG"
-                                            aria-label="SENG"
-                                            aria-describedby="basic-icon-default-fullname2"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Given Name</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                              <span id="basic-icon-default-fullname2" class="input-group-text"
-                                              ><i class="bx bx-user"></i
-                                                  ></span>
-                                        <input
-                                            type="text"
-                                            name="GivenName"
-                                            class="form-control"
-                                            id="basic-icon-default-fullname"
-                                            placeholder="VANNUN"
-                                            aria-label="VANNUN"
-                                            aria-describedby="basic-icon-default-fullname2"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Gender</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                        <div class="col-md">
-                                            <?php while ($rowSex= mysqli_fetch_assoc($resultSex)){?>
-                                            <div class="form-check form-check-inline mt-1">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="radio"
-                                                    name="Sex"
-                                                    id="Male"
-                                                    value="<?php echo $rowSex['SexID']?>"
-                                                />
-                                                <label class="form-check-label" for="inlineRadio1"><?php echo $rowSex['SexEN']?></label>
-                                            </div>
-                                         <?php };mysqli_close($conn);?>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Name in Latin</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                                  <span id="basic-icon-default-fullname2" class="input-group-text"
+                                                  ><i class="bx bx-user"></i
+                                                      ></span>
+                                            <input
+                                                type="text"
+                                                name="NameInLatin"
+                                                class="form-control"
+                                                id="basic-icon-default-fullname"
+                                                placeholder="SENG VANNUN"
+                                                aria-label="SENG VANNUN"
+                                                aria-describedby="basic-icon-default-fullname2"
+                                            />
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Email</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                        <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-                                        <input
-                                            type="text"
-                                            name="email"
-                                            id="basic-icon-default-email"
-                                            class="form-control"
-                                            placeholder="john.doe"
-                                            aria-label="john.doe"
-                                            aria-describedby="basic-icon-default-email2"
-                                        />
-                                        <span id="basic-icon-default-email2" class="input-group-text">@example.com</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Phone Number</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                              <span id="basic-icon-default-fullname2" class="input-group-text"
-                                              ><i class="bx bx-user"></i
-                                                  ></span>
-                                        <input
-                                            type="text"
-                                            name="phonenumber"
-                                            class="form-control"
-                                            id="basic-icon-default-fullname"
-                                            placeholder="011 586 835"
-                                            aria-label="011 586 835"
-                                            aria-describedby="basic-icon-default-fullname2"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Date of Birth</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                              <span id="basic-icon-default-fullname2" class="input-group-text"
-                                              ><i class="bx bx-calendar"></i
-                                                  ></span>
-                                        <input class="form-control" type="date" name="dob" value="2021-06-18" id="html5-date-input" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Birth Place</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                              <span id="basic-icon-default-fullname2" class="input-group-text"
-                                              ><i class="bx bx-map"></i
-                                                  ></span>
-                                        <input
-                                            type="text"
-                                            name="pod"
-                                            class="form-control"
-                                            id="basic-icon-default-fullname"
-                                            placeholder="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
-                                            aria-label="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
-                                            aria-describedby="basic-icon-default-fullname2"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Passport</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                              <span id="basic-icon-default-fullname2" class="input-group-text"
-                                              ><i class="bx bx-paste"></i
-                                                  ></span>
-                                        <input
+                            <div class="tab"id="tab-2">
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Family Name</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                                  <span id="basic-icon-default-fullname2" class="input-group-text"
+                                                  ><i class="bx bx-user"></i
+                                                      ></span>
+                                            <input
                                                 type="text"
-                                                name="Passport"
+                                                name="FamilyName"
                                                 class="form-control"
                                                 id="basic-icon-default-fullname"
-                                                placeholder="N6942069"
-                                                aria-label="N6942069"
+                                                placeholder="SENG"
+                                                aria-label="SENG"
                                                 aria-describedby="basic-icon-default-fullname2"
-                                        />
+                                            />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nationality</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                        <select name="Nationality" id="Nationality" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" onchange="this.form.submit()">
-                                            <?php while ($rowNationalty= mysqli_fetch_assoc($resultNationalty)){?>
-                                            <option value="<?php echo $rowNationalty['NationalityID']?>"><?php echo $rowNationalty['NationalityEN']?></option>
-                                            <?php };?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Country</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                        <select name="Country" id="Country" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                                        <?php while ($rowCountry= mysqli_fetch_assoc($resultCountry)){?>
-                                            <option value="<?php echo $rowCountry['CountryID']?>"><?php echo $rowCountry['CountryEN']?></option>
-                                        <?php };?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Faculty</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                        <select name="Faculty" id="Faculty" class="faculty form-select"aria-label="Default select example")>
-                                        <option selected disabled>(--Selected Faculty--)</option>;
-                                            <?php while ($rowFaculty= mysqli_fetch_assoc($resultFaculty)){?>
-                                                <option value="<?php echo $rowFaculty['FacultyID']?>"><?php echo $rowFaculty['FacultyEN']?></option>
-                                            <?php };?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Major</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                        <select name="Major" id="Major" class="faculty form-select"aria-label="Default select example")">
-
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Current Address</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                              <span id="basic-icon-default-fullname2" class="input-group-text"
-                                              ><i class="bx bx-map"></i
-                                                  ></span>
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            name="currentAddress"
-                                            id="basic-icon-default-fullname"
-                                            placeholder="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
-                                            aria-label="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
-                                            aria-describedby="basic-icon-default-fullname2"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Current AddressPP</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                              <span id="basic-icon-default-fullname2" class="input-group-text"
-                                              ><i class="bx bx-map"></i
-                                                  ></span>
-                                        <input
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Given Name</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                                  <span id="basic-icon-default-fullname2" class="input-group-text"
+                                                  ><i class="bx bx-user"></i
+                                                      ></span>
+                                            <input
                                                 type="text"
-                                                name="currentAddressPP"
+                                                name="GivenName"
+                                                class="form-control"
+                                                id="basic-icon-default-fullname"
+                                                placeholder="VANNUN"
+                                                aria-label="VANNUN"
+                                                aria-describedby="basic-icon-default-fullname2"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Gender</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                            <div class="col-md">
+                                                <?php while ($rowSex= mysqli_fetch_assoc($resultSex)){?>
+                                                <div class="form-check form-check-inline mt-1">
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="radio"
+                                                        name="Sex"
+                                                        id="Male"
+                                                        value="<?php echo $rowSex['SexID']?>"
+                                                    />
+                                                    <label class="form-check-label" for="inlineRadio1"><?php echo $rowSex['SexEN']?></label>
+                                                </div>
+                                             <?php };mysqli_close($conn);?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Email</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                            <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                            <input
+                                                type="text"
+                                                name="email"
+                                                id="basic-icon-default-email"
+                                                class="form-control"
+                                                placeholder="john.doe"
+                                                aria-label="john.doe"
+                                                aria-describedby="basic-icon-default-email2"
+                                            />
+                                            <span id="basic-icon-default-email2" class="input-group-text">@example.com</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Phone Number</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                                  <span id="basic-icon-default-fullname2" class="input-group-text"
+                                                  ><i class="bx bx-user"></i
+                                                      ></span>
+                                            <input
+                                                type="text"
+                                                name="phonenumber"
+                                                class="form-control"
+                                                id="basic-icon-default-fullname"
+                                                placeholder="011 586 835"
+                                                aria-label="011 586 835"
+                                                aria-describedby="basic-icon-default-fullname2"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Date of Birth</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                                  <span id="basic-icon-default-fullname2" class="input-group-text"
+                                                  ><i class="bx bx-calendar"></i
+                                                      ></span>
+                                            <input class="form-control" type="date" name="dob" value="2021-06-18" id="html5-date-input" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Birth Place</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                                  <span id="basic-icon-default-fullname2" class="input-group-text"
+                                                  ><i class="bx bx-map"></i
+                                                      ></span>
+                                            <input
+                                                type="text"
+                                                name="pod"
                                                 class="form-control"
                                                 id="basic-icon-default-fullname"
                                                 placeholder="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
                                                 aria-label="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
                                                 aria-describedby="basic-icon-default-fullname2"
-                                        />
+                                            />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Photo</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                        <input class="form-control" type="file" id="formFile" />
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Passport</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                                  <span id="basic-icon-default-fullname2" class="input-group-text"
+                                                  ><i class="bx bx-paste"></i
+                                                      ></span>
+                                            <input
+                                                    type="text"
+                                                    name="Passport"
+                                                    class="form-control"
+                                                    id="basic-icon-default-fullname"
+                                                    placeholder="N6942069"
+                                                    aria-label="N6942069"
+                                                    aria-describedby="basic-icon-default-fullname2"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row justify-content-end">
-                                <div class="col-sm-10">
-                                    <button  name="Submit" value="Submit" type="submit" class="btn btn-primary">Submit</button>
-                                    <a type="submit" class="btn btn-outline-danger" href="../index.php">Cancel</a>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nationality</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                            <select name="Nationality" id="Nationality" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" onchange="this.form.submit()">
+                                                <?php while ($rowNationalty= mysqli_fetch_assoc($resultNationalty)){?>
+                                                <option value="<?php echo $rowNationalty['NationalityID']?>"><?php echo $rowNationalty['NationalityEN']?></option>
+                                                <?php };?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Country</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                            <select name="Country" id="Country" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
+                                            <?php while ($rowCountry= mysqli_fetch_assoc($resultCountry)){?>
+                                                <option value="<?php echo $rowCountry['CountryID']?>"><?php echo $rowCountry['CountryEN']?></option>
+                                            <?php };?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Faculty</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                            <select name="Faculty" id="Faculty" class="faculty form-select"aria-label="Default select example")>
+                                            <option selected disabled>(--Selected Faculty--)</option>;
+                                                <?php while ($rowFaculty= mysqli_fetch_assoc($resultFaculty)){?>
+                                                    <option value="<?php echo $rowFaculty['FacultyID']?>"><?php echo $rowFaculty['FacultyEN']?></option>
+                                                <?php };?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Major</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                            <select name="Major" id="Major" class="faculty form-select"aria-label="Default select example")">
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Current Address</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                                  <span id="basic-icon-default-fullname2" class="input-group-text"
+                                                  ><i class="bx bx-map"></i
+                                                      ></span>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                name="currentAddress"
+                                                id="basic-icon-default-fullname"
+                                                placeholder="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
+                                                aria-label="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
+                                                aria-describedby="basic-icon-default-fullname2"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Current AddressPP</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                                  <span id="basic-icon-default-fullname2" class="input-group-text"
+                                                  ><i class="bx bx-map"></i
+                                                      ></span>
+                                            <input
+                                                    type="text"
+                                                    name="currentAddressPP"
+                                                    class="form-control"
+                                                    id="basic-icon-default-fullname"
+                                                    placeholder="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
+                                                    aria-label="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
+                                                    aria-describedby="basic-icon-default-fullname2"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Photo</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                            <input class="form-control" type="file" id="formFile" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-end">
+                                    <div class="col-sm-10">
+                                        <button  name="Submit" value="Submit" type="submit" class="btn btn-primary">Submit</button>
+                                        <a type="submit" class="btn btn-outline-danger" href="../index.php">Cancel</a>
+                                    </div>
                                 </div>
                             </div>
                         </form>

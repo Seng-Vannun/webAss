@@ -1,3 +1,14 @@
+<?php
+require_once ('../BackEnd/db.php');
+$sqlSex="select * from tblsex";
+$resultSex=mysqli_query($conn,$sqlSex);
+$sqlNationalty="select * from tblnationality";
+$resultNationalty=mysqli_query($conn,$sqlNationalty);
+$sqlCountry="select * from tblcountry";
+$resultCountry=mysqli_query($conn,$sqlCountry);
+$sqlFaculty ="select * from tblfaculty";
+$resultFaculty=mysqli_query($conn,$sqlFaculty);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,960 +82,908 @@
                             </div>
                <div class="card-body">
                <form id="regiration_form" novalidate action="action.php"  method="post">
-            <!--Form 1-->
-            <fieldset>
-                <h2>Step 1: University Information</h2>
-                           <div class="row">
-                                        <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">Academic Year</label>
-                                        <div class="col">
-                                        <select name="AcademicYearID" id="" class="form-select form-select mb-3">
-                                            <option selected disabled>--Select Year--</option>
-                                            
-                                             <?php
-                                                include_once '../BackEnd/db.php';
-                                        
-                                                 $sql = "Select *From tblacademicyear";
-                                                 $query = mysqli_query($conn, $sql);
-                                                 while ($data = mysqli_fetch_assoc($query)) { ?>
-                                                        <option value="<?php echo $data['AcademicYearID'] ?>">
-                                                      <?php echo $data['AcademicYear']?>
-                                                    </option>
-                                                
-                                             <?php } 
-                                             ?>
-                                        </select>
-                                        </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">Degree in KHmer</label>
-                                        <div class="col">
-                                        <select name="AcademicYearID" id="" class="form-select form-select mb-3">
-                                            <option selected disabled>--Select Degree in Khmer--</option>
-                                            
-                                             <?php
-                                                include_once '../BackEnd/db.php';
-                                        
-                                                 $sql = "Select *From tblDegree";
-                                                 $query = mysqli_query($conn, $sql);
-                                                 while ($data = mysqli_fetch_assoc($query)) { ?>
-                                                 
-                                                        <option value="<?php echo $data['DegreeID'] ?>">
-                                                      <?php echo $data['DegreeNameKH']?>
-                                                    </option>
-                                                
-                                             <?php } 
-                                             ?>
-                                        </select>
-                                        </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">Degree in English</label>
-                                        <div class="col">
-                                        <select name="AcademicYearID" id="" class="form-select form-select mb-3">
-                                            <option selected disabled>-- Select Degree in English --</option>
-                                            
-                                             <?php
-                                                include_once '../BackEnd/db.php';
-                                        
-                                                 $sql = "Select *From tblDegree";
-                                                 $query = mysqli_query($conn, $sql);
-                                                 while ($data = mysqli_fetch_assoc($query)) { ?>
-                                                        <option value="<?php echo $data['DegreeID'] ?>">
-                                                      <?php echo $data['DegreeNameEN']?>
-                                                    </option>
-                                                
-                                             <?php } 
-                                             ?>
-                                        </select>
-                                        </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">Campus in Khmer</label>
-                                        <div class="col">
-                                        <select name="AcademicYearID" id="" class="form-select form-select mb-3">
-                                            <option selected disabled>-- Select Campus in Khmer --</option>
-                                            
-                                             <?php
-                                                include_once '../BackEnd/db.php';
-                                        
-                                                 $sql = "Select *From tblCampus";
-                                                 $query = mysqli_query($conn, $sql);
-                                                 while ($data = mysqli_fetch_assoc($query)) { ?>
-                                                        <option value="<?php echo $data['CampusID'] ?>">
-                                                      <?php echo $data['CampusKH']?>
-                                                    </option>
-                                                
-                                             <?php } 
-                                             ?>
-                                        </select>
-                                        </div>
-                                        </div>
-                                    </div>
-                                     <!--TblAcademicYear-->
-                                     <div class="row">
-                                        <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">Campus in English</label>
-                                        <div class="col">
-                                        <select name="AcademicYearID" id="" class="form-select form-select mb-3">
-                                            <option selected disabled>--Select Campus in English--</option>
-                                            
-                                             <?php
-                                                include_once '../BackEnd/db.php';
-                                        
-                                                 $sql = "Select *From tblCampus";
-                                                 $query = mysqli_query($conn, $sql);
-                                                 while ($data = mysqli_fetch_assoc($query)) { ?>
-                                                        <option value="<?php echo $data['CampusID'] ?>">
-                                                      <?php echo $data['CampusEN']?>
-                                                    </option>
-                                                
-                                             <?php } 
-                                             ?>
-                                        </select>
-                                        </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">Program Type in Khmer</label>
-                                        <div class="col">
-                                        <select name="AcademicYearID" id="" class="form-select form-select mb-3">
-                                            <option selected disabled>--Select Program Type Khmer--</option>
-                                            
-                                             <?php
-                                                include_once '../BackEnd/db.php';
-                                        
-                                                 $sql = "Select *From tblprogramtype";
-                                                 $query = mysqli_query($conn, $sql);
-                                                 while ($data = mysqli_fetch_assoc($query)) { ?>
-                                                        <option value="<?php echo $data['ProgramTypeID'] ?>">
-                                                      <?php echo $data['ProgramTypeKH']?>
-                                                    </option>
-                                                
-                                             <?php } 
-                                             ?>
-                                        </select>
-                                        </div>
-                                        </div>
-                                    </div>
-                                     <!--TblAcademicYear-->
-                                     <div class="row">
-                                     <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">Program Type in English</label>
-                                        <div class="col">
-                                        <select name="AcademicYearID" id="" class="form-select form-select mb-3">
-                                            <option selected disabled>--Select Program Type English--</option>
-                                            
-                                             <?php
-                                                include_once '../BackEnd/db.php';
-                                        
-                                                 $sql = "Select *From tblprogramtype";
-                                                 $query = mysqli_query($conn, $sql);
-                                                 while ($data = mysqli_fetch_assoc($query)) { ?>
-                                                        <option value="<?php echo $data['ProgramTypeID'] ?>">
-                                                      <?php echo $data['ProgramTypeEN']?>
-                                                    </option>
-                                                
-                                             <?php } 
-                                             ?>
-                                        </select>
-                                        </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">Shift in Khmer</label>
-                                        <div class="col">
-                                        <select name="AcademicYearID" id="" class="form-select form-select mb-3">
-                                            <option selected disabled>--Select Shift in Khmer--</option>
-                                            
-                                             <?php
-                                                include_once '../BackEnd/db.php';
-                                        
-                                                 $sql = "Select *From tblshift";
-                                                 $query = mysqli_query($conn, $sql);
-                                                 while ($data = mysqli_fetch_assoc($query)) { ?>
-                                                        <option value="<?php echo $data['ShiftID'] ?>">
-                                                      <?php echo $data['ShiftKH']?>
-                                                    </option>
-                                                
-                                             <?php } 
-                                             ?>
-                                        </select>
-                                        </div>
-                                        </div>
-                                    </div>
-                                     <!--TblAcademicYear-->
-                                     <div class="row">
-                                        <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">Shift in English</label>
-                                        <div class="col">
-                                        <select name="AcademicYearID" id="" class="form-select form-select mb-3">
-                                            <option selected disabled>--Select Shift in English--</option>
-                                            
-                                             <?php
-                                                include_once '../BackEnd/db.php';
-                                        
-                                                 $sql = "Select *From tblshift";
-                                                 $query = mysqli_query($conn, $sql);
-                                                 while ($data = mysqli_fetch_assoc($query)) { ?>
-                                                        <option value="<?php echo $data['ShiftID'] ?>">
-                                                      <?php echo $data['ShiftEN']?>
-                                                    </option>
-                                                
-                                             <?php } 
-                                             ?>
-                                        </select>
-                                        </div>
-                                        </div>
-                                        
-                                    </div>
-                
-                
-                <!--button-->
-                <a type="submit" class="btn btn-outline-danger" href="../index.php">Cancel</a>
-                <input type="button" name="password" class="next btn btn-primary" value="Next" />
-            </fieldset>
-
-             <!--Form 2-->
-            <fieldset>
-                <h2> Step 2: Add Personnel Details</h2>
-                <div class="row">
-                     <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">Learning Type in Khmer</label>
-                                        <div class="col">
-                                        <select name="" id="" class="form-select form-select mb-3">
-                                            <option selected disabled>--Select--</option>
-                                            
-                                             <?php
-                                                include_once '../BackEnd/db.php';
-                                        
-                                                 $sql = "Select *From tbllearningtype";
-                                                 $query = mysqli_query($conn, $sql);
-                                                 while ($data = mysqli_fetch_assoc($query)) { ?>
-                                                        <option value="<?php echo $data['LearningTypeID'] ?>">
-                                                      <?php echo $data['LearningTypeKH']?>
-                                                    </option>
-                                                
-                                             <?php } 
-                                             ?>
-                                        </select>
-                                        </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">Learning Type in English</label>
-                                        <div class="col">
-                                        <select name="" id="" class="form-select form-select mb-3">
-                                            <option selected disabled>--Select--</option>
-                                            
-                                             <?php
-                                                include_once '../BackEnd/db.php';
-                                        
-                                                 $sql = "Select *From tbllearningtype";
-                                                 $query = mysqli_query($conn, $sql);
-                                                 while ($data = mysqli_fetch_assoc($query)) { ?>
-                                                        <option value="<?php echo $data['LearningTypeID'] ?>">
-                                                      <?php echo $data['LearningTypeEN']?>
-                                                    </option>
-                                                
-                                             <?php } 
-                                             ?>
-                                        </select>
-                                        </div>
-                                        </div>
-                 <div class="row">
-                                   <div class="col-lg-6">
-                                   <label class="col col-form-label" for="basic-icon-default-company">Learning in English</label>
-                                        <div class="col">
-                                        <div class="input-group input-group-merge">
-                                                <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                <input
-                                                        type="text"
-                                                        id=""
-                                                        class="form-control"
-                                                        placeholder="English"    
-                                                />                
-                                            </div>
-                                        </div>
-                                   </div> 
-                                   <div class="col-lg-6">
-                                   <label class="col col-form-label" for="basic-icon-default-fullname">Faculty ID</label>
-                                        <div class="col">
-                                        <select name="" id="" class="form-select form-select mb-3" >
-                                            <option selected disabled>--Select--</option>
-                                        </select>
-                                        </div>
+                <!--Form Student Infomation-->
+                   <fieldset>
+                       <h2> Step 3: Add Personnel Details</h2>
+                       <div class="row ">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Name Latin</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="NAME IN LATIN"
+                                       />
                                    </div>
-                  </div>
-                  <div class="row">
-                                    <div class="col-lg-6">
-                                    <label class="col col-form-label" for="basic-icon-default-company">Faculty in Khmer</label>
-                                        <div class="col">
-                                        <div class="input-group input-group-merge">
-                                                <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                <input
-                                                        type="text"
-                                                        id=""
-                                                        class="form-control"
-                                                        placeholder="ព័ត៌មានវិទ្យា"    
-                                                />                
-                                            </div>
-                                        </div>
-                                    </div>   
-                                    <div class="col-lg-6">
-                                    <label class="col col-form-label" for="basic-icon-default-company">Faculty in English</label>
-                                        <div class="col">
-                                        <div class="input-group input-group-merge">
-                                                <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                <input
-                                                        type="text"
-                                                        id=""
-                                                        class="form-control"
-                                                        placeholder="Information Technology"    
-                                                />                
-                                            </div>
-                                        </div>
-                                    </div>
-                  </div>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Name in KHmer</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="ឈ្មោះ"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="row ">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Family Name</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="SENG"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Given Name</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="VANNUN"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="row ">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Sex</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <select name="Sex" id="" class="form-select form-select mb-3" >
+                                           <option selected disabled>--Select--</option>
+                                           <?php while ($rowSex= mysqli_fetch_assoc($resultSex)){?>
+                                               <option value="<?php echo $rowSex['SexID']?>"><?php echo $rowSex['SexEN']?></option>
+                                           <?php }?>
+                                       </select>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">PassportNO ID</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="ឈ្មោះ"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="row ">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Name Latin</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="ឈ្មោះ"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Name in KHmer</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="ឈ្មោះ"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="row ">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Name Latin</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="ឈ្មោះ"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Name in KHmer</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="ឈ្មោះ"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="row ">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Name Latin</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="ឈ្មោះ"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Name in KHmer</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="ឈ្មោះ"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <!--button-->
+                       <input type="button" name="previous" class="previous btn btn-outline-danger" value="Previous" />
+                       <input type="button" name="next" class="next btn btn-primary" value="Next" />
 
-                  <div class="row">
-                                    <div class="col-lg-6">
-                                    <label class="col col-form-label" for="basic-icon-default-fullname">Major ID</label>
-                                        <div class="col">
-                                        <select name="" id="" class="form-select form-select mb-3" >
-                                            <option selected disabled>--Select--</option>
-                                        </select>
-                                        </div>
-                                    </div>  
-                                    <div class="col-lg-6">
-                                    <label class="col col-form-label" for="basic-icon-default-company">Major in KHmer</label>
-                                        <div class="col">
-                                        <div class="input-group input-group-merge">
-                                                <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                <input
-                                                        type="text"
-                                                        id=""
-                                                        class="form-control"
-                                                        placeholder="មុខជំនាញ"    
-                                                />                
-                                            </div>
-                                        </div>
-                                    </div>
-                  </div>
+                   </fieldset>
+                <!--Form Family Information-->
+                   <fieldset>
+                       <h2>Step 4: Contact Information</h2>
+                       <div class="row ">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">School Type ID</label>
+                               <div class="col">
+                                   <select name="" id="" class="form-select form-select mb-3" >
+                                       <option selected disabled>--Select--</option>
+                                   </select>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">School in KHmer</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="ឈ្មោះ"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
 
-                  <div class="row">
-                                    <div class="col-lg-6">
-                                    <label class="col col-form-label" for="basic-icon-default-company">Major in English</label>
-                                        <div class="col">
-                                        <div class="input-group input-group-merge">
-                                                <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                <input
-                                                        type="text"
-                                                        id=""
-                                                        class="form-control"
-                                                        placeholder="Major"    
-                                                />                
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                    <label class="col col-form-label" for="basic-icon-default-fullname">Faculty ID</label>
-                                        <div class="col">
-                                        <select name="" id="" class="form-select form-select mb-3" >
-                                            <option selected disabled>--Select--</option>
-                                        </select>
-                                        </div>
-                                    </div>
-                  </div>
+                       <div class="row">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">School Name</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="School"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Family BG ID</label>
+                               <div class="col">
+                                   <select name="" id="" class="form-select form-select mb-3" >
+                                       <option selected disabled>--Select--</option>
+                                   </select>
+                               </div>
+                           </div>
+                       </div>
 
-                  <div class="row">
-                              <div class="col-lg-6">
-                              <label class="col col-form-label" for="basic-icon-default-fullname">Sex ID</label>
-                                        <div class="col">
-                                        <select name="" id="" class="form-select form-select mb-3" >
-                                            <option selected disabled>--Select--</option>
-                                        </select>
-                                        </div>
-                              </div>
-                              <div class="col-lg-6">
-                              <label class="col col-form-label" for="basic-icon-default-company">Gender in Khmer</label>
-                                        <div class="col">
-                                        <div class="input-group input-group-merge">
-                                                <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                <input
-                                                        type="text"
-                                                        id=""
-                                                        class="form-control"
-                                                        placeholder="ភេទ"    
-                                                />                
-                                            </div>
-                                        </div>
-                              </div>
-                  </div>
+                       <div class="row">
+                           <div class="col-lg-6">
 
-                  <div class="row">
-                  <div class="col-lg-6">
-                  <label class="col col-form-label" for="basic-icon-default-company">Gender in English</label>
-                                        <div class="col">
-                                        <div class="input-group input-group-merge">
-                                                <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                <input
-                                                        type="text"
-                                                        id=""
-                                                        class="form-control"
-                                                        placeholder="Gender"    
-                                                />                
-                                            </div>
-                                        </div>
-                  </div>     
-                  <div class="col-lg-6">
-                  <label class="col col-form-label" for="basic-icon-default-fullname">National ID</label>
-                                        <div class="col">
-                                        <select name="" id="" class="form-select form-select mb-3" >
-                                            <option selected disabled>--Select--</option>
-                                        </select>
-                                        </div>
-                  </div>                 
-                  </div>
+                               <label class="col col-form-label" for="basic-icon-default-company">Father Name</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="Father Name"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
 
-                  <div class="row mb-3">
-                                          <div class="col-lg-6">
-                                          <label class="col col-form-label" for="basic-icon-default-company">National in Khmer</label>
-                                        <div class="col">
-                                        <div class="input-group input-group-merge">
-                                                <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                <input
-                                                        type="text"
-                                                        id=""
-                                                        class="form-control"
-                                                        placeholder="សញ្ជាតិ"    
-                                                />                
-                                            </div>
-                                        </div>
-                                          </div>
-                                          <div class="col-lg-6">
-                                          <label class="col col-form-label" for="basic-icon-default-company">National in English</label>
-                                        <div class="col">
-                                        <div class="input-group input-group-merge">
-                                                <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                <input
-                                                        type="text"
-                                                        id=""
-                                                        class="form-control"
-                                                        placeholder="National"    
-                                                />                
-                                            </div>
-                                        </div>
-                                          </div>
-                  </div>
+                           <div class="col-lg-6">
+
+                               <label class="col col-form-label" for="basic-icon-default-company">Father Age</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="number"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="Father Aage"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
 
 
+                       <div class="row">
 
-                <!--button-->
-                <input type="button" name="previous" class="previous btn btn-outline-danger" value="Previous" />
-                <input type="button" name="next" class="next btn btn-primary" value="Next" />
-            </fieldset>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Father National</label>
+                               <div class="col">
+                                   <select name="" id="" class="form-select form-select mb-3" >
+                                       <option selected disabled>--Select--</option>
+                                   </select>
+                               </div>
+                           </div>
 
-             <!--Form 3-->
-             <fieldset>
-             <h2> Step 3: Add Personnel Details</h2>
-             <div class="row ">
-                                        <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">Student ID</label>
-                                            <div class="col">
-                                            <select name="" id="" class="form-select form-select mb-3" >
-                                                <option selected disabled>--Select--</option>
-                                            </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-company">Name in KHmer</label>
-                                            <div class="col">
-                                            <div class="input-group input-group-merge">
-                                                    <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                    <input
-                                                            type="text"
-                                                            id=""
-                                                            class="form-control"
-                                                            placeholder="ឈ្មោះ"    
-                                                    />                
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Father Country</label>
+                               <div class="col">
+                                   <select name="" id="" class="form-select form-select mb-3" >
+                                       <option selected disabled>--Select--</option>
+                                   </select>
+                               </div>
+                           </div>
+                       </div>
 
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-company">Given Name</label>
-                                            <div class="col">
-                                            <div class="input-group input-group-merge">
-                                                    <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                    <input
-                                                            type="text"
-                                                            id=""
-                                                            class="form-control"
-                                                            placeholder="Last name"    
-                                                    />                
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">Sex ID</label>
-                                            <div class="col">
-                                            <select name="" id="" class="form-select form-select mb-3" >
-                                                <option selected disabled>--Select--</option>
-                                            </select>
-                                            </div>
-                                        </div>
-                                    </div>
+                       <div class="row">
 
-                                    <div class="row">
-                                        <div class="col-lg-6">
+                           <div class="col-lg-6">
 
-                                        <label class="col col-form-label" for="basic-icon-default-company">ID passport NO</label>
-                                            <div class="col">
-                                            <div class="input-group input-group-merge">
-                                                    <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                    <input
-                                                            type="text"
-                                                            id=""
-                                                            class="form-control"
-                                                            placeholder="Passport ID"    
-                                                    />                
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-lg-6">
-                                            <label class="col col-form-label" for="basic-icon-default-fullname">National ID</label>
-                                                <div class="col">
-                                                <select name="" id="" class="form-select form-select mb-3" >
-                                                    <option selected disabled>--Select--</option>
-                                                </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    
+                               <label class="col col-form-label" for="basic-icon-default-company">Father Occupation</label>
+                               <div class="col">
+                                   <select name="" id="" class="form-select form-select mb-3" >
+                                       <option selected disabled>--Select--</option>
+                                   </select>
+                               </div>
+                           </div>
 
-                                    <div class="row">
-                                        
-                                        <div class="col-lg-6">
-                                            <label class="col col-form-label" for="basic-icon-default-fullname">Country ID</label>
-                                                <div class="col">
-                                                <select name="" id="" class="form-select form-select mb-3" >
-                                                    <option selected disabled>--Select--</option>
-                                                </select>
-                                                </div>
-                                            </div>
+                           <div class="col-lg-6">
 
-                                            <div class="col-lg-6">
-                                            
-                                            <label class="col col-form-label" for="basic-icon-default-company">Date of birth</label>
-                                                <div class="col">
-                                                <div class="input-group input-group-merge">
-                                                        <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                        <input
-                                                                type="datetime"
-                                                                id=""
-                                                                class="form-control"
-                                                                placeholder="mm-dd-yy"    
-                                                        />                
-                                                    </div>
-                                                </div>
-                                            </div>
+                               <label class="col col-form-label" for="basic-icon-default-company">Mother Name</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="Mother Name"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
 
-                                     </div>
+                       </div>
 
-                                     <div class="row">
+                       <div class="row">
+                           <div class="col-lg-6">
 
-                                       <div class="col-lg-6">
-                                            
-                                            <label class="col col-form-label" for="basic-icon-default-company">Place of birth</label>
-                                                <div class="col">
-                                                <div class="input-group input-group-merge">
-                                                        <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                        <input
-                                                                type="text"
-                                                                id=""
-                                                                class="form-control"
-                                                                placeholder="place"    
-                                                        />                
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        
-                                            <div class="col-lg-6">
-                                            
-                                            <label class="col col-form-label" for="basic-icon-default-company">Phone Number</label>
-                                                <div class="col">
-                                                <div class="input-group input-group-merge">
-                                                        <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                        <input
-                                                                type="text"
-                                                                id=""
-                                                                class="form-control"
-                                                                placeholder="+855.........."    
-                                                        />                
-                                                    </div>
-                                                </div>
-                                            </div>
-                                     </div>
+                               <label class="col col-form-label" for="basic-icon-default-company">Mother Age</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="Mother Age"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
 
-                                     <div class="row">
+                           <div class="col-lg-6">
 
-                                       <div class="col-lg-6">
-                                            
-                                            <label class="col col-form-label" for="basic-icon-default-company">Email</label>
-                                                <div class="col">
-                                                <div class="input-group input-group-merge">
-                                                        <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                        <input
-                                                                type="email"
-                                                                id=""
-                                                                class="form-control"
-                                                                placeholder="example@gmail.com"    
-                                                        />                
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        
-                                            <div class="col-lg-6">
-                                            
-                                            <label class="col col-form-label" for="basic-icon-default-company">curent address</label>
-                                                <div class="col">
-                                                <div class="input-group input-group-merge">
-                                                        <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                        <input
-                                                                type="text"
-                                                                id=""
-                                                                class="form-control"
-                                                                placeholder="Address"    
-                                                        />                
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                               <label class="col col-form-label" for="basic-icon-default-company">Mother National</label>
+                               <div class="col">
+                                   <select name="" id="" class="form-select form-select mb-3" >
+                                       <option selected disabled>--Select--</option>
+                                   </select>
+                               </div>
+                           </div>
 
-                                        <div class="row">
+                       </div>
 
-                                                <div class="col-lg-6">
-                                                    
-                                                    <label class="col col-form-label" for="basic-icon-default-company">Current address PP</label>
-                                                        <div class="col">
-                                                        <div class="input-group input-group-merge">
-                                                                <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                                <input
-                                                                        type="text"
-                                                                        id=""
-                                                                        class="form-control"
-                                                                        placeholder="Address PP"    
-                                                                />                
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                
-                                                    <div class="col-lg-6">
-                                                    
-                                                    <label class="col col-form-label" for="basic-icon-default-company">Photo</label>
-                                                    <div class="col">
-                                            <div class="input-group input-group-merge">
-                                                <input class="form-control" type="file" id="formFile" />
-                                            </div>
-                                        </div>
-                                                </div>
-                                            </div>
+                       <div class="row">
+                           <div class="col-lg-6">
 
-                                            <div class="row mb-4">
+                               <label class="col col-form-label" for="basic-icon-default-company">Mother Country</label>
+                               <div class="col">
+                                   <select name="" id="" class="form-select form-select mb-3" >
+                                       <option selected disabled>--Select--</option>
+                                   </select>
+                               </div>
+                           </div>
 
-                                                <div class="col-lg-6">
-                                                    
-                                                    <label class="col col-form-label" for="basic-icon-default-company">Current address PP</label>
-                                                        <div class="col">
-                                                        <div class="input-group input-group-merge">
-                                                                <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                                <input
-                                                                        type="text"
-                                                                        id=""
-                                                                        class="form-control"
-                                                                        placeholder="Address PP"    
-                                                                />                
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                           <div class="col-lg-6">
 
-                                        </div>
-                                         <!--button-->
-                <input type="button" name="previous" class="previous btn btn-outline-danger" value="Previous" />
-                <input type="button" name="next" class="next btn btn-primary" value="Next" />
+                               <label class="col col-form-label" for="basic-icon-default-company">Mother Occupation</label>
+                               <div class="col">
+                                   <select name="" id="" class="form-select form-select mb-3" >
+                                       <option selected disabled>--Select--</option>
+                                   </select>
+                               </div>
+                           </div>
 
-             </fieldset>
+                       </div>
 
-              <!--Form 4-->
-              <fieldset>
-              <h2>Step 4: Contact Information</h2>
-              <div class="row ">
-                                        <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">School Type ID</label>
-                                            <div class="col">
-                                            <select name="" id="" class="form-select form-select mb-3" >
-                                                <option selected disabled>--Select--</option>
-                                            </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-company">School in KHmer</label>
-                                            <div class="col">
-                                            <div class="input-group input-group-merge">
-                                                    <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                    <input
-                                                            type="text"
-                                                            id=""
-                                                            class="form-control"
-                                                            placeholder="ឈ្មោះ"    
-                                                    />                
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                       <div class="row mb-2">
+                           <div class="col-lg-6">
 
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-company">School Name</label>
-                                            <div class="col">
-                                            <div class="input-group input-group-merge">
-                                                    <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                    <input
-                                                            type="text"
-                                                            id=""
-                                                            class="form-control"
-                                                            placeholder="School"    
-                                                    />                
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">Family BG ID</label>
-                                            <div class="col">
-                                            <select name="" id="" class="form-select form-select mb-3" >
-                                                <option selected disabled>--Select--</option>
-                                            </select>
-                                            </div>
-                                        </div>
-                                    </div>
+                               <label class="col col-form-label" for="basic-icon-default-company">Family Current Address</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="Family Address"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
 
-                                    <div class="row">
-                                        <div class="col-lg-6">
+                           <div class="col-lg-6">
 
-                                        <label class="col col-form-label" for="basic-icon-default-company">Father Name</label>
-                                            <div class="col">
-                                            <div class="input-group input-group-merge">
-                                                    <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                    <input
-                                                            type="text"
-                                                            id=""
-                                                            class="form-control"
-                                                            placeholder="Father Name"    
-                                                    />                
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Spouse Name</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="Spouse Name"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
 
-                                        <label class="col col-form-label" for="basic-icon-default-company">Father Age</label>
-                                            <div class="col">
-                                            <div class="input-group input-group-merge">
-                                                    <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                    <input
-                                                            type="number"
-                                                            id=""
-                                                            class="form-control"
-                                                            placeholder="Father Aage"    
-                                                    />                
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    
+                       </div>
 
-                                    <div class="row">
-                                        
-                                    <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">Father National</label>
-                                            <div class="col">
-                                            <select name="" id="" class="form-select form-select mb-3" >
-                                                <option selected disabled>--Select--</option>
-                                            </select>
-                                            </div>
-                                        </div>
+                       <div class="row mb-4">
+                           <div class="col-lg-6">
 
-                                        <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">Father Country</label>
-                                            <div class="col">
-                                            <select name="" id="" class="form-select form-select mb-3" >
-                                                <option selected disabled>--Select--</option>
-                                            </select>
-                                            </div>
-                                        </div>
-                                     </div>
+                               <label class="col col-form-label" for="basic-icon-default-company">Spouse Age</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="number"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="Spouse Age"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
 
-                                     <div class="row">
+                           <div class="col-lg-6">
 
-                                       <div class="col-lg-6">
-                                            
-                                            <label class="col col-form-label" for="basic-icon-default-company">Father Occupation</label>
-                                            <div class="col">
-                                            <select name="" id="" class="form-select form-select mb-3" >
-                                                <option selected disabled>--Select--</option>
-                                            </select>
-                                            </div>
-                                             </div>
+                               <label class="col col-form-label" for="basic-icon-default-company">Guardian Phone Number</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="Guardian Phone Number"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
 
-                                             <div class="col-lg-6">
+                       </div>
+                       <!--button-->
+                       <input type="button" name="previous" class="previous btn btn-outline-danger" value="Previous" />
+                       <input type="button" name="next" class="next btn btn-primary" value="Next" />
 
-                                            <label class="col col-form-label" for="basic-icon-default-company">Mother Name</label>
-                                                <div class="col">
-                                                <div class="input-group input-group-merge">
-                                                        <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                        <input
-                                                                type="text"
-                                                                id=""
-                                                                class="form-control"
-                                                                placeholder="Mother Name"    
-                                                        />                
-                                                    </div>
-                                                </div>
-                                            </div>
+                   </fieldset>
+                 <!--Form Major Information-->
+                   <fieldset>
+                       <h2>Step 1: University Information</h2>
+                       <div class="row">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Academic Year</label>
+                               <div class="col">
+                                   <select name="AcademicYearID" id="" class="form-select form-select mb-3">
+                                       <option selected disabled>--Select Year--</option>
 
-                                        </div>
+                                       <?php
+                                       $sql = "Select *From tblacademicyear";
+                                       $query = mysqli_query($conn, $sql);
+                                       while ($data = mysqli_fetch_assoc($query)) { ?>
+                                           <option value="<?php echo $data['AcademicYearID'] ?>">
+                                               <?php echo $data['AcademicYear']?>
+                                           </option>
 
-                                        <div class="row">
-                                        <div class="col-lg-6">
+                                       <?php }
+                                       ?>
+                                   </select>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Degree in KHmer</label>
+                               <div class="col">
+                                   <select name="AcademicYearID" id="" class="form-select form-select mb-3">
+                                       <option selected disabled>--Select Degree in Khmer--</option>
 
-                                            <label class="col col-form-label" for="basic-icon-default-company">Mother Age</label>
-                                                <div class="col">
-                                                <div class="input-group input-group-merge">
-                                                        <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                        <input
-                                                                type="text"
-                                                                id=""
-                                                                class="form-control"
-                                                                placeholder="Mother Age"    
-                                                        />                
-                                                    </div>
-                                                </div>
-                                            </div>
+                                       <?php
+                                       include_once '../BackEnd/db.php';
 
-                                            <div class="col-lg-6">
-                                            
-                                            <label class="col col-form-label" for="basic-icon-default-company">Mother National</label>
-                                            <div class="col">
-                                            <select name="" id="" class="form-select form-select mb-3" >
-                                                <option selected disabled>--Select--</option>
-                                            </select>
-                                            </div>
-                                             </div>
+                                       $sql = "Select *From tblDegree";
+                                       $query = mysqli_query($conn, $sql);
+                                       while ($data = mysqli_fetch_assoc($query)) { ?>
 
-                                        </div>
+                                           <option value="<?php echo $data['DegreeID'] ?>">
+                                               <?php echo $data['DegreeNameKH']?>
+                                           </option>
 
-                                        <div class="row">
-                                        <div class="col-lg-6">
-                                            
-                                            <label class="col col-form-label" for="basic-icon-default-company">Mother Country</label>
-                                            <div class="col">
-                                            <select name="" id="" class="form-select form-select mb-3" >
-                                                <option selected disabled>--Select--</option>
-                                            </select>
-                                            </div>
-                                             </div>
+                                       <?php }
+                                       ?>
+                                   </select>
+                               </div>
+                           </div>
+                       </div>
 
-                                            <div class="col-lg-6">
-                                            
-                                            <label class="col col-form-label" for="basic-icon-default-company">Mother Occupation</label>
-                                            <div class="col">
-                                            <select name="" id="" class="form-select form-select mb-3" >
-                                                <option selected disabled>--Select--</option>
-                                            </select>
-                                            </div>
-                                             </div>
+                       <div class="row">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Degree in English</label>
+                               <div class="col">
+                                   <select name="AcademicYearID" id="" class="form-select form-select mb-3">
+                                       <option selected disabled>-- Select Degree in English --</option>
 
-                                        </div>
+                                       <?php
+                                       include_once '../BackEnd/db.php';
 
-                                        <div class="row mb-2">
-                                        <div class="col-lg-6">
+                                       $sql = "Select *From tblDegree";
+                                       $query = mysqli_query($conn, $sql);
+                                       while ($data = mysqli_fetch_assoc($query)) { ?>
+                                           <option value="<?php echo $data['DegreeID'] ?>">
+                                               <?php echo $data['DegreeNameEN']?>
+                                           </option>
 
-                                            <label class="col col-form-label" for="basic-icon-default-company">Family Current Address</label>
-                                                <div class="col">
-                                                <div class="input-group input-group-merge">
-                                                        <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                        <input
-                                                                type="text"
-                                                                id=""
-                                                                class="form-control"
-                                                                placeholder="Family Address"    
-                                                        />                
-                                                    </div>
-                                                </div>
-                                            </div>
+                                       <?php }
+                                       ?>
+                                   </select>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Campus in Khmer</label>
+                               <div class="col">
+                                   <select name="AcademicYearID" id="" class="form-select form-select mb-3">
+                                       <option selected disabled>-- Select Campus in Khmer --</option>
 
-                                            <div class="col-lg-6">
+                                       <?php
+                                       include_once '../BackEnd/db.php';
 
-                                            <label class="col col-form-label" for="basic-icon-default-company">Spouse Name</label>
-                                                <div class="col">
-                                                <div class="input-group input-group-merge">
-                                                        <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                        <input
-                                                                type="text"
-                                                                id=""
-                                                                class="form-control"
-                                                                placeholder="Spouse Name"    
-                                                        />                
-                                                    </div>
-                                                </div>
-                                            </div>
+                                       $sql = "Select *From tblCampus";
+                                       $query = mysqli_query($conn, $sql);
+                                       while ($data = mysqli_fetch_assoc($query)) { ?>
+                                           <option value="<?php echo $data['CampusID'] ?>">
+                                               <?php echo $data['CampusKH']?>
+                                           </option>
 
-                                        </div>
+                                       <?php }
+                                       ?>
+                                   </select>
+                               </div>
+                           </div>
+                       </div>
+                       <!--TblAcademicYear-->
+                       <div class="row">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Campus in English</label>
+                               <div class="col">
+                                   <select name="AcademicYearID" id="" class="form-select form-select mb-3">
+                                       <option selected disabled>--Select Campus in English--</option>
 
-                                        <div class="row mb-4">
-                                        <div class="col-lg-6">
+                                       <?php
+                                       include_once '../BackEnd/db.php';
 
-                                            <label class="col col-form-label" for="basic-icon-default-company">Spouse Age</label>
-                                                <div class="col">
-                                                <div class="input-group input-group-merge">
-                                                        <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                        <input
-                                                                type="number"
-                                                                id=""
-                                                                class="form-control"
-                                                                placeholder="Spouse Age"    
-                                                        />                
-                                                    </div>
-                                                </div>
-                                            </div>
+                                       $sql = "Select *From tblCampus";
+                                       $query = mysqli_query($conn, $sql);
+                                       while ($data = mysqli_fetch_assoc($query)) { ?>
+                                           <option value="<?php echo $data['CampusID'] ?>">
+                                               <?php echo $data['CampusEN']?>
+                                           </option>
 
-                                            <div class="col-lg-6">
+                                       <?php }
+                                       ?>
+                                   </select>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Program Type in Khmer</label>
+                               <div class="col">
+                                   <select name="AcademicYearID" id="" class="form-select form-select mb-3">
+                                       <option selected disabled>--Select Program Type Khmer--</option>
 
-                                            <label class="col col-form-label" for="basic-icon-default-company">Guardian Phone Number</label>
-                                                <div class="col">
-                                                <div class="input-group input-group-merge">
-                                                        <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                        <input
-                                                                type="text"
-                                                                id=""
-                                                                class="form-control"
-                                                                placeholder="Guardian Phone Number"    
-                                                        />                
-                                                    </div>
-                                                </div>
-                                            </div>
+                                       <?php
+                                       include_once '../BackEnd/db.php';
 
-                                        </div>
-                                                                 <!--button-->
-                <input type="button" name="previous" class="previous btn btn-outline-danger" value="Previous" />
-                <input type="button" name="next" class="next btn btn-primary" value="Next" />
+                                       $sql = "Select *From tblprogramtype";
+                                       $query = mysqli_query($conn, $sql);
+                                       while ($data = mysqli_fetch_assoc($query)) { ?>
+                                           <option value="<?php echo $data['ProgramTypeID'] ?>">
+                                               <?php echo $data['ProgramTypeKH']?>
+                                           </option>
 
-              </fieldset>
+                                       <?php }
+                                       ?>
+                                   </select>
+                               </div>
+                           </div>
+                       </div>
+                       <!--TblAcademicYear-->
+                       <div class="row">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Program Type in English</label>
+                               <div class="col">
+                                   <select name="AcademicYearID" id="" class="form-select form-select mb-3">
+                                       <option selected disabled>--Select Program Type English--</option>
 
+                                       <?php
+                                       include_once '../BackEnd/db.php';
+
+                                       $sql = "Select *From tblprogramtype";
+                                       $query = mysqli_query($conn, $sql);
+                                       while ($data = mysqli_fetch_assoc($query)) { ?>
+                                           <option value="<?php echo $data['ProgramTypeID'] ?>">
+                                               <?php echo $data['ProgramTypeEN']?>
+                                           </option>
+
+                                       <?php }
+                                       ?>
+                                   </select>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Shift in Khmer</label>
+                               <div class="col">
+                                   <select name="AcademicYearID" id="" class="form-select form-select mb-3">
+                                       <option selected disabled>--Select Shift in Khmer--</option>
+
+                                       <?php
+                                       include_once '../BackEnd/db.php';
+
+                                       $sql = "Select *From tblshift";
+                                       $query = mysqli_query($conn, $sql);
+                                       while ($data = mysqli_fetch_assoc($query)) { ?>
+                                           <option value="<?php echo $data['ShiftID'] ?>">
+                                               <?php echo $data['ShiftKH']?>
+                                           </option>
+
+                                       <?php }
+                                       ?>
+                                   </select>
+                               </div>
+                           </div>
+                       </div>
+                       <!--TblAcademicYear-->
+                       <div class="row">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Shift in English</label>
+                               <div class="col">
+                                   <select name="AcademicYearID" id="" class="form-select form-select mb-3">
+                                       <option selected disabled>--Select Shift in English--</option>
+
+                                       <?php
+                                       include_once '../BackEnd/db.php';
+
+                                       $sql = "Select *From tblshift";
+                                       $query = mysqli_query($conn, $sql);
+                                       while ($data = mysqli_fetch_assoc($query)) { ?>
+                                           <option value="<?php echo $data['ShiftID'] ?>">
+                                               <?php echo $data['ShiftEN']?>
+                                           </option>
+
+                                       <?php }
+                                       ?>
+                                   </select>
+                               </div>
+                           </div>
+
+                       </div>
+
+
+                       <!--button-->
+                       <a type="submit" class="btn btn-outline-danger" href="../index.php">Cancel</a>
+                       <input type="button" name="password" class="next btn btn-primary" value="Next" />
+                   </fieldset>
+                 <!--Form 4-->
+                   <fieldset>
+                       <h2> Step 2: Add Personnel Details</h2>
+                       <div class="row">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Learning Type in Khmer</label>
+                               <div class="col">
+                                   <select name="" id="" class="form-select form-select mb-3">
+                                       <option selected disabled>--Select--</option>
+
+                                       <?php
+                                       include_once '../BackEnd/db.php';
+
+                                       $sql = "Select *From tbllearningtype";
+                                       $query = mysqli_query($conn, $sql);
+                                       while ($data = mysqli_fetch_assoc($query)) { ?>
+                                           <option value="<?php echo $data['LearningTypeID'] ?>">
+                                               <?php echo $data['LearningTypeKH']?>
+                                           </option>
+
+                                       <?php }
+                                       ?>
+                                   </select>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Learning Type in English</label>
+                               <div class="col">
+                                   <select name="" id="" class="form-select form-select mb-3">
+                                       <option selected disabled>--Select--</option>
+
+                                       <?php
+                                       include_once '../BackEnd/db.php';
+
+                                       $sql = "Select *From tbllearningtype";
+                                       $query = mysqli_query($conn, $sql);
+                                       while ($data = mysqli_fetch_assoc($query)) { ?>
+                                           <option value="<?php echo $data['LearningTypeID'] ?>">
+                                               <?php echo $data['LearningTypeEN']?>
+                                           </option>
+
+                                       <?php }
+                                       ?>
+                                   </select>
+                               </div>
+                           </div>
+                           <div class="row">
+                               <div class="col-lg-6">
+                                   <label class="col col-form-label" for="basic-icon-default-company">Learning in English</label>
+                                   <div class="col">
+                                       <div class="input-group input-group-merge">
+                                           <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                           <input
+                                                   type="text"
+                                                   id=""
+                                                   class="form-control"
+                                                   placeholder="English"
+                                           />
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="col-lg-6">
+                                   <label class="col col-form-label" for="basic-icon-default-fullname">Faculty ID</label>
+                                   <div class="col">
+                                       <select name="" id="" class="form-select form-select mb-3" >
+                                           <option selected disabled>--Select--</option>
+                                       </select>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="row">
+                               <div class="col-lg-6">
+                                   <label class="col col-form-label" for="basic-icon-default-company">Faculty in Khmer</label>
+                                   <div class="col">
+                                       <div class="input-group input-group-merge">
+                                           <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                           <input
+                                                   type="text"
+                                                   id=""
+                                                   class="form-control"
+                                                   placeholder="ព័ត៌មានវិទ្យា"
+                                           />
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="col-lg-6">
+                                   <label class="col col-form-label" for="basic-icon-default-company">Faculty in English</label>
+                                   <div class="col">
+                                       <div class="input-group input-group-merge">
+                                           <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                           <input
+                                                   type="text"
+                                                   id=""
+                                                   class="form-control"
+                                                   placeholder="Information Technology"
+                                           />
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+
+                           <div class="row">
+                               <div class="col-lg-6">
+                                   <label class="col col-form-label" for="basic-icon-default-fullname">Major ID</label>
+                                   <div class="col">
+                                       <select name="" id="" class="form-select form-select mb-3" >
+                                           <option selected disabled>--Select--</option>
+                                       </select>
+                                   </div>
+                               </div>
+                               <div class="col-lg-6">
+                                   <label class="col col-form-label" for="basic-icon-default-company">Major in KHmer</label>
+                                   <div class="col">
+                                       <div class="input-group input-group-merge">
+                                           <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                           <input
+                                                   type="text"
+                                                   id=""
+                                                   class="form-control"
+                                                   placeholder="មុខជំនាញ"
+                                           />
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+
+                           <div class="row">
+                               <div class="col-lg-6">
+                                   <label class="col col-form-label" for="basic-icon-default-company">Major in English</label>
+                                   <div class="col">
+                                       <div class="input-group input-group-merge">
+                                           <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                           <input
+                                                   type="text"
+                                                   id=""
+                                                   class="form-control"
+                                                   placeholder="Major"
+                                           />
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="col-lg-6">
+                                   <label class="col col-form-label" for="basic-icon-default-fullname">Faculty ID</label>
+                                   <div class="col">
+                                       <select name="" id="" class="form-select form-select mb-3" >
+                                           <option selected disabled>--Select--</option>
+                                       </select>
+                                   </div>
+                               </div>
+                           </div>
+
+                           <div class="row">
+                               <div class="col-lg-6">
+                                   <label class="col col-form-label" for="basic-icon-default-fullname">Sex ID</label>
+                                   <div class="col">
+                                       <select name="" id="" class="form-select form-select mb-3" >
+                                           <option selected disabled>--Select--</option>
+                                       </select>
+                                   </div>
+                               </div>
+                               <div class="col-lg-6">
+                                   <label class="col col-form-label" for="basic-icon-default-company">Gender in Khmer</label>
+                                   <div class="col">
+                                       <div class="input-group input-group-merge">
+                                           <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                           <input
+                                                   type="text"
+                                                   id=""
+                                                   class="form-control"
+                                                   placeholder="ភេទ"
+                                           />
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+
+                           <div class="row">
+                               <div class="col-lg-6">
+                                   <label class="col col-form-label" for="basic-icon-default-company">Gender in English</label>
+                                   <div class="col">
+                                       <div class="input-group input-group-merge">
+                                           <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                           <input
+                                                   type="text"
+                                                   id=""
+                                                   class="form-control"
+                                                   placeholder="Gender"
+                                           />
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="col-lg-6">
+                                   <label class="col col-form-label" for="basic-icon-default-fullname">National ID</label>
+                                   <div class="col">
+                                       <select name="" id="" class="form-select form-select mb-3" >
+                                           <option selected disabled>--Select--</option>
+                                       </select>
+                                   </div>
+                               </div>
+                           </div>
+
+                           <div class="row mb-3">
+                               <div class="col-lg-6">
+                                   <label class="col col-form-label" for="basic-icon-default-company">National in Khmer</label>
+                                   <div class="col">
+                                       <div class="input-group input-group-merge">
+                                           <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                           <input
+                                                   type="text"
+                                                   id=""
+                                                   class="form-control"
+                                                   placeholder="សញ្ជាតិ"
+                                           />
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="col-lg-6">
+                                   <label class="col col-form-label" for="basic-icon-default-company">National in English</label>
+                                   <div class="col">
+                                       <div class="input-group input-group-merge">
+                                           <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                           <input
+                                                   type="text"
+                                                   id=""
+                                                   class="form-control"
+                                                   placeholder="National"
+                                           />
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+
+
+
+                           <!--button-->
+                           <input type="button" name="previous" class="previous btn btn-outline-danger" value="Previous" />
+                           <input type="button" name="next" class="next btn btn-primary" value="Next" />
+                   </fieldset>
                 <!--Form 5-->
                 <fieldset>
                 <h2>Step 5: Contact Information</h2>

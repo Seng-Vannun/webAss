@@ -2,7 +2,8 @@
 require_once 'db.php';
 if(isset($_POST['Submit']))
 {
-    $NameInKhmer=$_POST['khName'];
+//    StudentInfo To Database
+$NameInKhmer=$_POST['khName'];
 $LatinName=$_POST['NameInLatin'];
 $FamilyName=$_POST['FamilyName'];
 $GivenName=$_POST['GivenName'];
@@ -28,5 +29,6 @@ values
     {
     echo ("Error".$StudentInfoSql.":-".mysqli_error($conn))   ;
     }
+    //End Of StudentInfo To database
 mysqli_close($conn);
 }
