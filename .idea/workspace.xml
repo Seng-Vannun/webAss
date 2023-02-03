@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b73c77c2-c1e9-4c35-bb16-4977fd605d27" name="Changes" comment="Add Jquery">
+    <list default="true" id="b73c77c2-c1e9-4c35-bb16-4977fd605d27" name="Changes" comment="Change multi Form">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Input.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Input.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrontEnd/StudentInfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/StudentInfo.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FrontEnd/multipleForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/multipleForm.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +64,8 @@
       <workItem from="1675075758588" duration="6966000" />
       <workItem from="1675085631623" duration="1818000" />
       <workItem from="1675248768794" duration="1976000" />
-      <workItem from="1675335645157" duration="4690000" />
+      <workItem from="1675335645157" duration="4726000" />
+      <workItem from="1675421069831" duration="9757000" />
     </task>
     <task id="LOCAL-00001" summary="Add Jquery">
       <created>1675250661891</created>
@@ -74,7 +74,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675250661891</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Change multi Form">
+      <created>1675343707216</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1675343707216</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -93,6 +100,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add Jquery" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Jquery" />
+    <MESSAGE value="Change multi Form" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change multi Form" />
   </component>
 </project>

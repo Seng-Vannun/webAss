@@ -2,12 +2,27 @@
 require_once ('../BackEnd/db.php');
 $sqlSex="select * from tblsex";
 $resultSex=mysqli_query($conn,$sqlSex);
-$sqlNationalty="select * from tblnationality";
-$resultNationalty=mysqli_query($conn,$sqlNationalty);
+$sqlNationality="select * from tblnationality";
+$resultNationality=mysqli_query($conn,$sqlNationality);
 $sqlCountry="select * from tblcountry";
 $resultCountry=mysqli_query($conn,$sqlCountry);
 $sqlFaculty ="select * from tblfaculty";
 $resultFaculty=mysqli_query($conn,$sqlFaculty);
+$sqlOccupation="select * from tbloccupation";
+$resultOccupation=mysqli_query($conn,$sqlOccupation);
+$Nationality_array=array();
+$Country_array=array();
+$Occupation_array=array();
+while($nationality=mysqli_fetch_assoc($resultNationality)){
+    $Nationality_array[]=$nationality;
+}
+while($occupation=mysqli_fetch_assoc($resultOccupation)){
+    $Occupation_array[]=$occupation;
+}
+while($country=mysqli_fetch_assoc($resultCountry)){
+    $Country_array[]=$country;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,459 +96,578 @@ $resultFaculty=mysqli_query($conn,$sqlFaculty);
                                 <h1 style="color: white;">Registration</h1>
                             </div>
                <div class="card-body">
-               <form id="regiration_form" novalidate action="action.php"  method="post">
-                <!--Form Student Infomation-->
+               <form id="regiration_form" novalidate action="../BackEnd/Input.php"  method="post">
+               <!-- Form Student Infomation Done-->
+<!--                   <fieldset>-->
+<!--                       <h2> Step 1: Add Personnel Details</h2>-->
+<!--                       <div class="row mb-2 ">-->
+<!--                           <div class="col-lg-6">-->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Name Latin</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                       <span id="basic-icon-default-fullname2" class="input-group-text"-->
+<!--                                       ><i class="bx bx-user"></i-->
+<!--                                           ></span>-->
+<!--                                       <input-->
+<!--                                               required-->
+<!--                                               name="NameInLatin"-->
+<!--                                               type="text"-->
+<!--                                               id=""-->
+<!--                                               class="form-control"-->
+<!--                                               placeholder="NAME IN LATIN"-->
+<!--                                       />-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                           <div class="col-lg-6">-->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Name in Khmer</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                       <span id="basic-icon-default-fullname2" class="input-group-text"-->
+<!--                                       ><i class="bx bx-user"></i-->
+<!--                                           ></span>-->
+<!--                                       <input-->
+<!--                                               required-->
+<!--                                               name="khName"-->
+<!--                                               type="text"-->
+<!--                                               id=""-->
+<!--                                               class="form-control"-->
+<!--                                               placeholder="ឈ្មោះ"-->
+<!--                                       />-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                       </div>-->
+<!--                       <div class="row mb-2">-->
+<!--                           <div class="col-lg-6">-->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Family Name</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                       <span id="basic-icon-default-fullname2" class="input-group-text"-->
+<!--                                       ><i class="bx bx-user"></i-->
+<!--                                           ></span>-->
+<!--                                       <input-->
+<!--                                               required-->
+<!--                                               name="FamilyName"-->
+<!--                                               type="text"-->
+<!--                                               id=""-->
+<!--                                               class="form-control"-->
+<!--                                               placeholder="SENG"-->
+<!--                                       />-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                           <div class="col-lg-6">-->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Given Name</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                       <span id="basic-icon-default-fullname2" class="input-group-text"-->
+<!--                                       ><i class="bx bx-user"></i-->
+<!--                                           ></span>-->
+<!--                                       <input-->
+<!--                                               name="GivenName"-->
+<!--                                               type="text"-->
+<!--                                               id=""-->
+<!--                                               class="form-control"-->
+<!--                                               placeholder="VANNUN"-->
+<!--                                       />-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                       </div>-->
+<!--                       <div class="row mb-0">-->
+<!--                           <div class="col-lg-6">-->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Sex</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                       <select name="Sex" id="" class="form-control form-select form-select mb-3" >-->
+<!--                                           <option selected disabled>--Select--</option>-->
+<!--                                           --><?php //while ($rowSex= mysqli_fetch_assoc($resultSex)){?>
+<!--                                               <option value="--><?php //echo $rowSex['SexID']?><!--">--><?php //echo $rowSex['SexEN']?><!--</option>-->
+<!--                                           --><?php //}?>
+<!--                                       </select>-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                           <div class="col-lg-6">-->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">PassportNO ID</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                       <span id="basic-icon-default-fullname2" class="input-group-text"-->
+<!--                                       ><i class="bx bx-book-add"></i-->
+<!--                                           ></span>-->
+<!--                                       <input-->
+<!--                                               name="Passport"-->
+<!--                                               type="text"-->
+<!--                                               id=""-->
+<!--                                               class="form-control"-->
+<!--                                               placeholder="NO.12345"-->
+<!--                                       />-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                       </div>-->
+<!--                       <div class="row mb-0">-->
+<!--                           <div class="col-lg-6">-->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Nationality</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                       <select name="Nationality" id="" class="form-control form-select form-select mb-3" >-->
+<!--                                           <option selected disabled>--Select--</option>-->
+<!--                                           --><?php //foreach ($Nationality_array as $nationality){?>
+<!--                                               <option value="--><?php //echo $nationality['NationalityID']?><!--">--><?php //echo $nationality['NationalityEN']?><!--</option>-->
+<!--                                           --><?php //}?>
+<!--                                       </select>-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                           <div class="col-lg-6">-->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Country</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                       <select name="Country" id="" class="form-control form-select form-select mb-3" >-->
+<!--                                           <option selected disabled>--Select--</option>-->
+<!--                                           --><?php //foreach ($Country_array as $country){?>
+<!--                                               <option value="--><?php //echo $country['CountryID']?><!--">--><?php //echo $country['CountryEN']?><!--</option>-->
+<!--                                               --><?php //}?>
+<!--                                       </select>-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                       </div>-->
+<!--                       <div class="row mb-2">-->
+<!--                           <div class="col-lg-6">-->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Date Of Birth</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                        <span class="input-group-text"><i class="bx bx-calendar"></i-->
+<!--                                       ></span>-->
+<!--                                       <input class="form-control" type="date" name="dob" value="2021-06-18" id="html5-date-input" />-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                           <div class="col-lg-6">-->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Place Of Birth</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                       <span id="basic-icon-default-fullname2" class="input-group-text"-->
+<!--                                       ><i class="bx bx-building-house"></i-->
+<!--                                           ></span>-->
+<!--                                       <input-->
+<!--                                               type="text"-->
+<!--                                               name="pod"-->
+<!--                                               class="form-control"-->
+<!--                                               id="basic-icon-default-fullname"-->
+<!--                                               placeholder="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"-->
+<!--                                               aria-label="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"-->
+<!--                                               aria-describedby="basic-icon-default-fullname2"-->
+<!--                                       />-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                       </div>-->
+<!--                       <div class="row mb-2">-->
+<!--                           <div class="col-lg-6">-->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Email</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                       <span class="input-group-text"><i class="bx bx-envelope"></i></span>-->
+<!--                                       <input-->
+<!--                                               type="text"-->
+<!--                                               name="email"-->
+<!--                                               id="basic-icon-default-email"-->
+<!--                                               class="form-control"-->
+<!--                                               placeholder="@gmail.com"-->
+<!--                                               aria-label="john.doe"-->
+<!--                                               aria-describedby="basic-icon-default-email2"-->
+<!--                                       />-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                           <div class="col-lg-6">-->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Phone Number</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                         <span id="basic-icon-default-fullname2" class="input-group-text"-->
+<!--                                         ><i class="bx bx-phone"></i-->
+<!--                                             ></span>-->
+<!--                                       <input-->
+<!--                                               type="text"-->
+<!--                                               name="PhoneNumber"-->
+<!--                                               class="form-control"-->
+<!--                                               id="basic-icon-default-fullname"-->
+<!--                                               placeholder="011 586 835"-->
+<!--                                               aria-label="011 586 835"-->
+<!--                                               aria-describedby="basic-icon-default-fullname2"-->
+<!--                                       />-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                       </div>-->
+<!--                       <div class="row mb-2">-->
+<!--                           <div class="col-lg-6">-->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Current Address</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                       <span id="basic-icon-default-fullname2" class="input-group-text"-->
+<!--                                       ><i class="bx bx-building-house"></i-->
+<!--                                           ></span>-->
+<!--                                       <input-->
+<!--                                               type="text"-->
+<!--                                               class="form-control"-->
+<!--                                               name="currentAddress"-->
+<!--                                               id="basic-icon-default-fullname"-->
+<!--                                               placeholder="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"-->
+<!--                                               aria-label="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"-->
+<!--                                               aria-describedby="basic-icon-default-fullname2"-->
+<!--                                       />-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                           <div class="col-lg-6">-->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Current Address PP(Optional)</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                         <span id="basic-icon-default-fullname2" class="input-group-text"-->
+<!--                                         ><i class="bx bx-building-house"></i-->
+<!--                                             ></span>-->
+<!--                                       <input-->
+<!--                                               type="text"-->
+<!--                                               name="currentAddressPP"-->
+<!--                                               class="form-control"-->
+<!--                                               id="basic-icon-default-fullname"-->
+<!--                                               placeholder="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"-->
+<!--                                               aria-label="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"-->
+<!--                                               aria-describedby="basic-icon-default-fullname2"-->
+<!--                                       />-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                       </div>-->
+<!--                       <div class="row mb-4">-->
+<!--                           <div class="col-lg-12">-->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Photo</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                       <span class="input-group-text"><i class="bx bx-envelope"></i></span>-->
+<!--                                       <input class="form-control" type="file" id="formFile" />-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                       </div>-->
+<!--                       <!--button-->-->
+<!--                       <input type="button" name="next" class="next btn btn-primary" value="Next" />-->
+<!--                       <a href="../index.php" class="btn btn-outline-danger">Cancel</a>-->
+<!---->
+<!--                   </fieldset>-->
+                <!--Form Family Information Done-->
+<!--                   <fieldset>-->
+<!--                       <h2>Step 2: Family BackGround</h2>-->
+<!--                       <div class="row mb-2">-->
+<!--                           <div class="col-lg-6">-->
+<!---->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Father Name</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                       <span id="basic-icon-default-fullname2" class="input-group-text"-->
+<!--                                       ><i class="bx bx-user"></i-->
+<!--                                           ></span>-->
+<!--                                       <input-->
+<!--                                               name="FatherName"-->
+<!--                                               type="text"-->
+<!--                                               id=""-->
+<!--                                               class="form-control"-->
+<!--                                               placeholder="Father Name"-->
+<!--                                       />-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!---->
+<!--                           <div class="col-lg-6">-->
+<!---->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Father Age</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                      <span id="basic-icon-default-fullname2" class="input-group-text"-->
+<!--                                      ><i class="bx bx-calendar"></i-->
+<!--                                          ></span>-->
+<!--                                       <input-->
+<!--                                               name="FatherAge"-->
+<!--                                               type="number"-->
+<!--                                               id=""-->
+<!--                                               class="form-control"-->
+<!--                                               placeholder="Father Age"-->
+<!--                                       />-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                       </div>-->
+<!---->
+<!---->
+<!--                       <div class="row">-->
+<!---->
+<!--                           <div class="col-lg-6">-->
+<!--                               <label class="col col-form-label" for="basic-icon-default-fullname">Father National</label>-->
+<!--                               <div class="col">-->
+<!--                                   <select name="fatherNationality" id="" class="form-select form-select mb-3" >-->
+<!--                                       <option selected disabled>--Select--</option>-->
+<!--                                       --><?php //foreach ($Nationality_array as $nationality){?>
+<!--                                           <option value="--><?php //echo $nationality['NationalityID']?><!--">--><?php //echo $nationality['NationalityEN']?><!--</option>-->
+<!--                                       --><?php //}?>
+<!--                                   </select>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!---->
+<!--                           <div class="col-lg-6">-->
+<!--                               <label class="col col-form-label" for="basic-icon-default-fullname">Father Country</label>-->
+<!--                               <div class="col">-->
+<!--                                   <select name="fatherCountry" id="" class="form-select form-select mb-3" >-->
+<!--                                       <option selected disabled>--Select--</option>-->
+<!--                                       --><?php //foreach ($Country_array as $country){?>
+<!--                                           <option value="--><?php //echo $country['CountryID']?><!--">--><?php //echo $country['CountryEN']?><!--</option>-->
+<!--                                       --><?php //}?>
+<!--                                   </select>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                       </div>-->
+<!---->
+<!--                       <div class="row">-->
+<!---->
+<!--                           <div class="col-lg-12">-->
+<!---->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Father Occupation</label>-->
+<!--                               <div class="col">-->
+<!--                                   <select name="FatherOccupation" id="" class="form-select form-select mb-3" >-->
+<!--                                       <option selected disabled>--Select--</option>-->
+<!--                                       <--><?php //foreach ($Occupation_array as $occupation){?>
+<!--                                           <option value="--><?php //echo $occupation['OccupationID']?><!--">--><?php //echo $occupation['OccupationEN']?><!--</option>-->
+<!--                                       --><?php //}?>
+<!--                                   </select>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                       </div>-->
+<!--                       <div class="row mb-2">-->
+<!--                           <div class="col-lg-6">-->
+<!---->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Mother Name</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                       <span id="basic-icon-default-fullname2" class="input-group-text"-->
+<!--                                       ><i class="bx bx-user"></i-->
+<!--                                           ></span>-->
+<!--                                       <input-->
+<!--                                               name="MotherName"-->
+<!--                                               type="text"-->
+<!--                                               id=""-->
+<!--                                               class="form-control"-->
+<!--                                               placeholder="Mother Name"-->
+<!--                                       />-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!---->
+<!--                           <div class="col-lg-6">-->
+<!---->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Mother Age</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                      <span id="basic-icon-default-fullname2" class="input-group-text"-->
+<!--                                      ><i class="bx bx-calendar"></i-->
+<!--                                          ></span>-->
+<!--                                       <input-->
+<!--                                               name="MotherAge"-->
+<!--                                               type="number"-->
+<!--                                               id=""-->
+<!--                                               class="form-control"-->
+<!--                                               placeholder="Father Age"-->
+<!--                                       />-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                       </div>-->
+<!---->
+<!---->
+<!--                       <div class="row">-->
+<!---->
+<!--                           <div class="col-lg-6">-->
+<!--                               <label class="col col-form-label" for="basic-icon-default-fullname">Mother National</label>-->
+<!--                               <div class="col">-->
+<!--                                   <select name="motherNationality" id="motherNa" class="MotherNa form-select form-select mb-3" >-->
+<!--                                       <option selected disabled>--Select--</option>-->
+<!--                                       --><?php //foreach ($Nationality_array as $nationality){?>
+<!--                                           <option value="--><?php //echo $nationality['NationalityID']?><!--">--><?php //echo $nationality['NationalityEN']?><!--</option>-->
+<!--                                       --><?php //}?>
+<!--                                   </select>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!---->
+<!--                           <div class="col-lg-6">-->
+<!--                               <label class="col col-form-label" for="basic-icon-default-fullname">Mother Country</label>-->
+<!--                               <div class="col">-->
+<!--                                   <select name="motherCountry" id="" class="form-select form-select mb-3" >-->
+<!--                                       <option selected disabled>--Select--</option>-->
+<!--                                       --><?php //foreach ($Country_array as $country){?>
+<!--                                           <option value="--><?php //echo $country['CountryID']?><!--">--><?php //echo $country['CountryEN']?><!--</option>-->
+<!--                                       --><?php //}?>
+<!--                                   </select>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                       </div>-->
+<!---->
+<!--                       <div class="row">-->
+<!---->
+<!--                           <div class="col-lg-12">-->
+<!---->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Mother Occupation</label>-->
+<!--                               <div class="col">-->
+<!--                                   <select name="MotherOccupation" id="" class="form-select form-select mb-3" >-->
+<!--                                       <option selected disabled>--Select--</option>-->
+<!--                                       --><?php //foreach ($Occupation_array as $occupation){?>
+<!--                                           <option value="--><?php //echo $occupation['OccupationID']?><!--">--><?php //echo $occupation['OccupationEN']?><!--</option>-->
+<!--                                       --><?php //}?>
+<!--                                   </select>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                       </div>-->
+<!--                       <div class="row mb-2">-->
+<!--                           <div class="col-lg-6">-->
+<!---->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Spouse Age</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                       <span class="input-group-text"><i class="bx bx-year"></i></span>-->
+<!--                                       <input-->
+<!--                                               type="number"-->
+<!--                                               id=""-->
+<!--                                               class="form-control"-->
+<!--                                               placeholder="Spouse Age"-->
+<!--                                       />-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                           <div class="col-lg-6">-->
+<!---->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Spouse Name</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                       <span class="input-group-text"><i class="bx bx-year"></i></span>-->
+<!--                                       <input-->
+<!--                                               type="text"-->
+<!--                                               id=""-->
+<!--                                               class="form-control"-->
+<!--                                               placeholder="Spouse Name"-->
+<!--                                       />-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!---->
+<!--                       </div>-->
+<!---->
+<!--                       <div class="row mb-4">-->
+<!--                           <div class="col-lg-6">-->
+<!---->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Family Current Address</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                       <span class="input-group-text"><i class="bx bx-year"></i></span>-->
+<!--                                       <input-->
+<!--                                               type="text"-->
+<!--                                               id=""-->
+<!--                                               class="form-control"-->
+<!--                                               placeholder="Family Address"-->
+<!--                                       />-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!--                           <div class="col-lg-6">-->
+<!---->
+<!--                               <label class="col col-form-label" for="basic-icon-default-company">Guardian Phone Number</label>-->
+<!--                               <div class="col">-->
+<!--                                   <div class="input-group input-group-merge">-->
+<!--                                       <span class="input-group-text"><i class="bx bx-year"></i></span>-->
+<!--                                       <input-->
+<!--                                               type="text"-->
+<!--                                               id=""-->
+<!--                                               class="form-control"-->
+<!--                                               placeholder="Guardian Phone Number"-->
+<!--                                       />-->
+<!--                                   </div>-->
+<!--                               </div>-->
+<!--                           </div>-->
+<!---->
+<!--                       </div>-->
+<!--                       <!--button-->-->
+<!--                       <input type="button" name="previous" class="previous btn btn-outline-danger" value="Previous" />-->
+<!--                       <input type="button" name="next" class="next btn btn-primary" value="Next" />-->
+<!---->
+<!--                   </fieldset>-->
+<!--                   Family BackGround End-->
+<!--                   Education BackGround In Progress-->
                    <fieldset>
-                       <h2> Step 3: Add Personnel Details</h2>
-                       <div class="row ">
+                       <h2> Step 3: Education BackGround</h2>
+                       <div class="row">
                            <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-company">Name Latin</label>
+                               <label class="col col-form-label" for="basic-icon-default-fullname">School Type</label>
+                               <div class="col">
+                                   <select name="SchoolType" id="" class="form-control form-select form-select mb-3">
+                                       <option selected disabled>--Select--</option>
+                                   </select>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">School Name</label>
                                <div class="col">
                                    <div class="input-group input-group-merge">
-                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
                                        <input
+                                               name="SchoolName"
                                                type="text"
                                                id=""
                                                class="form-control"
-                                               placeholder="NAME IN LATIN"
+                                               placeholder="Beltie"
                                        />
                                    </div>
                                </div>
                            </div>
-                           <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-company">Name in KHmer</label>
-                               <div class="col">
-                                   <div class="input-group input-group-merge">
-                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                       <input
-                                               type="text"
-                                               id=""
-                                               class="form-control"
-                                               placeholder="ឈ្មោះ"
-                                       />
+                           <div class="row mb-3">
+                               <div class="col-lg-6">
+                                   <label class="col col-form-label" for="basic-icon-default-company">Academic Year</label>
+                                   <div class="col">
+                                       <div class="input-group input-group-merge">
+                                           <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                           <input
+                                                   name="AcademicYear"
+                                                   type="text"
+                                                   id=""
+                                                   class="form-control"
+                                                   placeholder="Year end of Grade 12 "
+                                           />
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="col-lg-6">
+                                   <label class="col col-form-label" for="basic-icon-default-company">Province</label>
+                                   <div class="col">
+                                       <div class="input-group input-group-merge">
+                                           <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                           <input
+                                                   Name="Province"
+                                                   type="text"
+                                                   id=""
+                                                   class="form-control"
+                                                   placeholder="Province"
+                                           />
+                                       </div>
                                    </div>
                                </div>
                            </div>
                        </div>
-                       <div class="row ">
-                           <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-company">Family Name</label>
-                               <div class="col">
-                                   <div class="input-group input-group-merge">
-                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                       <input
-                                               type="text"
-                                               id=""
-                                               class="form-control"
-                                               placeholder="SENG"
-                                       />
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-company">Given Name</label>
-                               <div class="col">
-                                   <div class="input-group input-group-merge">
-                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                       <input
-                                               type="text"
-                                               id=""
-                                               class="form-control"
-                                               placeholder="VANNUN"
-                                       />
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                       <div class="row ">
-                           <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-company">Sex</label>
-                               <div class="col">
-                                   <div class="input-group input-group-merge">
-                                       <select name="Sex" id="" class="form-select form-select mb-3" >
-                                           <option selected disabled>--Select--</option>
-                                           <?php while ($rowSex= mysqli_fetch_assoc($resultSex)){?>
-                                               <option value="<?php echo $rowSex['SexID']?>"><?php echo $rowSex['SexEN']?></option>
-                                           <?php }?>
-                                       </select>
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-company">PassportNO ID</label>
-                               <div class="col">
-                                   <div class="input-group input-group-merge">
-                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                       <input
-                                               type="text"
-                                               id=""
-                                               class="form-control"
-                                               placeholder="ឈ្មោះ"
-                                       />
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                       <div class="row ">
-                           <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-company">Name Latin</label>
-                               <div class="col">
-                                   <div class="input-group input-group-merge">
-                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                       <input
-                                               type="text"
-                                               id=""
-                                               class="form-control"
-                                               placeholder="ឈ្មោះ"
-                                       />
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-company">Name in KHmer</label>
-                               <div class="col">
-                                   <div class="input-group input-group-merge">
-                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                       <input
-                                               type="text"
-                                               id=""
-                                               class="form-control"
-                                               placeholder="ឈ្មោះ"
-                                       />
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                       <div class="row ">
-                           <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-company">Name Latin</label>
-                               <div class="col">
-                                   <div class="input-group input-group-merge">
-                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                       <input
-                                               type="text"
-                                               id=""
-                                               class="form-control"
-                                               placeholder="ឈ្មោះ"
-                                       />
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-company">Name in KHmer</label>
-                               <div class="col">
-                                   <div class="input-group input-group-merge">
-                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                       <input
-                                               type="text"
-                                               id=""
-                                               class="form-control"
-                                               placeholder="ឈ្មោះ"
-                                       />
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                       <div class="row ">
-                           <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-company">Name Latin</label>
-                               <div class="col">
-                                   <div class="input-group input-group-merge">
-                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                       <input
-                                               type="text"
-                                               id=""
-                                               class="form-control"
-                                               placeholder="ឈ្មោះ"
-                                       />
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-company">Name in KHmer</label>
-                               <div class="col">
-                                   <div class="input-group input-group-merge">
-                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                       <input
-                                               type="text"
-                                               id=""
-                                               class="form-control"
-                                               placeholder="ឈ្មោះ"
-                                       />
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                       <!--button-->
-                       <input type="button" name="previous" class="previous btn btn-outline-danger" value="Previous" />
-                       <input type="button" name="next" class="next btn btn-primary" value="Next" />
 
+
+                           <!--button-->
+                           <input type="button" name="previous" class="previous btn btn-outline-danger" value="Previous" />
+                           <input type="button" name="next" class="next btn btn-primary" value="Next" />
                    </fieldset>
-                <!--Form Family Information-->
-                   <fieldset>
-                       <h2>Step 4: Contact Information</h2>
-                       <div class="row ">
-                           <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-fullname">School Type ID</label>
-                               <div class="col">
-                                   <select name="" id="" class="form-select form-select mb-3" >
-                                       <option selected disabled>--Select--</option>
-                                   </select>
-                               </div>
-                           </div>
-                           <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-company">School in KHmer</label>
-                               <div class="col">
-                                   <div class="input-group input-group-merge">
-                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                       <input
-                                               type="text"
-                                               id=""
-                                               class="form-control"
-                                               placeholder="ឈ្មោះ"
-                                       />
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-
-                       <div class="row">
-                           <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-company">School Name</label>
-                               <div class="col">
-                                   <div class="input-group input-group-merge">
-                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                       <input
-                                               type="text"
-                                               id=""
-                                               class="form-control"
-                                               placeholder="School"
-                                       />
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-fullname">Family BG ID</label>
-                               <div class="col">
-                                   <select name="" id="" class="form-select form-select mb-3" >
-                                       <option selected disabled>--Select--</option>
-                                   </select>
-                               </div>
-                           </div>
-                       </div>
-
-                       <div class="row">
-                           <div class="col-lg-6">
-
-                               <label class="col col-form-label" for="basic-icon-default-company">Father Name</label>
-                               <div class="col">
-                                   <div class="input-group input-group-merge">
-                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                       <input
-                                               type="text"
-                                               id=""
-                                               class="form-control"
-                                               placeholder="Father Name"
-                                       />
-                                   </div>
-                               </div>
-                           </div>
-
-                           <div class="col-lg-6">
-
-                               <label class="col col-form-label" for="basic-icon-default-company">Father Age</label>
-                               <div class="col">
-                                   <div class="input-group input-group-merge">
-                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                       <input
-                                               type="number"
-                                               id=""
-                                               class="form-control"
-                                               placeholder="Father Aage"
-                                       />
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-
-
-                       <div class="row">
-
-                           <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-fullname">Father National</label>
-                               <div class="col">
-                                   <select name="" id="" class="form-select form-select mb-3" >
-                                       <option selected disabled>--Select--</option>
-                                   </select>
-                               </div>
-                           </div>
-
-                           <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-fullname">Father Country</label>
-                               <div class="col">
-                                   <select name="" id="" class="form-select form-select mb-3" >
-                                       <option selected disabled>--Select--</option>
-                                   </select>
-                               </div>
-                           </div>
-                       </div>
-
-                       <div class="row">
-
-                           <div class="col-lg-6">
-
-                               <label class="col col-form-label" for="basic-icon-default-company">Father Occupation</label>
-                               <div class="col">
-                                   <select name="" id="" class="form-select form-select mb-3" >
-                                       <option selected disabled>--Select--</option>
-                                   </select>
-                               </div>
-                           </div>
-
-                           <div class="col-lg-6">
-
-                               <label class="col col-form-label" for="basic-icon-default-company">Mother Name</label>
-                               <div class="col">
-                                   <div class="input-group input-group-merge">
-                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                       <input
-                                               type="text"
-                                               id=""
-                                               class="form-control"
-                                               placeholder="Mother Name"
-                                       />
-                                   </div>
-                               </div>
-                           </div>
-
-                       </div>
-
-                       <div class="row">
-                           <div class="col-lg-6">
-
-                               <label class="col col-form-label" for="basic-icon-default-company">Mother Age</label>
-                               <div class="col">
-                                   <div class="input-group input-group-merge">
-                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                       <input
-                                               type="text"
-                                               id=""
-                                               class="form-control"
-                                               placeholder="Mother Age"
-                                       />
-                                   </div>
-                               </div>
-                           </div>
-
-                           <div class="col-lg-6">
-
-                               <label class="col col-form-label" for="basic-icon-default-company">Mother National</label>
-                               <div class="col">
-                                   <select name="" id="" class="form-select form-select mb-3" >
-                                       <option selected disabled>--Select--</option>
-                                   </select>
-                               </div>
-                           </div>
-
-                       </div>
-
-                       <div class="row">
-                           <div class="col-lg-6">
-
-                               <label class="col col-form-label" for="basic-icon-default-company">Mother Country</label>
-                               <div class="col">
-                                   <select name="" id="" class="form-select form-select mb-3" >
-                                       <option selected disabled>--Select--</option>
-                                   </select>
-                               </div>
-                           </div>
-
-                           <div class="col-lg-6">
-
-                               <label class="col col-form-label" for="basic-icon-default-company">Mother Occupation</label>
-                               <div class="col">
-                                   <select name="" id="" class="form-select form-select mb-3" >
-                                       <option selected disabled>--Select--</option>
-                                   </select>
-                               </div>
-                           </div>
-
-                       </div>
-
-                       <div class="row mb-2">
-                           <div class="col-lg-6">
-
-                               <label class="col col-form-label" for="basic-icon-default-company">Family Current Address</label>
-                               <div class="col">
-                                   <div class="input-group input-group-merge">
-                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                       <input
-                                               type="text"
-                                               id=""
-                                               class="form-control"
-                                               placeholder="Family Address"
-                                       />
-                                   </div>
-                               </div>
-                           </div>
-
-                           <div class="col-lg-6">
-
-                               <label class="col col-form-label" for="basic-icon-default-company">Spouse Name</label>
-                               <div class="col">
-                                   <div class="input-group input-group-merge">
-                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                       <input
-                                               type="text"
-                                               id=""
-                                               class="form-control"
-                                               placeholder="Spouse Name"
-                                       />
-                                   </div>
-                               </div>
-                           </div>
-
-                       </div>
-
-                       <div class="row mb-4">
-                           <div class="col-lg-6">
-
-                               <label class="col col-form-label" for="basic-icon-default-company">Spouse Age</label>
-                               <div class="col">
-                                   <div class="input-group input-group-merge">
-                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                       <input
-                                               type="number"
-                                               id=""
-                                               class="form-control"
-                                               placeholder="Spouse Age"
-                                       />
-                                   </div>
-                               </div>
-                           </div>
-
-                           <div class="col-lg-6">
-
-                               <label class="col col-form-label" for="basic-icon-default-company">Guardian Phone Number</label>
-                               <div class="col">
-                                   <div class="input-group input-group-merge">
-                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                       <input
-                                               type="text"
-                                               id=""
-                                               class="form-control"
-                                               placeholder="Guardian Phone Number"
-                                       />
-                                   </div>
-                               </div>
-                           </div>
-
-                       </div>
-                       <!--button-->
-                       <input type="button" name="previous" class="previous btn btn-outline-danger" value="Previous" />
-                       <input type="button" name="next" class="next btn btn-primary" value="Next" />
-
-                   </fieldset>
+<!--                   End Of Education BackGround-->
                  <!--Form Major Information-->
                    <fieldset>
                        <h2>Step 1: University Information</h2>
@@ -746,244 +880,7 @@ $resultFaculty=mysqli_query($conn,$sqlFaculty);
                        <a type="submit" class="btn btn-outline-danger" href="../index.php">Cancel</a>
                        <input type="button" name="password" class="next btn btn-primary" value="Next" />
                    </fieldset>
-                 <!--Form 4-->
-                   <fieldset>
-                       <h2> Step 2: Add Personnel Details</h2>
-                       <div class="row">
-                           <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-fullname">Learning Type in Khmer</label>
-                               <div class="col">
-                                   <select name="" id="" class="form-select form-select mb-3">
-                                       <option selected disabled>--Select--</option>
 
-                                       <?php
-                                       include_once '../BackEnd/db.php';
-
-                                       $sql = "Select *From tbllearningtype";
-                                       $query = mysqli_query($conn, $sql);
-                                       while ($data = mysqli_fetch_assoc($query)) { ?>
-                                           <option value="<?php echo $data['LearningTypeID'] ?>">
-                                               <?php echo $data['LearningTypeKH']?>
-                                           </option>
-
-                                       <?php }
-                                       ?>
-                                   </select>
-                               </div>
-                           </div>
-                           <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-fullname">Learning Type in English</label>
-                               <div class="col">
-                                   <select name="" id="" class="form-select form-select mb-3">
-                                       <option selected disabled>--Select--</option>
-
-                                       <?php
-                                       include_once '../BackEnd/db.php';
-
-                                       $sql = "Select *From tbllearningtype";
-                                       $query = mysqli_query($conn, $sql);
-                                       while ($data = mysqli_fetch_assoc($query)) { ?>
-                                           <option value="<?php echo $data['LearningTypeID'] ?>">
-                                               <?php echo $data['LearningTypeEN']?>
-                                           </option>
-
-                                       <?php }
-                                       ?>
-                                   </select>
-                               </div>
-                           </div>
-                           <div class="row">
-                               <div class="col-lg-6">
-                                   <label class="col col-form-label" for="basic-icon-default-company">Learning in English</label>
-                                   <div class="col">
-                                       <div class="input-group input-group-merge">
-                                           <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                           <input
-                                                   type="text"
-                                                   id=""
-                                                   class="form-control"
-                                                   placeholder="English"
-                                           />
-                                       </div>
-                                   </div>
-                               </div>
-                               <div class="col-lg-6">
-                                   <label class="col col-form-label" for="basic-icon-default-fullname">Faculty ID</label>
-                                   <div class="col">
-                                       <select name="" id="" class="form-select form-select mb-3" >
-                                           <option selected disabled>--Select--</option>
-                                       </select>
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="row">
-                               <div class="col-lg-6">
-                                   <label class="col col-form-label" for="basic-icon-default-company">Faculty in Khmer</label>
-                                   <div class="col">
-                                       <div class="input-group input-group-merge">
-                                           <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                           <input
-                                                   type="text"
-                                                   id=""
-                                                   class="form-control"
-                                                   placeholder="ព័ត៌មានវិទ្យា"
-                                           />
-                                       </div>
-                                   </div>
-                               </div>
-                               <div class="col-lg-6">
-                                   <label class="col col-form-label" for="basic-icon-default-company">Faculty in English</label>
-                                   <div class="col">
-                                       <div class="input-group input-group-merge">
-                                           <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                           <input
-                                                   type="text"
-                                                   id=""
-                                                   class="form-control"
-                                                   placeholder="Information Technology"
-                                           />
-                                       </div>
-                                   </div>
-                               </div>
-                           </div>
-
-                           <div class="row">
-                               <div class="col-lg-6">
-                                   <label class="col col-form-label" for="basic-icon-default-fullname">Major ID</label>
-                                   <div class="col">
-                                       <select name="" id="" class="form-select form-select mb-3" >
-                                           <option selected disabled>--Select--</option>
-                                       </select>
-                                   </div>
-                               </div>
-                               <div class="col-lg-6">
-                                   <label class="col col-form-label" for="basic-icon-default-company">Major in KHmer</label>
-                                   <div class="col">
-                                       <div class="input-group input-group-merge">
-                                           <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                           <input
-                                                   type="text"
-                                                   id=""
-                                                   class="form-control"
-                                                   placeholder="មុខជំនាញ"
-                                           />
-                                       </div>
-                                   </div>
-                               </div>
-                           </div>
-
-                           <div class="row">
-                               <div class="col-lg-6">
-                                   <label class="col col-form-label" for="basic-icon-default-company">Major in English</label>
-                                   <div class="col">
-                                       <div class="input-group input-group-merge">
-                                           <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                           <input
-                                                   type="text"
-                                                   id=""
-                                                   class="form-control"
-                                                   placeholder="Major"
-                                           />
-                                       </div>
-                                   </div>
-                               </div>
-                               <div class="col-lg-6">
-                                   <label class="col col-form-label" for="basic-icon-default-fullname">Faculty ID</label>
-                                   <div class="col">
-                                       <select name="" id="" class="form-select form-select mb-3" >
-                                           <option selected disabled>--Select--</option>
-                                       </select>
-                                   </div>
-                               </div>
-                           </div>
-
-                           <div class="row">
-                               <div class="col-lg-6">
-                                   <label class="col col-form-label" for="basic-icon-default-fullname">Sex ID</label>
-                                   <div class="col">
-                                       <select name="" id="" class="form-select form-select mb-3" >
-                                           <option selected disabled>--Select--</option>
-                                       </select>
-                                   </div>
-                               </div>
-                               <div class="col-lg-6">
-                                   <label class="col col-form-label" for="basic-icon-default-company">Gender in Khmer</label>
-                                   <div class="col">
-                                       <div class="input-group input-group-merge">
-                                           <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                           <input
-                                                   type="text"
-                                                   id=""
-                                                   class="form-control"
-                                                   placeholder="ភេទ"
-                                           />
-                                       </div>
-                                   </div>
-                               </div>
-                           </div>
-
-                           <div class="row">
-                               <div class="col-lg-6">
-                                   <label class="col col-form-label" for="basic-icon-default-company">Gender in English</label>
-                                   <div class="col">
-                                       <div class="input-group input-group-merge">
-                                           <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                           <input
-                                                   type="text"
-                                                   id=""
-                                                   class="form-control"
-                                                   placeholder="Gender"
-                                           />
-                                       </div>
-                                   </div>
-                               </div>
-                               <div class="col-lg-6">
-                                   <label class="col col-form-label" for="basic-icon-default-fullname">National ID</label>
-                                   <div class="col">
-                                       <select name="" id="" class="form-select form-select mb-3" >
-                                           <option selected disabled>--Select--</option>
-                                       </select>
-                                   </div>
-                               </div>
-                           </div>
-
-                           <div class="row mb-3">
-                               <div class="col-lg-6">
-                                   <label class="col col-form-label" for="basic-icon-default-company">National in Khmer</label>
-                                   <div class="col">
-                                       <div class="input-group input-group-merge">
-                                           <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                           <input
-                                                   type="text"
-                                                   id=""
-                                                   class="form-control"
-                                                   placeholder="សញ្ជាតិ"
-                                           />
-                                       </div>
-                                   </div>
-                               </div>
-                               <div class="col-lg-6">
-                                   <label class="col col-form-label" for="basic-icon-default-company">National in English</label>
-                                   <div class="col">
-                                       <div class="input-group input-group-merge">
-                                           <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                           <input
-                                                   type="text"
-                                                   id=""
-                                                   class="form-control"
-                                                   placeholder="National"
-                                           />
-                                       </div>
-                                   </div>
-                               </div>
-                           </div>
-
-
-
-                           <!--button-->
-                           <input type="button" name="previous" class="previous btn btn-outline-danger" value="Previous" />
-                           <input type="button" name="next" class="next btn btn-primary" value="Next" />
-                   </fieldset>
                 <!--Form 5-->
                 <fieldset>
                 <h2>Step 5: Contact Information</h2>
@@ -1127,6 +1024,27 @@ $resultFaculty=mysqli_query($conn,$sqlFaculty);
 </html>
 
 <script>
+    $(document).ready(function (){
+        $('#Faculty').on('change',function (){
+            var faculty_id = this.value;
+            $.ajax({
+                url:'../jquery/FacultyDropDown.php',
+                type:"POST",
+                data:{
+                    faculty_data: faculty_id
+                },
+                success:function (result){
+                    $('#Major').html(result);
+                }
+            })
+        })
+$(document).ready(function (){
+    $('#motherNa').on('change',function (){
+        var Mother_id=  this.value;
+        console.log(Mother_id);
+    })
+})
+    });
     $(document).ready(function(){
   var current = 1,current_step,next_step,steps;
   steps = $("fieldset").length;
