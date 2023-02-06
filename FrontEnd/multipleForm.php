@@ -98,509 +98,511 @@ while($country=mysqli_fetch_assoc($resultCountry)){
                <div class="card-body">
                <form id="regiration_form" novalidate action="../BackEnd/Input.php"  method="post">
                <!-- Form Student Infomation Done-->
-<!--                   <fieldset>-->
-<!--                       <h2> Step 1: Add Personnel Details</h2>-->
-<!--                       <div class="row mb-2 ">-->
-<!--                           <div class="col-lg-6">-->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Name Latin</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                       <span id="basic-icon-default-fullname2" class="input-group-text"-->
-<!--                                       ><i class="bx bx-user"></i-->
-<!--                                           ></span>-->
-<!--                                       <input-->
-<!--                                               required-->
-<!--                                               name="NameInLatin"-->
-<!--                                               type="text"-->
-<!--                                               id=""-->
-<!--                                               class="form-control"-->
-<!--                                               placeholder="NAME IN LATIN"-->
-<!--                                       />-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                           <div class="col-lg-6">-->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Name in Khmer</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                       <span id="basic-icon-default-fullname2" class="input-group-text"-->
-<!--                                       ><i class="bx bx-user"></i-->
-<!--                                           ></span>-->
-<!--                                       <input-->
-<!--                                               required-->
-<!--                                               name="khName"-->
-<!--                                               type="text"-->
-<!--                                               id=""-->
-<!--                                               class="form-control"-->
-<!--                                               placeholder="ឈ្មោះ"-->
-<!--                                       />-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                       </div>-->
-<!--                       <div class="row mb-2">-->
-<!--                           <div class="col-lg-6">-->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Family Name</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                       <span id="basic-icon-default-fullname2" class="input-group-text"-->
-<!--                                       ><i class="bx bx-user"></i-->
-<!--                                           ></span>-->
-<!--                                       <input-->
-<!--                                               required-->
-<!--                                               name="FamilyName"-->
-<!--                                               type="text"-->
-<!--                                               id=""-->
-<!--                                               class="form-control"-->
-<!--                                               placeholder="SENG"-->
-<!--                                       />-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                           <div class="col-lg-6">-->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Given Name</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                       <span id="basic-icon-default-fullname2" class="input-group-text"-->
-<!--                                       ><i class="bx bx-user"></i-->
-<!--                                           ></span>-->
-<!--                                       <input-->
-<!--                                               name="GivenName"-->
-<!--                                               type="text"-->
-<!--                                               id=""-->
-<!--                                               class="form-control"-->
-<!--                                               placeholder="VANNUN"-->
-<!--                                       />-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                       </div>-->
-<!--                       <div class="row mb-0">-->
-<!--                           <div class="col-lg-6">-->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Sex</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                       <select name="Sex" id="" class="form-control form-select form-select mb-3" >-->
-<!--                                           <option selected disabled>--Select--</option>-->
-<!--                                           --><?php //while ($rowSex= mysqli_fetch_assoc($resultSex)){?>
-<!--                                               <option value="--><?php //echo $rowSex['SexID']?><!--">--><?php //echo $rowSex['SexEN']?><!--</option>-->
-<!--                                           --><?php //}?>
-<!--                                       </select>-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                           <div class="col-lg-6">-->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">PassportNO ID</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                       <span id="basic-icon-default-fullname2" class="input-group-text"-->
-<!--                                       ><i class="bx bx-book-add"></i-->
-<!--                                           ></span>-->
-<!--                                       <input-->
-<!--                                               name="Passport"-->
-<!--                                               type="text"-->
-<!--                                               id=""-->
-<!--                                               class="form-control"-->
-<!--                                               placeholder="NO.12345"-->
-<!--                                       />-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                       </div>-->
-<!--                       <div class="row mb-0">-->
-<!--                           <div class="col-lg-6">-->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Nationality</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                       <select name="Nationality" id="" class="form-control form-select form-select mb-3" >-->
-<!--                                           <option selected disabled>--Select--</option>-->
-<!--                                           --><?php //foreach ($Nationality_array as $nationality){?>
-<!--                                               <option value="--><?php //echo $nationality['NationalityID']?><!--">--><?php //echo $nationality['NationalityEN']?><!--</option>-->
-<!--                                           --><?php //}?>
-<!--                                       </select>-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                           <div class="col-lg-6">-->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Country</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                       <select name="Country" id="" class="form-control form-select form-select mb-3" >-->
-<!--                                           <option selected disabled>--Select--</option>-->
-<!--                                           --><?php //foreach ($Country_array as $country){?>
-<!--                                               <option value="--><?php //echo $country['CountryID']?><!--">--><?php //echo $country['CountryEN']?><!--</option>-->
-<!--                                               --><?php //}?>
-<!--                                       </select>-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                       </div>-->
-<!--                       <div class="row mb-2">-->
-<!--                           <div class="col-lg-6">-->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Date Of Birth</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                        <span class="input-group-text"><i class="bx bx-calendar"></i-->
-<!--                                       ></span>-->
-<!--                                       <input class="form-control" type="date" name="dob" value="2021-06-18" id="html5-date-input" />-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                           <div class="col-lg-6">-->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Place Of Birth</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                       <span id="basic-icon-default-fullname2" class="input-group-text"-->
-<!--                                       ><i class="bx bx-building-house"></i-->
-<!--                                           ></span>-->
-<!--                                       <input-->
-<!--                                               type="text"-->
-<!--                                               name="pod"-->
-<!--                                               class="form-control"-->
-<!--                                               id="basic-icon-default-fullname"-->
-<!--                                               placeholder="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"-->
-<!--                                               aria-label="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"-->
-<!--                                               aria-describedby="basic-icon-default-fullname2"-->
-<!--                                       />-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                       </div>-->
-<!--                       <div class="row mb-2">-->
-<!--                           <div class="col-lg-6">-->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Email</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                       <span class="input-group-text"><i class="bx bx-envelope"></i></span>-->
-<!--                                       <input-->
-<!--                                               type="text"-->
-<!--                                               name="email"-->
-<!--                                               id="basic-icon-default-email"-->
-<!--                                               class="form-control"-->
-<!--                                               placeholder="@gmail.com"-->
-<!--                                               aria-label="john.doe"-->
-<!--                                               aria-describedby="basic-icon-default-email2"-->
-<!--                                       />-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                           <div class="col-lg-6">-->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Phone Number</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                         <span id="basic-icon-default-fullname2" class="input-group-text"-->
-<!--                                         ><i class="bx bx-phone"></i-->
-<!--                                             ></span>-->
-<!--                                       <input-->
-<!--                                               type="text"-->
-<!--                                               name="PhoneNumber"-->
-<!--                                               class="form-control"-->
-<!--                                               id="basic-icon-default-fullname"-->
-<!--                                               placeholder="011 586 835"-->
-<!--                                               aria-label="011 586 835"-->
-<!--                                               aria-describedby="basic-icon-default-fullname2"-->
-<!--                                       />-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                       </div>-->
-<!--                       <div class="row mb-2">-->
-<!--                           <div class="col-lg-6">-->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Current Address</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                       <span id="basic-icon-default-fullname2" class="input-group-text"-->
-<!--                                       ><i class="bx bx-building-house"></i-->
-<!--                                           ></span>-->
-<!--                                       <input-->
-<!--                                               type="text"-->
-<!--                                               class="form-control"-->
-<!--                                               name="currentAddress"-->
-<!--                                               id="basic-icon-default-fullname"-->
-<!--                                               placeholder="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"-->
-<!--                                               aria-label="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"-->
-<!--                                               aria-describedby="basic-icon-default-fullname2"-->
-<!--                                       />-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                           <div class="col-lg-6">-->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Current Address PP(Optional)</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                         <span id="basic-icon-default-fullname2" class="input-group-text"-->
-<!--                                         ><i class="bx bx-building-house"></i-->
-<!--                                             ></span>-->
-<!--                                       <input-->
-<!--                                               type="text"-->
-<!--                                               name="currentAddressPP"-->
-<!--                                               class="form-control"-->
-<!--                                               id="basic-icon-default-fullname"-->
-<!--                                               placeholder="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"-->
-<!--                                               aria-label="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"-->
-<!--                                               aria-describedby="basic-icon-default-fullname2"-->
-<!--                                       />-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                       </div>-->
-<!--                       <div class="row mb-4">-->
-<!--                           <div class="col-lg-12">-->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Photo</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                       <span class="input-group-text"><i class="bx bx-envelope"></i></span>-->
-<!--                                       <input class="form-control" type="file" id="formFile" />-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                       </div>-->
-<!--                       <!--button-->-->
-<!--                       <input type="button" name="next" class="next btn btn-primary" value="Next" />-->
-<!--                       <a href="../index.php" class="btn btn-outline-danger">Cancel</a>-->
-<!---->
-<!--                   </fieldset>-->
+                   <fieldset>
+                       <h2> Step 1: Add Personnel Details</h2>
+                       <div class="row mb-2 ">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Name Latin</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span id="basic-icon-default-fullname2" class="input-group-text"
+                                       ><i class="bx bx-user"></i
+                                           ></span>
+                                       <input
+                                               required
+                                               name="NameInLatin"
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="NAME IN LATIN"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Name in Khmer</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span id="basic-icon-default-fullname2" class="input-group-text"
+                                       ><i class="bx bx-user"></i
+                                           ></span>
+                                       <input
+                                               required
+                                               name="khName"
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="ឈ្មោះ"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="row mb-2">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Family Name</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span id="basic-icon-default-fullname2" class="input-group-text"
+                                       ><i class="bx bx-user"></i
+                                           ></span>
+                                       <input
+                                               required
+                                               name="FamilyName"
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="SENG"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Given Name</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span id="basic-icon-default-fullname2" class="input-group-text"
+                                       ><i class="bx bx-user"></i
+                                           ></span>
+                                       <input
+                                               name="GivenName"
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="VANNUN"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="row mb-0">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Sex</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <select name="Sex" id="" class="form-control form-select form-select mb-3" >
+                                           <option selected disabled>--Select--</option>
+                                           <?php while ($rowSex= mysqli_fetch_assoc($resultSex)){?>
+                                               <option value="<?php echo $rowSex['SexID']?>"><?php echo $rowSex['SexEN']?></option>
+                                           <?php }?>
+                                       </select>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">PassportNO ID</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span id="basic-icon-default-fullname2" class="input-group-text"
+                                       ><i class="bx bx-book-add"></i
+                                           ></span>
+                                       <input
+                                               name="Passport"
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="NO.12345"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="row mb-0">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Nationality</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <select name="Nationality" id="" class="form-control form-select form-select mb-3" >
+                                           <option selected disabled>--Select--</option>
+                                           <?php foreach ($Nationality_array as $nationality){?>
+                                               <option value="<?php echo $nationality['NationalityID']?>"><?php echo $nationality['NationalityEN']?></option>
+                                           <?php }?>
+                                       </select>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Country</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <select name="Country" id="" class="form-control form-select form-select mb-3" >
+                                           <option selected disabled>--Select--</option>
+                                           <?php foreach ($Country_array as $country){?>
+                                               <option value="<?php echo $country['CountryID']?>"><?php echo $country['CountryEN']?></option>
+                                               <?php }?>
+                                       </select>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="row mb-2">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Date Of Birth</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                        <span class="input-group-text"><i class="bx bx-calendar"></i
+                                       ></span>
+                                       <input class="form-control" type="date" name="dob" value="2021-06-18" id="html5-date-input" />
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Place Of Birth</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span id="basic-icon-default-fullname2" class="input-group-text"
+                                       ><i class="bx bx-building-house"></i
+                                           ></span>
+                                       <input
+                                               type="text"
+                                               name="pod"
+                                               class="form-control"
+                                               id="basic-icon-default-fullname"
+                                               placeholder="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
+                                               aria-label="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
+                                               aria-describedby="basic-icon-default-fullname2"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="row mb-2">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Email</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                       <input
+                                               type="text"
+                                               name="email"
+                                               id="basic-icon-default-email"
+                                               class="form-control"
+                                               placeholder="@gmail.com"
+                                               aria-label="john.doe"
+                                               aria-describedby="basic-icon-default-email2"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Phone Number</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                         <span id="basic-icon-default-fullname2" class="input-group-text"
+                                         ><i class="bx bx-phone"></i
+                                             ></span>
+                                       <input
+                                               type="text"
+                                               name="PhoneNumber"
+                                               class="form-control"
+                                               id="basic-icon-default-fullname"
+                                               placeholder="011 586 835"
+                                               aria-label="011 586 835"
+                                               aria-describedby="basic-icon-default-fullname2"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="row mb-2">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Current Address</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span id="basic-icon-default-fullname2" class="input-group-text"
+                                       ><i class="bx bx-building-house"></i
+                                           ></span>
+                                       <input
+                                               type="text"
+                                               class="form-control"
+                                               name="currentAddress"
+                                               id="basic-icon-default-fullname"
+                                               placeholder="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
+                                               aria-label="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
+                                               aria-describedby="basic-icon-default-fullname2"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-company">Current Address PP(Optional)</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                         <span id="basic-icon-default-fullname2" class="input-group-text"
+                                         ><i class="bx bx-building-house"></i
+                                             ></span>
+                                       <input
+                                               type="text"
+                                               name="currentAddressPP"
+                                               class="form-control"
+                                               id="basic-icon-default-fullname"
+                                               placeholder="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
+                                               aria-label="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
+                                               aria-describedby="basic-icon-default-fullname2"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="row mb-4">
+                           <div class="col-lg-12">
+                               <label class="col col-form-label" for="basic-icon-default-company">Photo</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                       <input class="form-control" type="file" id="formFile" />
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <!--button-->
+                       <a href="../index.php" class="btn btn-outline-danger">Cancel</a>
+                       <input type="button" name="next" class="next btn btn-primary" value="Next" />
+
+                   </fieldset>
                 <!--Form Family Information Done-->
-<!--                   <fieldset>-->
-<!--                       <h2>Step 2: Family BackGround</h2>-->
-<!--                       <div class="row mb-2">-->
-<!--                           <div class="col-lg-6">-->
-<!---->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Father Name</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                       <span id="basic-icon-default-fullname2" class="input-group-text"-->
-<!--                                       ><i class="bx bx-user"></i-->
-<!--                                           ></span>-->
-<!--                                       <input-->
-<!--                                               name="FatherName"-->
-<!--                                               type="text"-->
-<!--                                               id=""-->
-<!--                                               class="form-control"-->
-<!--                                               placeholder="Father Name"-->
-<!--                                       />-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!---->
-<!--                           <div class="col-lg-6">-->
-<!---->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Father Age</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                      <span id="basic-icon-default-fullname2" class="input-group-text"-->
-<!--                                      ><i class="bx bx-calendar"></i-->
-<!--                                          ></span>-->
-<!--                                       <input-->
-<!--                                               name="FatherAge"-->
-<!--                                               type="number"-->
-<!--                                               id=""-->
-<!--                                               class="form-control"-->
-<!--                                               placeholder="Father Age"-->
-<!--                                       />-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                       </div>-->
-<!---->
-<!---->
-<!--                       <div class="row">-->
-<!---->
-<!--                           <div class="col-lg-6">-->
-<!--                               <label class="col col-form-label" for="basic-icon-default-fullname">Father National</label>-->
-<!--                               <div class="col">-->
-<!--                                   <select name="fatherNationality" id="" class="form-select form-select mb-3" >-->
-<!--                                       <option selected disabled>--Select--</option>-->
-<!--                                       --><?php //foreach ($Nationality_array as $nationality){?>
-<!--                                           <option value="--><?php //echo $nationality['NationalityID']?><!--">--><?php //echo $nationality['NationalityEN']?><!--</option>-->
-<!--                                       --><?php //}?>
-<!--                                   </select>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!---->
-<!--                           <div class="col-lg-6">-->
-<!--                               <label class="col col-form-label" for="basic-icon-default-fullname">Father Country</label>-->
-<!--                               <div class="col">-->
-<!--                                   <select name="fatherCountry" id="" class="form-select form-select mb-3" >-->
-<!--                                       <option selected disabled>--Select--</option>-->
-<!--                                       --><?php //foreach ($Country_array as $country){?>
-<!--                                           <option value="--><?php //echo $country['CountryID']?><!--">--><?php //echo $country['CountryEN']?><!--</option>-->
-<!--                                       --><?php //}?>
-<!--                                   </select>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                       </div>-->
-<!---->
-<!--                       <div class="row">-->
-<!---->
-<!--                           <div class="col-lg-12">-->
-<!---->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Father Occupation</label>-->
-<!--                               <div class="col">-->
-<!--                                   <select name="FatherOccupation" id="" class="form-select form-select mb-3" >-->
-<!--                                       <option selected disabled>--Select--</option>-->
-<!--                                       <--><?php //foreach ($Occupation_array as $occupation){?>
-<!--                                           <option value="--><?php //echo $occupation['OccupationID']?><!--">--><?php //echo $occupation['OccupationEN']?><!--</option>-->
-<!--                                       --><?php //}?>
-<!--                                   </select>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                       </div>-->
-<!--                       <div class="row mb-2">-->
-<!--                           <div class="col-lg-6">-->
-<!---->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Mother Name</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                       <span id="basic-icon-default-fullname2" class="input-group-text"-->
-<!--                                       ><i class="bx bx-user"></i-->
-<!--                                           ></span>-->
-<!--                                       <input-->
-<!--                                               name="MotherName"-->
-<!--                                               type="text"-->
-<!--                                               id=""-->
-<!--                                               class="form-control"-->
-<!--                                               placeholder="Mother Name"-->
-<!--                                       />-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!---->
-<!--                           <div class="col-lg-6">-->
-<!---->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Mother Age</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                      <span id="basic-icon-default-fullname2" class="input-group-text"-->
-<!--                                      ><i class="bx bx-calendar"></i-->
-<!--                                          ></span>-->
-<!--                                       <input-->
-<!--                                               name="MotherAge"-->
-<!--                                               type="number"-->
-<!--                                               id=""-->
-<!--                                               class="form-control"-->
-<!--                                               placeholder="Father Age"-->
-<!--                                       />-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                       </div>-->
-<!---->
-<!---->
-<!--                       <div class="row">-->
-<!---->
-<!--                           <div class="col-lg-6">-->
-<!--                               <label class="col col-form-label" for="basic-icon-default-fullname">Mother National</label>-->
-<!--                               <div class="col">-->
-<!--                                   <select name="motherNationality" id="motherNa" class="MotherNa form-select form-select mb-3" >-->
-<!--                                       <option selected disabled>--Select--</option>-->
-<!--                                       --><?php //foreach ($Nationality_array as $nationality){?>
-<!--                                           <option value="--><?php //echo $nationality['NationalityID']?><!--">--><?php //echo $nationality['NationalityEN']?><!--</option>-->
-<!--                                       --><?php //}?>
-<!--                                   </select>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!---->
-<!--                           <div class="col-lg-6">-->
-<!--                               <label class="col col-form-label" for="basic-icon-default-fullname">Mother Country</label>-->
-<!--                               <div class="col">-->
-<!--                                   <select name="motherCountry" id="" class="form-select form-select mb-3" >-->
-<!--                                       <option selected disabled>--Select--</option>-->
-<!--                                       --><?php //foreach ($Country_array as $country){?>
-<!--                                           <option value="--><?php //echo $country['CountryID']?><!--">--><?php //echo $country['CountryEN']?><!--</option>-->
-<!--                                       --><?php //}?>
-<!--                                   </select>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                       </div>-->
-<!---->
-<!--                       <div class="row">-->
-<!---->
-<!--                           <div class="col-lg-12">-->
-<!---->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Mother Occupation</label>-->
-<!--                               <div class="col">-->
-<!--                                   <select name="MotherOccupation" id="" class="form-select form-select mb-3" >-->
-<!--                                       <option selected disabled>--Select--</option>-->
-<!--                                       --><?php //foreach ($Occupation_array as $occupation){?>
-<!--                                           <option value="--><?php //echo $occupation['OccupationID']?><!--">--><?php //echo $occupation['OccupationEN']?><!--</option>-->
-<!--                                       --><?php //}?>
-<!--                                   </select>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                       </div>-->
-<!--                       <div class="row mb-2">-->
-<!--                           <div class="col-lg-6">-->
-<!---->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Spouse Age</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                       <span class="input-group-text"><i class="bx bx-year"></i></span>-->
-<!--                                       <input-->
-<!--                                               type="number"-->
-<!--                                               id=""-->
-<!--                                               class="form-control"-->
-<!--                                               placeholder="Spouse Age"-->
-<!--                                       />-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                           <div class="col-lg-6">-->
-<!---->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Spouse Name</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                       <span class="input-group-text"><i class="bx bx-year"></i></span>-->
-<!--                                       <input-->
-<!--                                               type="text"-->
-<!--                                               id=""-->
-<!--                                               class="form-control"-->
-<!--                                               placeholder="Spouse Name"-->
-<!--                                       />-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!---->
-<!--                       </div>-->
-<!---->
-<!--                       <div class="row mb-4">-->
-<!--                           <div class="col-lg-6">-->
-<!---->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Family Current Address</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                       <span class="input-group-text"><i class="bx bx-year"></i></span>-->
-<!--                                       <input-->
-<!--                                               type="text"-->
-<!--                                               id=""-->
-<!--                                               class="form-control"-->
-<!--                                               placeholder="Family Address"-->
-<!--                                       />-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!--                           <div class="col-lg-6">-->
-<!---->
-<!--                               <label class="col col-form-label" for="basic-icon-default-company">Guardian Phone Number</label>-->
-<!--                               <div class="col">-->
-<!--                                   <div class="input-group input-group-merge">-->
-<!--                                       <span class="input-group-text"><i class="bx bx-year"></i></span>-->
-<!--                                       <input-->
-<!--                                               type="text"-->
-<!--                                               id=""-->
-<!--                                               class="form-control"-->
-<!--                                               placeholder="Guardian Phone Number"-->
-<!--                                       />-->
-<!--                                   </div>-->
-<!--                               </div>-->
-<!--                           </div>-->
-<!---->
-<!--                       </div>-->
-<!--                       <!--button-->-->
-<!--                       <input type="button" name="previous" class="previous btn btn-outline-danger" value="Previous" />-->
-<!--                       <input type="button" name="next" class="next btn btn-primary" value="Next" />-->
-<!---->
-<!--                   </fieldset>-->
+                   <fieldset>
+                       <h2>Step 2: Family BackGround</h2>
+                       <div class="row mb-2">
+                           <div class="col-lg-6">
+
+                               <label class="col col-form-label" for="basic-icon-default-company">Father Name</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span id="basic-icon-default-fullname2" class="input-group-text"
+                                       ><i class="bx bx-user"></i
+                                           ></span>
+                                       <input
+                                               name="FatherName"
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="Father Name"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+
+                           <div class="col-lg-6">
+
+                               <label class="col col-form-label" for="basic-icon-default-company">Father Age</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                      <span id="basic-icon-default-fullname2" class="input-group-text"
+                                      ><i class="bx bx-calendar"></i
+                                          ></span>
+                                       <input
+                                               name="FatherAge"
+                                               type="number"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="Father Age"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+
+
+                       <div class="row">
+
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Father National</label>
+                               <div class="col">
+                                   <select name="fatherNationality" id="" class="form-select form-select mb-3" >
+                                       <option selected disabled>--Select--</option>
+                                       <?php foreach ($Nationality_array as $nationality){?>
+                                           <option value="<?php echo $nationality['NationalityID']?>"><?php echo $nationality['NationalityEN']?></option>
+                                       <?php }?>
+                                   </select>
+                               </div>
+                           </div>
+
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Father Country</label>
+                               <div class="col">
+                                   <select name="fatherCountry" id="" class="form-select form-select mb-3" >
+                                       <option selected disabled>--Select--</option>
+                                       <?php foreach ($Country_array as $country){?>
+                                           <option value="<?php echo $country['CountryID']?>"><?php echo $country['CountryEN']?></option>
+                                       <?php }?>
+                                   </select>
+                               </div>
+                           </div>
+                       </div>
+
+                       <div class="row">
+
+                           <div class="col-lg-12">
+
+                               <label class="col col-form-label" for="basic-icon-default-company">Father Occupation</label>
+                               <div class="col">
+                                   <select name="FatherOccupation" id="" class="form-select form-select mb-3" >
+                                       <option selected disabled>--Select--</option>
+                                       <<?php foreach ($Occupation_array as $occupation){?>
+                                           <option value="<?php echo $occupation['OccupationID']?>"><?php echo $occupation['OccupationEN']?></option>
+                                       <?php }?>
+                                   </select>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="row mb-2">
+                           <div class="col-lg-6">
+
+                               <label class="col col-form-label" for="basic-icon-default-company">Mother Name</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span id="basic-icon-default-fullname2" class="input-group-text"
+                                       ><i class="bx bx-user"></i
+                                           ></span>
+                                       <input
+                                               name="MotherName"
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="Mother Name"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+
+                           <div class="col-lg-6">
+
+                               <label class="col col-form-label" for="basic-icon-default-company">Mother Age</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                      <span id="basic-icon-default-fullname2" class="input-group-text"
+                                      ><i class="bx bx-calendar"></i
+                                          ></span>
+                                       <input
+                                               name="MotherAge"
+                                               type="number"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="Father Age"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+
+
+                       <div class="row">
+
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Mother National</label>
+                               <div class="col">
+                                   <select name="motherNationality" id="motherNa" class="MotherNa form-select form-select mb-3" >
+                                       <option selected disabled>--Select--</option>
+                                       <?php foreach ($Nationality_array as $nationality){?>
+                                           <option value="<?php echo $nationality['NationalityID']?>"><?php echo $nationality['NationalityEN']?></option>
+                                       <?php }?>
+                                   </select>
+                               </div>
+                           </div>
+
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Mother Country</label>
+                               <div class="col">
+                                   <select name="motherCountry" id="" class="form-select form-select mb-3" >
+                                       <option selected disabled>--Select--</option>
+                                       <?php foreach ($Country_array as $country){?>
+                                           <option value="<?php echo $country['CountryID']?>"><?php echo $country['CountryEN']?></option>
+                                       <?php }?>
+                                   </select>
+                               </div>
+                           </div>
+                       </div>
+
+                       <div class="row">
+
+                           <div class="col-lg-12">
+
+                               <label class="col col-form-label" for="basic-icon-default-company">Mother Occupation</label>
+                               <div class="col">
+                                   <select name="MotherOccupation" id="" class="form-select form-select mb-3" >
+                                       <option selected disabled>--Select--</option>
+                                       <?php foreach ($Occupation_array as $occupation){?>
+                                           <option value="<?php echo $occupation['OccupationID']?>"><?php echo $occupation['OccupationEN']?></option>
+                                       <?php }?>
+                                   </select>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="row mb-2">
+                           <div class="col-lg-6">
+
+                               <label class="col col-form-label" for="basic-icon-default-company">Spouse Name</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               name="spouseName"
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="Spouse Name"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+
+                               <label class="col col-form-label" for="basic-icon-default-company">Spouse Age</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               type="SpouseAge"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="Spouse Age"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+
+                       <div class="row mb-4">
+                           <div class="col-lg-6">
+
+                               <label class="col col-form-label" for="basic-icon-default-company">Family Current Address</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               name="FamilyCurrentAddress"
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="Family Address"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+
+                               <label class="col col-form-label" for="basic-icon-default-company">Guardian Phone Number</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                       <input
+                                               name="GuardianPhoneNumber"
+                                               type="text"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="Guardian Phone Number"
+                                       />
+                                   </div>
+                               </div>
+                           </div>
+
+                       </div>
+                       <!--button-->
+                       <input type="button" name="previous" class="previous btn btn-outline-danger" value="Previous" />
+                       <input type="button" name="next" class="next btn btn-primary" value="Next" />
+
+                   </fieldset>
 <!--                   Family BackGround End-->
 <!--                   Education BackGround In Progress-->
                    <fieldset>
@@ -611,6 +613,16 @@ while($country=mysqli_fetch_assoc($resultCountry)){
                                <div class="col">
                                    <select name="SchoolType" id="" class="form-control form-select form-select mb-3">
                                        <option selected disabled>--Select--</option>
+                                       <?php
+                                       $sql = "Select *From tblschooltype";
+                                       $query = mysqli_query($conn, $sql);
+                                       while ($data = mysqli_fetch_assoc($query)) { ?>
+                                           <option value="<?php echo $data['SchoolTypeID'] ?>">
+                                               <?php echo $data['SchoolTypeEN']?>
+                                           </option>
+
+                                       <?php }
+                                       ?>
                                    </select>
                                </div>
                            </div>
@@ -667,109 +679,41 @@ while($country=mysqli_fetch_assoc($resultCountry)){
                            <input type="button" name="previous" class="previous btn btn-outline-danger" value="Previous" />
                            <input type="button" name="next" class="next btn btn-primary" value="Next" />
                    </fieldset>
-<!--                   End Of Education BackGround-->
-                 <!--Form Major Information-->
+                   <!--End Of Education BackGround-->
+                   <!--Form Major Information-->
                    <fieldset>
-                       <h2>Step 1: University Information</h2>
+                       <h2>Step 4: University Information</h2>
                        <div class="row">
                            <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-fullname">Academic Year</label>
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Faculty</label>
                                <div class="col">
-                                   <select name="AcademicYearID" id="" class="form-select form-select mb-3">
-                                       <option selected disabled>--Select Year--</option>
-
-                                       <?php
-                                       $sql = "Select *From tblacademicyear";
-                                       $query = mysqli_query($conn, $sql);
-                                       while ($data = mysqli_fetch_assoc($query)) { ?>
-                                           <option value="<?php echo $data['AcademicYearID'] ?>">
-                                               <?php echo $data['AcademicYear']?>
-                                           </option>
-
-                                       <?php }
-                                       ?>
+                                   <select name="Faculty" id="Faculty" class="faculty form-select mb-3"aria-label="Default select example")>
+                                       <option selected disabled>(--Selected Faculty--)</option>;
+                                       <?php while ($rowFaculty= mysqli_fetch_assoc($resultFaculty)){?>
+                                           <option value="<?php echo $rowFaculty['FacultyID']?>"><?php echo $rowFaculty['FacultyEN']?></option>
+                                       <?php };?>
                                    </select>
                                </div>
                            </div>
                            <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-fullname">Degree in KHmer</label>
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Major</label>
                                <div class="col">
-                                   <select name="AcademicYearID" id="" class="form-select form-select mb-3">
-                                       <option selected disabled>--Select Degree in Khmer--</option>
+                                   <div class="input-group input-group-merge">
+                                       <select name="Major" id="Major" class="faculty form-select mb-3"aria-label="Default select example")">
 
-                                       <?php
-                                       include_once '../BackEnd/db.php';
-
-                                       $sql = "Select *From tblDegree";
-                                       $query = mysqli_query($conn, $sql);
-                                       while ($data = mysqli_fetch_assoc($query)) { ?>
-
-                                           <option value="<?php echo $data['DegreeID'] ?>">
-                                               <?php echo $data['DegreeNameKH']?>
-                                           </option>
-
-                                       <?php }
-                                       ?>
-                                   </select>
+                                       </select>
+                                   </div>
                                </div>
                            </div>
                        </div>
-
                        <div class="row">
                            <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-fullname">Degree in English</label>
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Campus</label>
                                <div class="col">
                                    <select name="AcademicYearID" id="" class="form-select form-select mb-3">
-                                       <option selected disabled>-- Select Degree in English --</option>
+                                       <option selected disabled>--Select Campush--</option>
 
                                        <?php
-                                       include_once '../BackEnd/db.php';
-
-                                       $sql = "Select *From tblDegree";
-                                       $query = mysqli_query($conn, $sql);
-                                       while ($data = mysqli_fetch_assoc($query)) { ?>
-                                           <option value="<?php echo $data['DegreeID'] ?>">
-                                               <?php echo $data['DegreeNameEN']?>
-                                           </option>
-
-                                       <?php }
-                                       ?>
-                                   </select>
-                               </div>
-                           </div>
-                           <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-fullname">Campus in Khmer</label>
-                               <div class="col">
-                                   <select name="AcademicYearID" id="" class="form-select form-select mb-3">
-                                       <option selected disabled>-- Select Campus in Khmer --</option>
-
-                                       <?php
-                                       include_once '../BackEnd/db.php';
-
-                                       $sql = "Select *From tblCampus";
-                                       $query = mysqli_query($conn, $sql);
-                                       while ($data = mysqli_fetch_assoc($query)) { ?>
-                                           <option value="<?php echo $data['CampusID'] ?>">
-                                               <?php echo $data['CampusKH']?>
-                                           </option>
-
-                                       <?php }
-                                       ?>
-                                   </select>
-                               </div>
-                           </div>
-                       </div>
-                       <!--TblAcademicYear-->
-                       <div class="row">
-                           <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-fullname">Campus in English</label>
-                               <div class="col">
-                                   <select name="AcademicYearID" id="" class="form-select form-select mb-3">
-                                       <option selected disabled>--Select Campus in English--</option>
-
-                                       <?php
-                                       include_once '../BackEnd/db.php';
-
                                        $sql = "Select *From tblCampus";
                                        $query = mysqli_query($conn, $sql);
                                        while ($data = mysqli_fetch_assoc($query)) { ?>
@@ -783,19 +727,18 @@ while($country=mysqli_fetch_assoc($resultCountry)){
                                </div>
                            </div>
                            <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-fullname">Program Type in Khmer</label>
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Degree</label>
                                <div class="col">
                                    <select name="AcademicYearID" id="" class="form-select form-select mb-3">
-                                       <option selected disabled>--Select Program Type Khmer--</option>
+                                       <option selected disabled>-- Select Degree --</option>
 
                                        <?php
-                                       include_once '../BackEnd/db.php';
 
-                                       $sql = "Select *From tblprogramtype";
+                                       $sql = "Select *From tblDegree";
                                        $query = mysqli_query($conn, $sql);
                                        while ($data = mysqli_fetch_assoc($query)) { ?>
-                                           <option value="<?php echo $data['ProgramTypeID'] ?>">
-                                               <?php echo $data['ProgramTypeKH']?>
+                                           <option value="<?php echo $data['DegreeID'] ?>">
+                                               <?php echo $data['DegreeNameEN']?>
                                            </option>
 
                                        <?php }
@@ -804,22 +747,62 @@ while($country=mysqli_fetch_assoc($resultCountry)){
                                </div>
                            </div>
                        </div>
-                       <!--TblAcademicYear-->
                        <div class="row">
                            <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-fullname">Program Type in English</label>
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Academic Year</label>
                                <div class="col">
-                                   <select name="AcademicYearID" id="" class="form-select form-select mb-3">
-                                       <option selected disabled>--Select Program Type English--</option>
+                                   <div class="input-group input-group-merge">
+                                       <select name="AcademicYearID" id="" class="form-select form-select mb-3">
+                                           <option selected disabled>--Select Academic Year--</option>
+
+                                           <?php
+                                           include_once '../BackEnd/db.php';
+
+                                           $sql = "Select *From tblacademicyear";
+                                           $query = mysqli_query($conn, $sql);
+                                           while ($data = mysqli_fetch_assoc($query)) { ?>
+                                               <option value="<?php echo $data['AcademicYearID'] ?>">
+                                                   <?php echo $data['AcademicYear']?>
+                                               </option>
+
+                                           <?php }
+                                           ?>
+                                       </select>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Semester</label>
+                               <div class="col">
+                                   <div class="input-group input-group-merge">
+                                       <select name="Semester" id="Semester" class="faculty form-select mb-3"aria-label="Default select example")">
+                                            <option selected disabled>--Select Semester--</option>
+                                            <?php
+                                            $sql = "Select *From tblsemester";
+                                            $query = mysqli_query($conn, $sql);
+                                            while ($data = mysqli_fetch_assoc($query)) {?>
+                                                <option value="<?php echo $data['SemesterID']?>"><?php echo $data['SemesterEN']?></option>
+                                            <?php }?>
+                                       </select>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Year</label>
+                               <div class="col">
+                                   <select name="Year" id="" class="form-select form-select mb-3">
+                                       <option selected disabled>--Select Year--</option>
 
                                        <?php
                                        include_once '../BackEnd/db.php';
 
-                                       $sql = "Select *From tblprogramtype";
+                                       $sql = "Select *From tblyear";
                                        $query = mysqli_query($conn, $sql);
                                        while ($data = mysqli_fetch_assoc($query)) { ?>
-                                           <option value="<?php echo $data['ProgramTypeID'] ?>">
-                                               <?php echo $data['ProgramTypeEN']?>
+                                           <option value="<?php echo $data['YearID'] ?>">
+                                               <?php echo $data['Year']?>
                                            </option>
 
                                        <?php }
@@ -828,19 +811,19 @@ while($country=mysqli_fetch_assoc($resultCountry)){
                                </div>
                            </div>
                            <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-fullname">Shift in Khmer</label>
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Batch</label>
                                <div class="col">
-                                   <select name="AcademicYearID" id="" class="form-select form-select mb-3">
-                                       <option selected disabled>--Select Shift in Khmer--</option>
+                                   <select name="Batch" id="" class="form-select form-select mb-3">
+                                       <option selected disabled>--Select Batch--</option>
 
                                        <?php
                                        include_once '../BackEnd/db.php';
 
-                                       $sql = "Select *From tblshift";
+                                       $sql = "Select *From tblbatch";
                                        $query = mysqli_query($conn, $sql);
                                        while ($data = mysqli_fetch_assoc($query)) { ?>
-                                           <option value="<?php echo $data['ShiftID'] ?>">
-                                               <?php echo $data['ShiftKH']?>
+                                           <option value="<?php echo $data['BatchID'] ?>">
+                                               <?php echo $data['BatchEN']?>
                                            </option>
 
                                        <?php }
@@ -849,13 +832,12 @@ while($country=mysqli_fetch_assoc($resultCountry)){
                                </div>
                            </div>
                        </div>
-                       <!--TblAcademicYear-->
                        <div class="row">
                            <div class="col-lg-6">
-                               <label class="col col-form-label" for="basic-icon-default-fullname">Shift in English</label>
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Shift</label>
                                <div class="col">
                                    <select name="AcademicYearID" id="" class="form-select form-select mb-3">
-                                       <option selected disabled>--Select Shift in English--</option>
+                                       <option selected disabled>--Select Shift--</option>
 
                                        <?php
                                        include_once '../BackEnd/db.php';
@@ -872,152 +854,48 @@ while($country=mysqli_fetch_assoc($resultCountry)){
                                    </select>
                                </div>
                            </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Program Type</label>
+                               <div class="col">
+                                   <select name="AcademicYearID" id="" class="form-select form-select mb-3">
+                                       <option selected disabled>--Select Program Type--</option>
 
+                                       <?php
+                                       include_once '../BackEnd/db.php';
+
+                                       $sql = "Select *From tblprogramtype";
+                                       $query = mysqli_query($conn, $sql);
+                                       while ($data = mysqli_fetch_assoc($query)) { ?>
+                                           <option value="<?php echo $data['ProgramTypeID'] ?>">
+                                               <?php echo $data['ProgramTypeEN']?>
+                                           </option>
+
+                                       <?php }
+                                       ?>
+                                   </select>
+                               </div>
+                           </div>
                        </div>
-
-
+                       <div class="row mb-3">
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">Start Date</label>
+                               <div class="col">
+                                   <input class="form-control" type="date" name="dob" value="now id="html5-date-input" />
+                               </div>
+                           </div>
+                           <div class="col-lg-6">
+                               <label class="col col-form-label" for="basic-icon-default-fullname">End Date</label>
+                               <div class="col">
+                                   <input class="form-control" type="date" name="dob" value="now" id="html5-date-input" />
+                               </div>
+                           </div>
+                       </div>
                        <!--button-->
-                       <a type="submit" class="btn btn-outline-danger" href="../index.php">Cancel</a>
-                       <input type="button" name="password" class="next btn btn-primary" value="Next" />
+                       <input type="button" name="previous" class="previous btn btn-outline-danger" value="Previous" />
+                       <input type="submit" name="submit" class="submit btn btn-success" value="Submit" />
                    </fieldset>
 
                 <!--Form 5-->
-                <fieldset>
-                <h2>Step 5: Contact Information</h2>
-                <div class="row ">
-                                        <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">Student Status</label>
-                                            <div class="col">
-                                            <select name="" id="" class="form-select form-select mb-3" >
-                                                <option selected disabled>--Select--</option>
-                                            </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">Student ID</label>
-                                            <div class="col">
-                                            <select name="" id="" class="form-select form-select mb-3" >
-                                                <option selected disabled>--Select--</option>
-                                            </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                    <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">Program ID</label>
-                                            <div class="col">
-                                            <select name="" id="" class="form-select form-select mb-3" >
-                                                <option selected disabled>--Select--</option>
-                                            </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-
-                                              <label class="col col-form-label" for="basic-icon-default-company">Assigned</label>
-                                                  <div class="col">
-                                                  <div class="input-group input-group-merge">
-                                                          <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                          <input
-                                                                  type="text"
-                                                                  id=""
-                                                                  class="form-control"
-                                                                  placeholder="Assigned"    
-                                                          />                
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-6">
-
-                                        <label class="col col-form-label" for="basic-icon-default-company">Note</label>
-                                            <div class="col">
-                                            <div class="input-group input-group-merge">
-                                                    <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                    <input
-                                                            type="text"
-                                                            id=""
-                                                            class="form-control"
-                                                            placeholder="Note"    
-                                                    />                
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-lg-6">
-
-                                        <label class="col col-form-label" for="basic-icon-default-company">Assigned Date</label>
-                                            <div class="col">
-                                            <div class="input-group input-group-merge">
-                                                    <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                    <input
-                                                            type="datetime"
-                                                            id=""
-                                                            class="form-control"
-                                                            placeholder="Assigned Date"    
-                                                    />                
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    
-
-                                    <div class="row">
-                                        
-                                    <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">Semester Khmer</label>
-                                            <div class="col">
-                                            <select name="" id="" class="form-select form-select mb-3" >
-                                                <option selected disabled>--Select--</option>
-                                            </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-6">
-                                        <label class="col col-form-label" for="basic-icon-default-fullname">Semester English</label>
-                                            <div class="col">
-                                            <select name="" id="" class="form-select form-select mb-3" >
-                                                <option selected disabled>--Select--</option>
-                                            </select>
-                                            </div>
-                                        </div>
-                                     </div>
-
-                                     <div class="row">
-
-                                       <div class="col-lg-6">
-                                            
-                                            <label class="col col-form-label" for="basic-icon-default-company">Bath Khmer</label>
-                                            <div class="col">
-                                            <select name="" id="" class="form-select form-select mb-3" >
-                                                <option selected disabled>--Select--</option>
-                                            </select>
-                                            </div>
-                                             </div>
-
-                                             <div class="col-lg-6">
-
-                                            <label class="col col-form-label" for="basic-icon-default-company">Bath English</label>
-                                                <div class="col">
-                                                <div class="input-group input-group-merge">
-                                                        <span class="input-group-text"><i class="bx bx-year"></i></span>
-                                                        <input
-                                                                type="text"
-                                                                id=""
-                                                                class="form-control"
-                                                                placeholder="Mother Name"    
-                                                        />                
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                                 </div>                                   
-                <!--button-->
-                <input type="button" name="previous" class="previous btn btn-outline-danger" value="Previous" />
-                <input type="submit" name="submit" class="submit btn btn-success" value="Submit" />
-            </fieldset>
     </form>
                </div>
 </body>
