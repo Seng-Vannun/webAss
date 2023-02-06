@@ -96,7 +96,7 @@ while($country=mysqli_fetch_assoc($resultCountry)){
                                 <h1 style="color: white;">Registration</h1>
                             </div>
                <div class="card-body">
-               <form id="regiration_form" novalidate action="../BackEnd/Input.php"  method="post">
+               <form id="regiration_form" novalidate action="../BackEnd/Input.php" enctype="multipart/form-data" method="post">
                <!-- Form Student Infomation Done-->
                    <fieldset>
                        <h2> Step 1: Add Personnel Details</h2>
@@ -479,7 +479,7 @@ while($country=mysqli_fetch_assoc($resultCountry)){
                                                type="number"
                                                id=""
                                                class="form-control"
-                                               placeholder="Father Age"
+                                               placeholder="Mother Age"
                                        />
                                    </div>
                                </div>
@@ -541,7 +541,7 @@ while($country=mysqli_fetch_assoc($resultCountry)){
                                                type="text"
                                                id=""
                                                class="form-control"
-                                               placeholder="Spouse Name"
+                                               placeholder="Spouse Name (Optional)"
                                        />
                                    </div>
                                </div>
@@ -553,7 +553,8 @@ while($country=mysqli_fetch_assoc($resultCountry)){
                                    <div class="input-group input-group-merge">
                                        <span class="input-group-text"><i class="bx bx-year"></i></span>
                                        <input
-                                               type="SpouseAge"
+                                               name="SpouseAge"
+                                               type="text"
                                                id=""
                                                class="form-control"
                                                placeholder="Spouse Age"
@@ -603,8 +604,8 @@ while($country=mysqli_fetch_assoc($resultCountry)){
                        <input type="button" name="next" class="next btn btn-primary" value="Next" />
 
                    </fieldset>
-<!--                   Family BackGround End-->
-<!--                   Education BackGround In Progress-->
+                <!-- Family BackGround End-->
+                <!--Education BackGround In Progress-->
                    <fieldset>
                        <h2> Step 3: Education BackGround</h2>
                        <div class="row">
@@ -710,7 +711,7 @@ while($country=mysqli_fetch_assoc($resultCountry)){
                            <div class="col-lg-6">
                                <label class="col col-form-label" for="basic-icon-default-fullname">Campus</label>
                                <div class="col">
-                                   <select name="AcademicYearID" id="" class="form-select form-select mb-3">
+                                   <select name="Campus" id="" class="form-select form-select mb-3">
                                        <option selected disabled>--Select Campush--</option>
 
                                        <?php
@@ -729,7 +730,7 @@ while($country=mysqli_fetch_assoc($resultCountry)){
                            <div class="col-lg-6">
                                <label class="col col-form-label" for="basic-icon-default-fullname">Degree</label>
                                <div class="col">
-                                   <select name="AcademicYearID" id="" class="form-select form-select mb-3">
+                                   <select name="Degree" id="" class="form-select form-select mb-3">
                                        <option selected disabled>-- Select Degree --</option>
 
                                        <?php
@@ -752,7 +753,7 @@ while($country=mysqli_fetch_assoc($resultCountry)){
                                <label class="col col-form-label" for="basic-icon-default-fullname">Academic Year</label>
                                <div class="col">
                                    <div class="input-group input-group-merge">
-                                       <select name="AcademicYearID" id="" class="form-select form-select mb-3">
+                                       <select name="AcademicYear" id="" class="form-select form-select mb-3">
                                            <option selected disabled>--Select Academic Year--</option>
 
                                            <?php
@@ -836,7 +837,7 @@ while($country=mysqli_fetch_assoc($resultCountry)){
                            <div class="col-lg-6">
                                <label class="col col-form-label" for="basic-icon-default-fullname">Shift</label>
                                <div class="col">
-                                   <select name="AcademicYearID" id="" class="form-select form-select mb-3">
+                                   <select name="Shift" id="" class="form-select form-select mb-3">
                                        <option selected disabled>--Select Shift--</option>
 
                                        <?php
@@ -857,7 +858,7 @@ while($country=mysqli_fetch_assoc($resultCountry)){
                            <div class="col-lg-6">
                                <label class="col col-form-label" for="basic-icon-default-fullname">Program Type</label>
                                <div class="col">
-                                   <select name="AcademicYearID" id="" class="form-select form-select mb-3">
+                                   <select name="ProgramType" id="" class="form-select form-select mb-3">
                                        <option selected disabled>--Select Program Type--</option>
 
                                        <?php
@@ -880,19 +881,19 @@ while($country=mysqli_fetch_assoc($resultCountry)){
                            <div class="col-lg-6">
                                <label class="col col-form-label" for="basic-icon-default-fullname">Start Date</label>
                                <div class="col">
-                                   <input class="form-control" type="date" name="dob" value="now id="html5-date-input" />
+                                   <input class="form-control" type="date" name="StartDate" value="now id="html5-date-input" />
                                </div>
                            </div>
                            <div class="col-lg-6">
                                <label class="col col-form-label" for="basic-icon-default-fullname">End Date</label>
                                <div class="col">
-                                   <input class="form-control" type="date" name="dob" value="now" id="html5-date-input" />
+                                   <input class="form-control" type="date" name="EndDate" value="now" id="html5-date-input" />
                                </div>
                            </div>
                        </div>
                        <!--button-->
                        <input type="button" name="previous" class="previous btn btn-outline-danger" value="Previous" />
-                       <input type="submit" name="submit" class="submit btn btn-success" value="Submit" />
+                       <input type="Submit" name="Submit" class="submit btn btn-success" value="Submit" />
                    </fieldset>
 
                 <!--Form 5-->
