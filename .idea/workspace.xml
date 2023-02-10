@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b73c77c2-c1e9-4c35-bb16-4977fd605d27" name="Changes" comment="Change multi Form">
+    <list default="true" id="b73c77c2-c1e9-4c35-bb16-4977fd605d27" name="Changes" comment="Finish dash Board">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/Input.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Input.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FrontEnd/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/dashboard.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +72,8 @@
       <workItem from="1675767422969" duration="5734000" />
       <workItem from="1675843631023" duration="3578000" />
       <workItem from="1675853637933" duration="8777000" />
-      <workItem from="1675939768190" duration="3877000" />
+      <workItem from="1675939768190" duration="5108000" />
+      <workItem from="1676026918473" duration="305000" />
     </task>
     <task id="LOCAL-00001" summary="Add Jquery">
       <created>1675250661891</created>
@@ -103,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675690139579</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Finish dash Board">
+      <created>1675943717020</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1675943717020</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,6 +130,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add Jquery" />
     <MESSAGE value="Change multi Form" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change multi Form" />
+    <MESSAGE value="Finish dash Board" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish dash Board" />
   </component>
 </project>
