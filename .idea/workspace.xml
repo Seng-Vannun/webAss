@@ -4,9 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b73c77c2-c1e9-4c35-bb16-4977fd605d27" name="Changes" comment="Finish dash Board">
+    <list default="true" id="b73c77c2-c1e9-4c35-bb16-4977fd605d27" name="Changes" comment="Finish Search And Edit">
+      <change afterPath="$PROJECT_DIR$/BackEnd/Disable.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BackEnd/Edit.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FrontEnd/Active.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FrontEnd/Disable.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FrontEnd/Pending.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jquery/Search.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Input.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Input.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/ViewInformation.php" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/ViewInformation.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FrontEnd/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/multipleForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/multipleForm.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +82,12 @@
       <workItem from="1675843631023" duration="3578000" />
       <workItem from="1675853637933" duration="8777000" />
       <workItem from="1675939768190" duration="5108000" />
-      <workItem from="1676026918473" duration="305000" />
+      <workItem from="1676026918473" duration="8086000" />
+      <workItem from="1676272614055" duration="10035000" />
+      <workItem from="1676284581348" duration="2651000" />
+      <workItem from="1676288631083" duration="3089000" />
+      <workItem from="1676360571280" duration="4686000" />
+      <workItem from="1676371660282" duration="1774000" />
     </task>
     <task id="LOCAL-00001" summary="Add Jquery">
       <created>1675250661891</created>
@@ -110,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675943717020</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Finish dash Board">
+      <created>1676027404022</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1676027404022</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +152,7 @@
     <MESSAGE value="Add Jquery" />
     <MESSAGE value="Change multi Form" />
     <MESSAGE value="Finish dash Board" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finish dash Board" />
+    <MESSAGE value="Finish Search And Edit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish Search And Edit" />
   </component>
 </project>

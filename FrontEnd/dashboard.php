@@ -182,13 +182,34 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                 </li>
               </ul>
             </li>
-            <!-- Tables -->
-            <li class="menu-item active">
-              <a href="tables-basic.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-user"></i>
-                <div data-i18n="Tables">Student</div>
-              </a>
-            </li>
+              <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                      <i class="menu-icon tf-icons bx bx-user"></i>
+                      <div data-i18n="Authentications">Student</div>
+                  </a>
+                  <ul class="menu-sub">
+                      <li class="menu-item active">
+                          <a href="#" class="menu-link" target="_self">
+                              <div data-i18n="Basic">All Student</div>
+                          </a>
+                      </li>
+                      <li class="menu-item">
+                          <a href="Active.php" class="menu-link" target="_self">
+                              <div data-i18n="Basic">Active</div>
+                          </a>
+                      </li>
+                      <li class="menu-item">
+                          <a href="Pending.php" class="menu-link" target="_self">
+                              <div data-i18n="Basic">Pending</div>
+                          </a>
+                      </li>
+                      <li class="menu-item">
+                          <a href="Disable.php" class="menu-link" target="_self">
+                              <div data-i18n="Basic">Disable</div>
+                          </a>
+                      </li>
+                  </ul>
+              </li>
             <!-- Misc -->
 
           </ul>
@@ -286,8 +307,15 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
-
             <div class="container-fluid flex-grow-1 container-p-y">
+                <div class="row mt-5">
+                    <?php
+                    if(isset($_GET['msg'])){
+                        $msg=$_GET['msg'];
+                        echo'<div class="alert alert-primary" role="alert">
+                        '.$msg.'</div';}
+                    ?>
+                </div>
               <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Student Information </h4>
 
               <!-- Bootstrap Table with Header - Light -->
@@ -297,6 +325,8 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                         <div class="nav-item d-flex align-items-center">
                             <i class="bx bx-search fs-4 lh-0"></i>
                             <input
+                                    id="LiveSearch"
+                                    autocomplete="off"
                                     type="text"
                                     class="form-control border-0 shadow-none"
                                     placeholder="Search..."
@@ -324,7 +354,9 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                         <th>Actions</th>
                       </tr>
                     </thead>
-                    <tbody class="table-border-bottom-0">
+                      <tbody class="table-border-bottom-0" id="DashboredSeach"></tbody>
+
+                    <tbody class="table-border-bottom-0" id="Dashbored">
                     <!-- Row Start-->
                     <?php
                         foreach($Student_Array as $StudentRow){
@@ -336,10 +368,12 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                             $shiftId=null;
                             $campusId=null;
                             $statusID=null;
+                            $disableID=null;
                             foreach ($StudentStatus_array as $StudentStatus){
                                 $studentStatusID=$StudentStatus['StudentStatusID'];
                                 if($studentID==$studentStatusID){
                                     $statusID=$StudentStatus['statusID'];
+                                    $disableID=['StudentStatusID'];
                                 }
                             }
                             foreach ($Program_array as $Program)
@@ -385,6 +419,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                           </td> <!--Campus-->
                           <td>
                               <?php if(1==$statusID){echo $StatusShow='<span class="badge rounded-pill bg-label-success">Active</span>';}
+                                 elseif(null==$statusID){echo $StatusShow='<span class="badge rounded-pill bg-label-warning">Pending</span>';}
                                     elseif(2==$statusID){echo $StatusShow='<span class="badge rounded-pill bg-label-warning">Pending</span>';}
                                     elseif(3==$statusID){echo$StatusShow='<span class="badge rounded-pill bg-label-danger">Disable</span>';}
                               ?>
@@ -398,10 +433,10 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                                       <a class="dropdown-item" href="view_pdf.php"
                                       ><i class="bx bx-edit-alt me-1"></i> ViewFull Information</a
                                       >
-                                      <a class="dropdown-item" href="javascript:void(0);"
+                                      <a class="dropdown-item" href="../FrontEnd/ViewInformation.php?EditID=<?php echo $StudentRow['StudentID']?>"
                                       ><i class="bx bx-edit-alt me-1"></i> Edit</a
                                       >
-                                      <a class="dropdown-item" href="../BackEnd/"
+                                      <a class="dropdown-item" href="../BackEnd/Disable.php?DisableID=<?php echo $StudentRow['StudentID']?>"
                                       ><i class="bx bx-trash me-1"></i> Delete</a
                                       >
                                   </div>
@@ -444,3 +479,26 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
     <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
 </html>
+<script type="text/javascript">
+$(document).ready(function (){
+    $("#LiveSearch").keyup(function (){
+        var input =$(this).val();
+        if(input!=null){
+            $("#Dashbored").css("display","none")
+            $.ajax({
+                url:'../jquery/Search.php',
+                method:"POST",
+                data:{input:input},
+                success:function (data){
+                    $("#DashboredSeach").html(data);
+                }
+            });
+        }
+        else
+        {
+        $("#DashboredSeach").css("display","none")
+        }
+    });
+});
+
+</script>
