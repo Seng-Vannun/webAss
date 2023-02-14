@@ -1,5 +1,46 @@
+<?php
+require_once ('../BackEnd/db.php');
+$StudentEditID=$_GET['EditID'];
+$sqlSex="select * from tblsex";
+$resultSex=mysqli_query($conn,$sqlSex);
+$sqlNationality="select * from tblnationality";
+$resultNationality=mysqli_query($conn,$sqlNationality);
+$sqlCountry="select * from tblcountry";
+$resultCountry=mysqli_query($conn,$sqlCountry);
+$sqlFaculty ="select * from tblfaculty";
+$resultFaculty=mysqli_query($conn,$sqlFaculty);
+$sqlOccupation="select * from tbloccupation";
+$resultOccupation=mysqli_query($conn,$sqlOccupation);
+$Nationality_array=array();
+$Country_array=array();
+$Occupation_array=array();
+while($nationality=mysqli_fetch_assoc($resultNationality)){
+    $Nationality_array[]=$nationality;
+}
+while($occupation=mysqli_fetch_assoc($resultOccupation)){
+    $Occupation_array[]=$occupation;
+}
+while($country=mysqli_fetch_assoc($resultCountry)){
+    $Country_array[]=$country;
+}
+$StudentEditQuery="select * from tblstudentInfo where StudentID=$StudentEditID";
+$StudentEditResult=mysqli_query($conn,$StudentEditQuery);
+$FamilyEditQuery="select * from tblfamiltybackground where FamilyBackgroundID=$StudentEditID";
+$FamilyEditResult=mysqli_query($conn,$FamilyEditQuery);
+$EducationEditQuery="select * from tbleducationalbackground where EducationalBackgroundID=$StudentEditID";
+$EducationEditResult=mysqli_query($conn,$EducationEditQuery);
+$ProgramEditQuery="select * from tblprogram where ProgramID=$StudentEditID";
+$ProgramEditResult=mysqli_query($conn,$ProgramEditQuery);
+?>
 <!DOCTYPE html>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+    #regiration_form fieldset:not(:first-of-type) {
+        display: none;
+    }
+</style>
 <html
         lang="en"
         class="light-style layout-menu-fixed"
@@ -8,6 +49,7 @@
         data-assets-path="../assets/"
         data-template="vertical-menu-template-free"
 >
+
 <head>
     <meta charset="utf-8" />
     <meta
@@ -232,172 +274,852 @@
                     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Edit Student Information </h4>
 
                     <!-- Bootstrap Table with Header - Light -->
+                    <?php if($StudentEditRow=mysqli_fetch_assoc($StudentEditResult)){?>
                     <div class="card-body">
                         <div class="d-flex align-items-start align-items-sm-center gap-4">
                             <img
-                                    src="../img/1.jpg"
+                                    src="../BackEnd/images/<?php echo $StudentEditRow['Photo'] ?>"
                                     alt="user-avatar"
                                     class="d-block rounded"
-                                    height="100"
-                                    width="100"
+                                    height="200"
+                                    width="200"
+                                    style="object-fit: contain"
                                     id="uploadedAvatar"
                             />
-                            <div class="button-wrapper">
-                                <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                                    <span class="d-none d-sm-block">Upload new photo</span>
-                                    <i class="bx bx-upload d-block d-sm-none"></i>
-                                    <input
-                                            type="file"
-                                            id="upload"
-                                            class="account-file-input"
-                                            hidden
-                                            accept="image/png, image/jpeg"
-                                    />
-                                </label>
-                                <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
-                                    <i class="bx bx-reset d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Reset</span>
-                                </button>
-                            </div>
                         </div>
                     </div>
                     <hr class="my-0" />
                     <div class="card-body">
-                        <form id="formAccountSettings" method="POST" onsubmit="return false">
-                            <div class="row">
-                                <div class="mb-3 col-md-6">
-                                    <label for="firstName" class="form-label">Name</label>
-                                    <input
-                                            class="form-control"
-                                            type="text"
-                                            id="name"
-                                            name="name"
-                                            value="Hong Rakchhai"
-                                            autofocus
-                                    />
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="lastName" class="form-label">Gender</label>
-                                    <input class="form-control" type="text" name="gender" id="gender" value="Male" />
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="email" class="form-label">E-mail</label>
-                                    <input
-                                            class="form-control"
-                                            type="text"
-                                            id="email"
-                                            name="email"
-                                            value="HongRakchhai@example.com"
-                                            placeholder="HongRakchhai@example.com"
-                                    />
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label" for="phoneNumber">Phone Number</label>
-                                    <div class="input-group input-group-merge">
-                                        <span class="input-group-text">Cambodia(+855)</span>
-                                        <input
-                                                type="text"
-                                                id="phoneNumber"
-                                                name="phoneNumber"
-                                                class="form-control"
-                                                placeholder=""
-                                        />
+                        <form id="regiration_form" novalidate action="../BackEnd/Edit.php" enctype="multipart/form-data" method="post">
+                            <!-- Form Student Infomation Done-->
+                            <fieldset>
+                                <h2> Personnel Details</h2>
+                                        <input hidden="hidden" name="StudentID" value="<?php echo $StudentEditRow['StudentID'] ?>">
+                                <div class="row mb-2 ">
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Name Latin</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                       <span id="basic-icon-default-fullname2" class="input-group-text"
+                                       ><i class="bx bx-user"></i
+                                           ></span>
+                                                <input
+                                                        required
+                                                        name="NameInLatin"
+                                                        type="text"
+                                                        id=""
+                                                        class="form-control"
+                                                        value="<?php echo $StudentEditRow['NameInLatin'];?>"
+                                                        placeholder="NAME IN LATIN"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Name in Khmer</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                       <span id="basic-icon-default-fullname2" class="input-group-text"
+                                       ><i class="bx bx-user"></i
+                                           ></span>
+                                                <input
+                                                        required
+                                                        name="khName"
+                                                        type="text"
+                                                        id=""
+                                                        class="form-control"
+                                                        value="<?php echo $StudentEditRow['NameInKHmer'];?>"
+                                                        placeholder="ឈ្មោះ"
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="organization" class="form-label">Date Of Birth</label>
-                                    <div class="input-group input-group-merge">
-                                              <span id="basic-icon-default-fullname2" class="input-group-text"
-                                              ><i class="bx bx-calendar"></i
-                                                  ></span>
-                                        <input class="form-control" name="dob" type="date" value="2021-06-18" id="html5-date-input" />
+                                <div class="row mb-2">
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Family Name</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                       <span id="basic-icon-default-fullname2" class="input-group-text"
+                                       ><i class="bx bx-user"></i
+                                           ></span>
+                                                <input
+                                                        required
+                                                        name="FamilyName"
+                                                        type="text"
+                                                        id=""
+                                                        class="form-control"
+                                                        value="<?php echo $StudentEditRow['FamilyName'];?>"
+                                                        placeholder="SENG"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Given Name</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                       <span id="basic-icon-default-fullname2" class="input-group-text"
+                                       ><i class="bx bx-user"></i
+                                           ></span>
+                                                <input
+                                                        name="GivenName"
+                                                        type="text"
+                                                        id=""
+                                                        class="form-control"
+                                                        value="<?php echo $StudentEditRow['GivenName'];?>"
+                                                        placeholder="VANNUN"
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="address" class="form-label">Place Of Birth</label>
-                                    <input type="text" class="form-control" id="pob" name="pob" placeholder="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
-                                    value="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"/>
+                                <div class="row mb-0">
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Sex</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                                <select name="Sex" id="" class="form-control form-select form-select mb-3" >
+                                                    <?php while ($rowSex= mysqli_fetch_assoc($resultSex)){?>
+                                                        <?php if($StudentEditRow['SexID']==$rowSex['SexID']){echo $show='<option selected value="'.$rowSex['SexID'].'">'.$rowSex['SexEN'].'</option>';}else{?>
+                                                        <option value="<?php echo $rowSex['SexID'];?>"><?php echo $rowSex['SexEN'];}?></option>
+                                                    <?php }?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">PassportNO ID</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                       <span id="basic-icon-default-fullname2" class="input-group-text"
+                                       ><i class="bx bx-book-add"></i
+                                           ></span>
+                                                <input
+                                                        name="Passport"
+                                                        type="text"
+                                                        id=""
+                                                        class="form-control"
+                                                        placeholder="NO.12345"
+                                                        value="<?php echo $StudentEditRow['IDPassportNo'];?>"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="address" class="form-label">Adress</label>
-                                    <input class="form-control" type="text" id="address" name="address" value="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
-                                           placeholder="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304" />
+                                <div class="row mb-0">
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Nationality</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                                <select name="Nationality" id="" class="form-control form-select form-select mb-3" >
+                                                    <option selected disabled>--Select--</option>
+                                                    <?php foreach ($Nationality_array as $nationality){?>
+                                                    <?php if($StudentEditRow['NationalityID']==$nationality['NationalityID']){echo $show='<option selected value="'.$nationality['NationalityID'].'">'.$nationality['NationalityEN'].'</option>';}else{?>
+                                                        <option value="<?php echo $nationality['NationalityID']?>"><?php echo $nationality['NationalityEN'];}?></option>
+                                                    <?php }?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Country</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                                <select name="Country" id="" class="form-control form-select form-select mb-3" >
+                                                    <option selected disabled>--Select--</option>
+                                                    <?php foreach ($Country_array as $country){?>
+                                                    <?php if($StudentEditRow['NationalityID']==$country['CountryID']){echo $show='<option selected value="'.$country['CountryID'].'">'.$country['CountryEN'].'</option>';}else{?>
+                                                        <option value="<?php echo $country['CountryID']?>"><?php echo $country['CountryEN'];}?></option>
+                                                    <?php }?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="Year" class="form-label">Year</label>
-                                    <input class="form-control" type="text" id="year" name="year" value="Year 1" placeholder="Year #"/>
+                                <div class="row mb-2">
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Date Of Birth</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                        <span class="input-group-text"><i class="bx bx-calendar"></i
+                                            ></span>
+                                                <input class="form-control date" type="date" name="dob" value="<?php echo strftime('%Y-%m-%d',
+                                                    strtotime( $StudentEditRow['DOB'])); ?>" id="html5-date-input" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Place Of Birth</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                       <span id="basic-icon-default-fullname2" class="input-group-text"
+                                       ><i class="bx bx-building-house"></i
+                                           ></span>
+                                                <input
+                                                        type="text"
+                                                        name="pod"
+                                                        class="form-control"
+                                                        id="basic-icon-default-fullname"
+                                                        placeholder="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
+                                                        aria-label="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
+                                                        value="<?php echo $StudentEditRow['POB']?>"
+                                                        aria-describedby="basic-icon-default-fullname2"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="firstName" class="form-label">Father Name</label>
-                                    <input
-                                            class="form-control"
-                                            type="text"
-                                            id="fathername"
-                                            name="fathername"
-                                            value="Hong Rakchhai"
-                                            autofocus
-                                    />
+                                <div class="row mb-2">
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Email</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                                <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                                <input
+                                                        type="text"
+                                                        name="email"
+                                                        id="basic-icon-default-email"
+                                                        class="form-control"
+                                                        placeholder="@gmail.com"
+                                                        aria-label="john.doe"
+                                                        value="<?php echo $StudentEditRow['Email']?>"
+                                                        aria-describedby="basic-icon-default-email2"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Phone Number</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                         <span id="basic-icon-default-fullname2" class="input-group-text"
+                                         ><i class="bx bx-phone"></i
+                                             ></span>
+                                                <input
+                                                        type="text"
+                                                        name="PhoneNumber"
+                                                        class="form-control"
+                                                        id="basic-icon-default-fullname"
+                                                        placeholder="011 586 835"
+                                                        aria-label="011 586 835"
+                                                        value="<?php echo $StudentEditRow['PhoneNumber']?>"
+                                                        aria-describedby="basic-icon-default-fullname2"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="lastName" class="form-label">Current Job</label>
-                                    <input class="form-control" type="text" name="fatherjob" id="fatherjob" value="Software Developer" />
+                                <div class="row mb-2">
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Current Address</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                       <span id="basic-icon-default-fullname2" class="input-group-text"
+                                       ><i class="bx bx-building-house"></i
+                                           ></span>
+                                                <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        name="currentAddress"
+                                                        id="basic-icon-default-fullname"
+                                                        placeholder="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
+                                                        aria-label="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
+                                                        value="<?php echo $StudentEditRow['CurrentAddress']?>"
+                                                        aria-describedby="basic-icon-default-fullname2"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Current Address PP(Optional)</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                         <span id="basic-icon-default-fullname2" class="input-group-text"
+                                         ><i class="bx bx-building-house"></i
+                                             ></span>
+                                                <input
+                                                        type="text"
+                                                        name="currentAddressPP"
+                                                        class="form-control"
+                                                        id="basic-icon-default-fullname"
+                                                        placeholder="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
+                                                        aria-label="#21, St 360, Boeung Kengkang 3, Boeung Kengkang Phnom Penh, 12304"
+                                                        value="<?php echo $StudentEditRow['CurrentAddressPP']?>"
+                                                        aria-describedby="basic-icon-default-fullname2"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="firstName" class="form-label">Mother Name</label>
-                                    <input
-                                            class="form-control"
-                                            type="text"
-                                            id="mothername"
-                                            name="mothername"
-                                            value="Hong Rakchhai"
-                                            autofocus
-                                    />
+                                <div class="row mb-4">
+                                    <div class="col-lg-12">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Photo</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                                <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                                <input class="form-control" name="NewImg" type="file" id="formFile" />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="lastName" class="form-label">Current Job</label>
-                                    <input class="form-control" type="text" name="motherjob" id="motherjob" value="UI/UX Designer" />
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="faculty" class="form-label">faculty</label>
-                                    <select id="faculty" class="select2 form-select">
-                                        <option value="IT">Information And Technology</option>
-                                        <option value="Law">Law</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="Program" class="form-label">Program</label>
-                                    <select id="program" class="select2 form-select">
-                                        <option value="soft">Software Engineer</option>
-                                        <option value="net">Networking</option>
+                                <?php }?>
+                                <!--button-->
+                                <a href="../index.php" class="btn btn-outline-danger">Cancel</a>
+                                <input type="button" name="next" class="next btn btn-primary" value="Next" />
 
-                                    </select>
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="zipCode" class="form-label">BAC II CERTIFICATE (PDF)</label>
-                                    <input
-                                            type="button"
-                                            class="btn btn-primary form-control"
-                                            id="BAC"
-                                            name="BAC"
-                                            value="Download To View"
+                            </fieldset>
+                            <!--Form Family Information Done-->
+                            <fieldset>
+                                <?php if($FamilyRowEdit=mysqli_fetch_assoc($FamilyEditResult))?>
+                                <h2>Family BackGround</h2>
+                                <div class="row mb-2">
+                                    <div class="col-lg-6">
 
-                                    />
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="zipCode" class="form-label">PAYMENT TRANSACTION (PDF)</label>
-                                    <input
-                                            type="button"
-                                            class="btn btn-primary form-control"
-                                            id="payment"
-                                            name="payment"
-                                            value="Download To View"
+                                        <label class="col col-form-label" for="basic-icon-default-company">Father Name</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                       <span id="basic-icon-default-fullname2" class="input-group-text"
+                                       ><i class="bx bx-user"></i
+                                           ></span>
+                                                <input
+                                                        name="FatherName"
+                                                        type="text"
+                                                        id=""
+                                                        value="<?php echo $FamilyRowEdit['FatherName']?>"
+                                                        class="form-control"
+                                                        placeholder="Father Name"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                    />
+                                    <div class="col-lg-6">
+
+                                        <label class="col col-form-label" for="basic-icon-default-company">Father Age</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                      <span id="basic-icon-default-fullname2" class="input-group-text"
+                                      ><i class="bx bx-calendar"></i
+                                          ></span>
+                                                <input
+                                                        name="FatherAge"
+                                                        type="number"
+                                                        id=""
+                                                        value="<?php echo $FamilyRowEdit['FatherAge']?>"
+                                                        class="form-control"
+                                                        placeholder="Father Age"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            <div class="mt-2">
-                                <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                                <a href="dashboard.php" type="reset" class="btn btn-outline-secondary">Cancel</a>
-                            </div>
+
+
+                                <div class="row">
+
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-fullname">Father National</label>
+                                        <div class="col">
+                                            <select name="fatherNationality" id="" class="form-select form-select mb-3" >
+                                                <?php foreach ($Nationality_array as $nationality){?>
+                                                    <?php if($FamilyRowEdit['FatherNationalityID']==$nationality['NationalityID']){echo $show='<option selected value="'.$nationality['NationalityID'].'">'.$nationality['NationalityEN'].'</option>';}else{?>
+                                                        <option value="<?php echo $nationality['NationalityID']?>"><?php echo $nationality['NationalityEN'];}?></option>
+                                                <?php }?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-fullname">Father Country</label>
+                                        <div class="col">
+                                            <select name="fatherCountry" id="" class="form-select form-select mb-3" >
+                                                <?php foreach ($Country_array as $country){?>
+                                                    <?php if($FamilyRowEdit['FatherNationalityID']==$country['CountryID']){echo $show='<option selected value="'.$country['CountryID'].'">'.$country['CountryEN'].'</option>';}else{?>
+                                                        <option value="<?php echo $country['CountryID']?>"><?php echo $country['CountryEN'];}?></option>
+                                                <?php }?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-lg-12">
+
+                                        <label class="col col-form-label" for="basic-icon-default-company">Father Occupation</label>
+                                        <div class="col">
+                                            <select name="FatherOccupation" id="" class="form-select form-select mb-3" >
+                                                <?php foreach ($Occupation_array as $occupation){?>
+                                                <?php if($FamilyRowEdit['FatherCountryID']==$occupation['OccupationID']){echo $show='<option selected value="'.$occupation['OccupationID'].'">'.$occupation['OccupationEN'].'</option>';}else{?>
+                                                    <option value="<?php echo $occupation['OccupationID']?>"><?php echo $occupation['OccupationEN'];}?></option>
+                                                <?php }?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-lg-6">
+
+                                        <label class="col col-form-label" for="basic-icon-default-company">Mother Name</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                       <span id="basic-icon-default-fullname2" class="input-group-text"
+                                       ><i class="bx bx-user"></i
+                                           ></span>
+                                                <input
+                                                        name="MotherName"
+                                                        type="text"
+                                                        id=""
+                                                        class="form-control"
+                                                        value="<?php echo $FamilyRowEdit['MotherName']?>"
+                                                        placeholder="Mother Name"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+
+                                        <label class="col col-form-label" for="basic-icon-default-company">Mother Age</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                      <span id="basic-icon-default-fullname2" class="input-group-text"
+                                      ><i class="bx bx-calendar"></i
+                                          ></span>
+                                                <input
+                                                        name="MotherAge"
+                                                        type="number"
+                                                        id=""
+                                                        class="form-control"
+                                                        value="<?php echo $FamilyRowEdit['MotherAge']?>"
+                                                        placeholder="Mother Age"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-fullname">Mother National</label>
+                                        <div class="col">
+                                            <select name="motherNationality" id="motherNa" class="MotherNa form-select form-select mb-3" >
+                                                <?php foreach ($Nationality_array as $nationality){?>
+                                                    <?php if($FamilyRowEdit['MotherNationalityID']==$nationality['NationalityID']){echo $show='<option selected value="'.$nationality['NationalityID'].'">'.$nationality['NationalityEN'].'</option>';}else{?>
+                                                        <option value="<?php echo $nationality['NationalityID']?>"><?php echo $nationality['NationalityEN'];}?></option>
+                                                <?php }?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-fullname">Mother Country</label>
+                                        <div class="col">
+                                            <select name="motherCountry" id="" class="form-select form-select mb-3" >
+                                                <?php foreach ($Country_array as $country){?>
+                                                    <?php if($FamilyRowEdit['MotherCountryID']==$country['CountryID']){echo $show='<option selected value="'.$country['CountryID'].'">'.$country['CountryEN'].'</option>';}else{?>
+                                                        <option value="<?php echo $country['CountryID']?>"><?php echo $country['CountryEN'];}?></option>
+                                                <?php }?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-lg-12">
+
+                                        <label class="col col-form-label" for="basic-icon-default-company">Mother Occupation</label>
+                                        <div class="col">
+                                            <select name="MotherOccupation" id="" class="form-select form-select mb-3" >
+                                                <?php foreach ($Occupation_array as $occupation){?>
+                                                <?php if($FamilyRowEdit['MotherOccupationID']==$occupation['OccupationID']){echo $show='<option selected value="'.$occupation['OccupationID'].'">'.$occupation['OccupationEN'].'</option>';}else{?>
+                                                    <option value="<?php echo $occupation['OccupationID']?>"><?php echo $occupation['OccupationEN']?></option>
+                                                <?php }?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-lg-6">
+
+                                        <label class="col col-form-label" for="basic-icon-default-company">Spouse Name</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                                <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                                <input
+                                                        name="spouseName"
+                                                        type="text"
+                                                        id=""
+                                                        class="form-control"
+                                                        value="<?php echo $FamilyRowEdit['SpouseName']?>"
+                                                        placeholder="Spouse Name (Optional)"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+
+                                        <label class="col col-form-label" for="basic-icon-default-company">Spouse Age</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                                <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                                <input
+                                                        name="SpouseAge"
+                                                        type="text"
+                                                        id=""
+                                                        class="form-control"
+                                                        value="<?php echo $FamilyRowEdit['SpouseAge']?>"
+                                                        placeholder="Spouse Age"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-4">
+                                    <div class="col-lg-6">
+
+                                        <label class="col col-form-label" for="basic-icon-default-company">Family Current Address</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                                <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                                <input
+                                                        name="FamilyCurrentAddress"
+                                                        type="text"
+                                                        id=""
+                                                        class="form-control"
+                                                        value="<?php echo $FamilyRowEdit['FamilyCurrentAddress']?>"
+                                                        placeholder="Family Address"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+
+                                        <label class="col col-form-label" for="basic-icon-default-company">Guardian Phone Number</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                                <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                                <input
+                                                        name="GuardianPhoneNumber"
+                                                        type="text"
+                                                        id=""
+                                                        class="form-control"
+                                                        value="<?php echo $FamilyRowEdit['GuardianPhoneNumber']?>"
+                                                        placeholder="Guardian Phone Number"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--button-->
+                                <input type="button" name="previous" class="previous btn btn-outline-danger" value="Previous" />
+                                <input type="button" name="next" class="next btn btn-primary" value="Next" />
+                            <?php }?>
+                            </fieldset>
+                            <!-- Family BackGround End-->
+                            <!--Education BackGround In Progress-->
+                            <fieldset>
+                                <?php if($EducationEditRow=mysqli_fetch_assoc($EducationEditResult)){?>
+                                <h2> Education BackGround</h2>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-fullname">School Type</label>
+                                        <div class="col">
+                                            <select name="SchoolType" id="" class="form-control form-select form-select mb-3">
+                                                <?php
+                                                $sql = "Select *From tblschooltype";
+                                                $query = mysqli_query($conn, $sql);
+                                                while ($data = mysqli_fetch_assoc($query)) { ?>
+                                                <?php if($EducationEditRow['EducationalBackgroundID']==$data['SchoolTypeID']){echo $show='<option selected value="'.$data['SchoolTypeID'].'">'.$data['SchoolTypeEN'].'</option>';}else{?>
+                                                    <option value="<?php echo $data['SchoolTypeID'] ?>">
+                                                        <?php echo $data['SchoolTypeEN'];}?>
+                                                    </option>
+
+                                                <?php }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-fullname">School Name</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                                <input
+                                                        name="SchoolName"
+                                                        type="text"
+                                                        id=""
+                                                        class="form-control"
+                                                        value="<?php echo $EducationEditRow['NameSchool'];?>"
+                                                        placeholder="Beltie"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-lg-6">
+                                            <label class="col col-form-label" for="basic-icon-default-company">Academic Year</label>
+                                            <div class="col">
+                                                <div class="input-group input-group-merge">
+                                                    <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                                    <input
+                                                            name="AcademicYear"
+                                                            type="text"
+                                                            id=""
+                                                            class="form-control"
+                                                            value="<?php echo $EducationEditRow['AcademicYear'];?>"
+                                                            placeholder="Year end of Grade 12 "
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label class="col col-form-label" for="basic-icon-default-company">Province</label>
+                                            <div class="col">
+                                                <div class="input-group input-group-merge">
+                                                    <span class="input-group-text"><i class="bx bx-year"></i></span>
+                                                    <input
+                                                            Name="Province"
+                                                            type="text"
+                                                            id=""
+                                                            class="form-control"
+                                                            value="<?php echo $EducationEditRow['Province'];?>"
+                                                            placeholder="Province"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!--button-->
+                                <input type="button" name="previous" class="previous btn btn-outline-danger" value="Previous" />
+                                <input type="button" name="next" class="next btn btn-primary" value="Next" />
+                                <?php }?>
+                            </fieldset>
+                            <!--End Of Education BackGround-->
+                            <!--Form Major Information-->
+                            <fieldset>
+                                <?php if($ProgramEditRow=mysqli_fetch_assoc($ProgramEditResult)){?>
+                                <h2>Step 4: University Information</h2>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-fullname">Faculty</label>
+                                        <div class="col">
+                                            <select name="Faculty" id="Faculty" class="faculty form-select mb-3"aria-label="Default select example")>
+                                                <option selected disabled>-- Select Faculty --</option>
+                                                <?php while ($rowFaculty= mysqli_fetch_assoc($resultFaculty)){?>
+                                                <?php if($ProgramEditRow['ProgramID']==$rowFaculty['FacultyID']){echo $show='<option selected value="'.$rowFaculty['FacultyID'].'">'.$rowFaculty['FacultyEN'].'</option>';}else{?>
+                                                    <option value="<?php echo $rowFaculty['FacultyID']?>"><?php echo $rowFaculty['FacultyEN'];}?></option>
+                                                <?php };?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-fullname">Major</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                                <select name="Major" id="Major" class="faculty form-select mb-3"aria-label="Default select example")">
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-fullname">Campus</label>
+                                        <div class="col">
+                                            <select name="Campus" id="" class="form-select form-select mb-3">
+                                                <?php
+                                                $sql = "Select *From tblCampus";
+                                                $query = mysqli_query($conn, $sql);
+                                                while ($data = mysqli_fetch_assoc($query)) { ?>
+                                                <?php if($ProgramEditRow['CampusID']==$data['CampusID']){echo $show='<option selected value="'.$data['CampusID'].'">'.$data['CampusEN'].'</option>';}else{?>
+                                                    <option value="<?php echo $data['CampusID'] ?>">
+                                                        <?php echo $data['CampusEN'];}?>
+                                                    </option>
+
+                                                <?php }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-fullname">Degree</label>
+                                        <div class="col">
+                                            <select name="Degree" id="" class="form-select form-select mb-3">
+                                                <?php
+                                                $sql = "Select *From tblDegree";
+                                                $query = mysqli_query($conn, $sql);
+                                                while ($data = mysqli_fetch_assoc($query)) { ?>
+                                                    <?php if($ProgramEditRow['DegreeID']==$data['DegreeID']){echo $show='<option selected value="'.$data['DegreeID'].'">'.$data['DegreeNameEN'].'</option>';}else{?>
+                                                        <option value="<?php echo $data['DegreeID'] ?>">
+                                                        <?php echo $data['DegreeNameEN'];}?>
+                                                    </option>
+
+                                                <?php }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-fullname">Academic Year</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                                <select name="AcademicYear" id="" class="form-select form-select mb-3">
+                                                    <option selected disabled>--Select Academic Year--</option>
+
+                                                    <?php
+                                                    $sql = "Select *From tblacademicyear";
+                                                    $query = mysqli_query($conn, $sql);
+                                                    while ($data = mysqli_fetch_assoc($query)) { ?>
+                                                        <?php if($ProgramEditRow['AcademicYearID']==$data['AcademicYearID']){echo $show='<option selected value="'.$data['AcademicYearID'].'">'.$data['AcademicYear'].'</option>';}else{?>
+                                                            <option value="<?php echo $data['AcademicYearID'] ?>">
+                                                            <?php echo $data['AcademicYear'];}?>
+                                                        </option>
+
+                                                    <?php }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-fullname">Semester</label>
+                                        <div class="col">
+                                            <div class="input-group input-group-merge">
+                                                <select name="Semester" id="Semester" class="faculty form-select mb-3"aria-label="Default select example")">
+                                                <option selected disabled>--Select Semester--</option>
+                                                <?php
+                                                $sql = "Select *From tblsemester";
+                                                $query = mysqli_query($conn, $sql);
+                                                while ($data = mysqli_fetch_assoc($query)) {?>
+                                                <?php if($ProgramEditRow['SemesterID']==$data['SemesterID']){echo $show='<option selected value="'.$data['SemesterID'].'">'.$data['SemesterEN'].'</option>';}else{?>
+                                                    <option value="<?php echo $data['SemesterID']?>"><?php echo $data['SemesterEN'];}?></option>
+                                                <?php }?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-fullname">Year</label>
+                                        <div class="col">
+                                            <select name="Year" id="" class="form-select form-select mb-3">
+                                                <option selected disabled>--Select Year--</option>
+
+                                                <?php
+                                                $sql = "Select *From tblyear";
+                                                $query = mysqli_query($conn, $sql);
+                                                while ($data = mysqli_fetch_assoc($query)) { ?>
+                                                    <?php if($ProgramEditRow['YearID']==$data['YearID']){echo $show='<option selected value="'.$data['YearID'].'">'.$data['Year'].'</option>';}else{?>
+                                                        <option value="<?php echo $data['YearID'] ?>">
+                                                        <?php echo $data['Year'];}?>
+                                                    </option>
+
+                                                <?php }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-fullname">Batch</label>
+                                        <div class="col">
+                                            <select name="Batch" id="" class="form-select form-select mb-3">
+                                                <option selected disabled>--Select Batch--</option>
+
+                                                <?php
+                                                include_once '../BackEnd/db.php';
+
+                                                $sql = "Select *From tblbatch";
+                                                $query = mysqli_query($conn, $sql);
+                                                while ($data = mysqli_fetch_assoc($query)) { ?>
+                                                    <?php if($ProgramEditRow['BatchID']==$data['BatchID']){echo $show='<option selected value="'.$data['BatchID'].'">'.$data['BatchEN'].'</option>';}else{?>
+                                                        <option value="<?php echo $data['BatchID'] ?>">
+                                                        <?php echo $data['BatchEN'];}?>
+                                                    </option>
+
+                                                <?php }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-fullname">Shift</label>
+                                        <div class="col">
+                                            <select name="Shift" id="" class="form-select form-select mb-3">
+                                                <option selected disabled>--Select Shift--</option>
+
+                                                <?php
+                                                $sql = "Select *From tblshift";
+                                                $query = mysqli_query($conn, $sql);
+                                                while ($data = mysqli_fetch_assoc($query)) { ?>
+                                                <?php if($ProgramEditRow['ShiftID']==$data['ShiftID']){echo $show='<option selected value="'.$data['ShiftID'].'">'.$data['ShiftEN'].'</option>';}else{?>
+                                                    <option value="<?php echo $data['ShiftID'] ?>">
+                                                        <?php echo $data['ShiftEN'];}?>
+                                                    </option>
+
+                                                <?php }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-fullname">Program Type</label>
+                                        <div class="col">
+                                            <select name="ProgramType" id="" class="form-select form-select mb-3">
+                                                <option selected disabled>--Select Program Type--</option>
+
+                                                <?php
+                                                $sql = "Select *From tblprogramtype";
+                                                $query = mysqli_query($conn, $sql);
+                                                while ($data = mysqli_fetch_assoc($query)) { ?>
+                                                <?php if($ProgramEditRow['ProgramTypeID']==$data['ProgramTypeID']){echo $show='<option selected value="'.$data['ProgramTypeID'].'">'.$data['ProgramTypeEN'].'</option>';}else{?>
+                                                    <option value="<?php echo $data['ProgramTypeID'] ?>">
+                                                        <?php echo $data['ProgramTypeEN'];}?>
+                                                    </option>
+
+                                                <?php }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-fullname">Start Date</label>
+                                        <div class="col">
+                                            <input class="form-control" type="date" name="StartDate" value="<?php echo strftime('%Y-%m-%d',
+                                                strtotime( $ProgramEditRow['StartDate'])); ?>" id="html5-date-input" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-fullname">End Date</label>
+                                        <div class="col">
+                                            <input class="form-control" type="date" name="EndDate" value="<?php echo strftime('%Y-%m-%d',
+                                                strtotime( $ProgramEditRow['EndDate'])); ?>" id="html5-date-input" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--button-->
+                                <input type="button" name="previous" class="previous btn btn-outline-danger" value="Previous" />
+                                <input type="Submit" name="Submit" class="submit btn btn-success" value="Submit" />
+                                <?php }?>
+                            </fieldset>
+
+                            <!--Form 5-->
                         </form>
                     </div>
                     <!-- Bootstrap Table with Header - Light -->
@@ -430,3 +1152,53 @@
         <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 </html>
+<script>
+    $(document).ready(function (){
+        $('#Faculty').on('change',function (){
+            var faculty_id = this.value;
+            $.ajax({
+                url:'../jquery/FacultyDropDown.php',
+                type:"POST",
+                data:{
+                    faculty_data: faculty_id
+                },
+                success:function (result){
+                    $('#Major').html(result);
+                }
+            })
+        })
+        $(document).ready(function (){
+            $('#motherNa').on('change',function (){
+                var Mother_id=  this.value;
+                console.log(Mother_id);
+            })
+        })
+    });
+    $(document).ready(function(){
+        var current = 1,current_step,next_step,steps;
+        steps = $("fieldset").length;
+        $(".next").click(function(){
+            current_step = $(this).parent();
+            next_step = $(this).parent().next();
+            next_step.show();
+            current_step.hide();
+            setProgressBar(++current);
+        });
+        $(".previous").click(function(){
+            current_step = $(this).parent();
+            next_step = $(this).parent().prev();
+            next_step.show();
+            current_step.hide();
+            setProgressBar(--current);
+        });
+        setProgressBar(current);
+        // Change progress bar action
+        function setProgressBar(curStep){
+            var percent = parseFloat(100 / steps) * curStep;
+            percent = percent.toFixed();
+            $(".progress-bar")
+                .css("width",percent+"%")
+                .html(percent+"%");
+        }
+    });
+</script>

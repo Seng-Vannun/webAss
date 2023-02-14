@@ -17,7 +17,10 @@ try {
         $Email = $_POST['email'];
         $CurrentAddress = $_POST['currentAddress'];
         $CurrentAddressPP = $_POST['currentAddressPP'];
-        $photo = null;
+        if(move_uploaded_file($_FILES["img"]["tmp_name"],"../BackEnd/images/".date("Ymdhis").$_FILES["img"]["name"]))
+        {
+            $photo= date("Ymdhis").$_FILES["img"]["name"];
+        }
         //End Of student Info
         $StudentInfoSql = "insert into `tblstudentinfo`
         (`NameInKhmer`, `NameInLatin`,`FamilyName`,`GivenName`,`SexID`,`IDPassportNo`, `NationalityID`,`CountryID`,`DOB`,`POB`,`PhoneNumber`,`Email`,`CurrentAddress`,`CurrentAddressPP`,`Photo`,`RegisterDate`) 
@@ -106,7 +109,7 @@ try {
                 $ProgramID=$tblProgram['ProgramID'];
                 $StudentStatus="INSERT INTO `tblstudentstatus`(`StudentID`, `ProgramID`) VALUES ('$studentID','$ProgramID')";
                 if(mysqli_query($conn, $StudentStatus)){
-                    echo ("EVERTHING SUCCESSSSSSS");
+                    header("Location: ../FrontEnd/dashboard.php?msg=Added Succesfully");
                 }
             }
             echo("Uni INFO Had been Added");
