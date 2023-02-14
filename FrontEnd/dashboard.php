@@ -1,5 +1,6 @@
 <?php
 require_once '../BackEnd/db.php';
+
 $sqlStudentInformation="select * from tblstudentinfo";
 $studentInformationQuery=mysqli_query($conn,$sqlStudentInformation);
 $sqlSex="select * from tblsex";
@@ -56,6 +57,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
 }
 
 ?>
+
 <!DOCTYPE html>
 <html
   lang="en"
@@ -393,7 +395,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                                       <i class="bx bx-dots-vertical-rounded"></i>
                                   </button>
                                   <div class="dropdown-menu">
-                                      <a class="dropdown-item" href="javascript:void(0);"
+                                      <a class="dropdown-item" href="view_pdf.php"
                                       ><i class="bx bx-edit-alt me-1"></i> ViewFull Information</a
                                       >
                                       <a class="dropdown-item" href="javascript:void(0);"
