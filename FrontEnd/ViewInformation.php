@@ -429,7 +429,7 @@ $ProgramEditResult=mysqli_query($conn,$ProgramEditQuery);
                                                 <select name="Country" id="" class="form-control form-select form-select mb-3" >
                                                     <option selected disabled>--Select--</option>
                                                     <?php foreach ($Country_array as $country){?>
-                                                    <?php if($StudentEditRow['NationalityID']==$country['CountryID']){echo $show='<option selected value="'.$country['CountryID'].'">'.$country['CountryEN'].'</option>';}else{?>
+                                                    <?php if($StudentEditRow['CountryID']==$country['CountryID']){echo $show='<option selected value="'.$country['CountryID'].'">'.$country['CountryEN'].'</option>';}else{?>
                                                         <option value="<?php echo $country['CountryID']?>"><?php echo $country['CountryEN'];}?></option>
                                                     <?php }?>
                                                 </select>
@@ -571,7 +571,7 @@ $ProgramEditResult=mysqli_query($conn,$ProgramEditQuery);
                             </fieldset>
                             <!--Form Family Information Done-->
                             <fieldset>
-                                <?php if($FamilyRowEdit=mysqli_fetch_assoc($FamilyEditResult))?>
+                                <?php if($FamilyRowEdit=mysqli_fetch_assoc($FamilyEditResult)){?>
                                 <h2>Family BackGround</h2>
                                 <div class="row mb-2">
                                     <div class="col-lg-6">
@@ -635,7 +635,7 @@ $ProgramEditResult=mysqli_query($conn,$ProgramEditQuery);
                                         <div class="col">
                                             <select name="fatherCountry" id="" class="form-select form-select mb-3" >
                                                 <?php foreach ($Country_array as $country){?>
-                                                    <?php if($FamilyRowEdit['FatherNationalityID']==$country['CountryID']){echo $show='<option selected value="'.$country['CountryID'].'">'.$country['CountryEN'].'</option>';}else{?>
+                                                    <?php if($FamilyRowEdit['FatherCountryID']==$country['CountryID']){echo $show='<option selected value="'.$country['CountryID'].'">'.$country['CountryEN'].'</option>';}else{?>
                                                         <option value="<?php echo $country['CountryID']?>"><?php echo $country['CountryEN'];}?></option>
                                                 <?php }?>
                                             </select>
@@ -651,7 +651,7 @@ $ProgramEditResult=mysqli_query($conn,$ProgramEditQuery);
                                         <div class="col">
                                             <select name="FatherOccupation" id="" class="form-select form-select mb-3" >
                                                 <?php foreach ($Occupation_array as $occupation){?>
-                                                <?php if($FamilyRowEdit['FatherCountryID']==$occupation['OccupationID']){echo $show='<option selected value="'.$occupation['OccupationID'].'">'.$occupation['OccupationEN'].'</option>';}else{?>
+                                                <?php if($FamilyRowEdit['FatherOccupationID']==$occupation['OccupationID']){echo $show='<option selected value="'.$occupation['OccupationID'].'">'.$occupation['OccupationEN'].'</option>';}else{?>
                                                     <option value="<?php echo $occupation['OccupationID']?>"><?php echo $occupation['OccupationEN'];}?></option>
                                                 <?php }?>
                                             </select>
@@ -737,7 +737,7 @@ $ProgramEditResult=mysqli_query($conn,$ProgramEditQuery);
                                             <select name="MotherOccupation" id="" class="form-select form-select mb-3" >
                                                 <?php foreach ($Occupation_array as $occupation){?>
                                                 <?php if($FamilyRowEdit['MotherOccupationID']==$occupation['OccupationID']){echo $show='<option selected value="'.$occupation['OccupationID'].'">'.$occupation['OccupationEN'].'</option>';}else{?>
-                                                    <option value="<?php echo $occupation['OccupationID']?>"><?php echo $occupation['OccupationEN']?></option>
+                                                    <option value="<?php echo $occupation['OccupationID']?>"><?php echo $occupation['OccupationEN'];}?></option>
                                                 <?php }?>
                                             </select>
                                         </div>
@@ -1039,8 +1039,6 @@ $ProgramEditResult=mysqli_query($conn,$ProgramEditQuery);
                                                 <option selected disabled>--Select Batch--</option>
 
                                                 <?php
-                                                include_once '../BackEnd/db.php';
-
                                                 $sql = "Select *From tblbatch";
                                                 $query = mysqli_query($conn, $sql);
                                                 while ($data = mysqli_fetch_assoc($query)) { ?>

@@ -5,31 +5,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b73c77c2-c1e9-4c35-bb16-4977fd605d27" name="Changes" comment="Finish Search And Edit">
-      <change afterPath="$PROJECT_DIR$/BackEnd/Disable.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/Edit.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FrontEnd/Active.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FrontEnd/Disable.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FrontEnd/Pending.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jquery/Search.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/Input.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Input.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Edit.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FrontEnd/ViewInformation.php" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/ViewInformation.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FrontEnd/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrontEnd/multipleForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/multipleForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/view_pdf.php" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/view_pdf.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="3eab6942-4448-43da-bfdc-8712b650f6f6" />
+        <option name="url" value="https://github.com/Seng-Vannun/webAss.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/setasign/fpdi" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/mpdf/mpdf" />
+    </include_path>
   </component>
   <component name="ProjectId" id="2KBBOhpN1qJKhRCqX6OEjt3bhcI" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -87,7 +102,10 @@
       <workItem from="1676284581348" duration="2651000" />
       <workItem from="1676288631083" duration="3089000" />
       <workItem from="1676360571280" duration="4686000" />
-      <workItem from="1676371660282" duration="1774000" />
+      <workItem from="1676371660282" duration="3783000" />
+      <workItem from="1676463995835" duration="2000" />
+      <workItem from="1676781294002" duration="5743000" />
+      <workItem from="1676976984642" duration="4358000" />
     </task>
     <task id="LOCAL-00001" summary="Add Jquery">
       <created>1675250661891</created>
@@ -131,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676027404022</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Finish Search And Edit">
+      <created>1676375456375</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1676375456375</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

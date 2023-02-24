@@ -19,20 +19,33 @@ try {
         $Email = $_POST['email'];
         $CurrentAddress = $_POST['currentAddress'];
         $CurrentAddressPP = $_POST['currentAddressPP'];
-        if(move_uploaded_file($_FILES["NewImg"]["tmp_name"],"../BackEnd/images/".date("Ymdhis").$_FILES["NewImg"]["name"]))
-        {
-            $photo= date("Ymdhis").$_FILES["NewImg"]["name"];
+        if ($_FILES["NewImg"]["size"]==null){
+            $StudentInfoSql = "update `tblstudentinfo` set
+            `NameInKhmer`='$NameInKhmer', `NameInLatin`='$LatinName',`FamilyName`='$FamilyName',`GivenName`='$GivenName',`SexID`='$Sex',`IDPassportNo`='$Passport', 
+            `NationalityID`='".$nationality."',`CountryID`='$County',`DOB`='$DOB',`POB`='$POD',`PhoneNumber`='$PhoneNumber',`Email`='$Email',`CurrentAddress`='$CurrentAddress',
+            `CurrentAddressPP`='$CurrentAddressPP',`RegisterDate`=now() where StudentID='$StudentID'";
+            if (mysqli_query($conn, $StudentInfoSql)) {
+                echo("StudentInfo Has Been Edit");
+            } else {
+                echo("Error" . $StudentInfoSql . ":-" . mysqli_error($conn));
+            };
         }
-        //End Of student Info
-        $StudentInfoSql = "update `tblstudentinfo` set
-        `NameInKhmer`='$NameInKhmer', `NameInLatin`='$LatinName',`FamilyName`='$FamilyName',`GivenName`='$GivenName',`SexID`='$Sex',`IDPassportNo`='$Passport', 
-        `NationalityID`='".$nationality."',`CountryID`='$County',`DOB`='$DOB',`POB`='$POD',`PhoneNumber`='$PhoneNumber',`Email`='$Email',`CurrentAddress`='$CurrentAddress',
-        `CurrentAddressPP`='$CurrentAddressPP',`Photo`='$photo',`RegisterDate`=now() where StudentID='$StudentID'";
-        if (mysqli_query($conn, $StudentInfoSql)) {
-            echo("StudentInfo Has Been Edit");
-        } else {
-            echo("Error" . $StudentInfoSql . ":-" . mysqli_error($conn));
-        };
+        else
+        {
+            if(move_uploaded_file($_FILES["NewImg"]["tmp_name"],"../BackEnd/images/".date("Ymdhis").$_FILES["NewImg"]["name"]))
+            {
+                $photo= date("Ymdhis").$_FILES["NewImg"]["name"];
+            }
+            $StudentInfoSql = "update `tblstudentinfo` set
+            `NameInKhmer`='$NameInKhmer', `NameInLatin`='$LatinName',`FamilyName`='$FamilyName',`GivenName`='$GivenName',`SexID`='$Sex',`IDPassportNo`='$Passport', 
+            `NationalityID`='".$nationality."',`CountryID`='$County',`DOB`='$DOB',`POB`='$POD',`PhoneNumber`='$PhoneNumber',`Email`='$Email',`CurrentAddress`='$CurrentAddress',
+            `CurrentAddressPP`='$CurrentAddressPP',`Photo`='$photo',`RegisterDate`=now() where StudentID='$StudentID'";
+            if (mysqli_query($conn, $StudentInfoSql)) {
+                echo("StudentInfo Has Been Edit");
+            } else {
+                echo("Error" . $StudentInfoSql . ":-" . mysqli_error($conn));
+            };
+        }
         //    End StudentInfo To Database
         //Start of Family Background To database
         $FatherName = $_POST['FatherName'];

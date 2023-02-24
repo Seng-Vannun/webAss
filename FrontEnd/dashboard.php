@@ -74,8 +74,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Tables - Basic Tables | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
-
+<title>DashBoard</title>
     <meta name="description" content="" />
 
     <!-- Favicon -->
@@ -430,7 +429,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                                       <i class="bx bx-dots-vertical-rounded"></i>
                                   </button>
                                   <div class="dropdown-menu">
-                                      <a class="dropdown-item" href="view_pdf.php"
+                                      <a class="dropdown-item" href="../FrontEnd/view_pdf.php?ViewID=<?php echo $StudentRow['StudentID']?>" target="_blank"
                                       ><i class="bx bx-edit-alt me-1"></i> ViewFull Information</a
                                       >
                                       <a class="dropdown-item" href="../FrontEnd/ViewInformation.php?EditID=<?php echo $StudentRow['StudentID']?>"
