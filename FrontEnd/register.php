@@ -1,62 +1,18 @@
-<?php
-require_once '../BackEnd/db.php';
 
-$sqlStudentInformation="select * from tblstudentinfo";
-$studentInformationQuery=mysqli_query($conn,$sqlStudentInformation);
-$sqlSex="select * from tblsex";
-$resultSex=mysqli_query($conn,$sqlSex);
-$sqlProgram="select * from tblprogram";
-$resultProgram=mysqli_query($conn,$sqlProgram);
-$sqlMajor="select * from tblmajor";
-$resultMajor=mysqli_query($conn,$sqlMajor);
-$sqlCampus = "Select *From tblCampus";
-$CampusQuery = mysqli_query($conn, $sqlCampus);
-$sqlYear = "Select *From tblyear";
-$YearQuery = mysqli_query($conn, $sqlYear);
-$sqlSemester = "Select *From tblsemester";
-$SemesterQuery = mysqli_query($conn, $sqlSemester);
-$sqlShift = "Select *From tblshift";
-$ShiftQuery = mysqli_query($conn, $sqlShift);
-$sqlStudentStatus="Select *From tblstudentstatus";
-$StudentStatusQuery=mysqli_query($conn,$sqlStudentStatus);
-$Student_Array=array();
-$Sex_array=array();
-$Major_array=array();
-$Program_array=array();
-$Campus_array=array();
-$Year_array=array();
-$Semester_array=array();
-$Shift_array=array();
-$StudentStatus_array=array();
-while($StudentRow=mysqli_fetch_assoc($studentInformationQuery)){
-    $Student_Array[]=$StudentRow;
-}
-while($sex=mysqli_fetch_assoc($resultSex)){
-    $Sex_array[]=$sex;
-}
-while($Major=mysqli_fetch_assoc($resultMajor)){
-    $Major_array[]=$Major;
-}
-while($Program=mysqli_fetch_assoc($resultProgram)){
-    $Program_array[]=$Program;
-}
-while($Campus=mysqli_fetch_assoc($CampusQuery)){
-    $Campus_array[]=$Campus;
-}
-while($Year=mysqli_fetch_assoc($YearQuery)){
-    $Year_array[]=$Year;
-}
-while($Semester=mysqli_fetch_assoc($SemesterQuery)){
-    $Semester_array[]=$Semester;
-}
-while($Shift=mysqli_fetch_assoc($ShiftQuery)){
-    $Shift_array[]=$Shift;
-}
-while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
-   $StudentStatus_array[]=$StudentStatus;
-}
+<?php 
+
+ include_once '../BackEnd/db.php';
+
+ $sqlPermission = 'Select *From tblpermission';
+ $resultPermission = mysqli_query($conn,$sqlPermission);
+
 
 ?>
+
+
+
+
+
 
 <!DOCTYPE html>
 <html
@@ -74,7 +30,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-<title>DashBoard</title>
+<title>Register</title>
     <meta name="description" content="" />
 
     <!-- Favicon -->
@@ -349,146 +305,86 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
           <div class="content-wrapper">
             <!-- Content -->
             <div class="container-fluid flex-grow-1 container-p-y">
-                <div class="row mt-5">
-                    <?php
-                    if(isset($_GET['msg'])){
-                        $msg=$_GET['msg'];
-                        echo'<div class="alert alert-primary" role="alert">
-                        '.$msg.'</div';}
-                    ?>
-                </div>
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Student Information </h4>
+
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin Dashboard</h4>
 
               <!-- Bootstrap Table with Header - Light -->
               <div class="card">
-                <div class="card-header">
-                    <div class="navbar-nav">
-                        <div class="nav-item d-flex align-items-center">
-                            <i class="bx bx-search fs-4 lh-0"></i>
-                            <input
-                                    id="LiveSearch"
-                                    autocomplete="off"
-                                    type="text"
-                                    class="form-control border-0 shadow-none"
-                                    placeholder="Search..."
-                                    aria-label="Search..."
-                            />
+               
+              <div class="card card-body">
+              <form method="post" active= "../BackEnd/registerUsers.php">
+                     <h1 class="text-center">Register Users</h1>
+
+                     <div class="row">
+
+                                    <div class="col">
+                                        <label for="">Username</label>
+                                    <div class="input-group input-group-merge">
+                                                    <span id="basic-icon-default-fullname2" class="input-group-text"
+                                                    ><i class="bx bx-user"></i
+                                                        ></span>
+                                                    <input
+                                                            name="username"
+                                                            type="text"
+                                                            id=""
+                                                            class="form-control"
+                                                            placeholder="Username"
+                                                    />
+                                    </div>
+                     <div class="col">
+                        <label for="">Password</label>
+                     <div class="input-group input-group-merge">
+                                      <span id="basic-icon-default-fullname2" class="input-group-text"
+                                      ><i class="bx bx-key"></i
+                                          ></span>
+                                       <input
+                                               name="password"
+                                               type="password"
+                                               id=""
+                                               class="form-control"
+                                               placeholder="Password"
+                                       />
+                     </div>
+
+                     </div> 
+
+                     <div class="row">
+
+                                    <div class="col">
+                                        <label for="">Confirm Password</label>
+                                    <div class="input-group input-group-merge">
+                                                    <span id="basic-icon-default-fullname2" class="input-group-text"
+                                                    ><i class="bx bx-user"></i
+                                                        ></span>
+                                                    <input
+                                                            name="confirm"
+                                                            type="password"
+                                                            id=""
+                                                            class="form-control"
+                                                            placeholder="Confirm-Password"
+                                                    />
+                                    </div>
+                     <div class="col">
+                        <label for="">Permission</label>
+                     <div class="input-group input-group-merge">
+
+                     <select name="Sex" id="" class="form-control form-select form-select mb-3" >
+                                           <option selected disabled>--Select--</option>
+                                           <?php while ($rowPermission= mysqli_fetch_assoc($resultPermission)){?>
+                                               <option value="<?php echo $rowPermission['permissionID']?>"><?php echo $rowPermission['permissionEN']?></option>
+                                           <?php }?>
+                                       </select>
+                     </div>
+
+                     </div> 
+
+                     <div class="row mt-3">
+                        <div class="col align-items-center">
+                            <input type="button" value="submit" name="submit" class="btn btn-primary">
                         </div>
-                    </div>
-                </div>
-
-                <div class="table-responsive text-nowrap">
-                  <table class="table">
-                    <thead class="table-light">
-                      <tr class="text-capitalize">
-                          <th>ID#</th>
-                          <th>Latin Name</th>
-                          <th>Name In Khmer</th>
-                          <th>Sex</th>
-                          <th>Phone Number</th>
-                          <th>Year</th>
-                          <th>Semester</th>
-                          <th>Major</th>
-                          <th>Shift</th>
-                          <th>Campus</th>
-                          <th>Status</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                      <tbody class="table-border-bottom-0" id="DashboredSeach"></tbody>
-
-                    <tbody class="table-border-bottom-0" id="Dashbored">
-                    <!-- Row Start-->
-                    <?php
-                        foreach($Student_Array as $StudentRow){
-                            $studentID=$StudentRow['StudentID'];
-                            $sexID=$StudentRow['SexID'];
-                            $YearId=null;
-                            $semesterId=null;
-                            $majorId=null;
-                            $shiftId=null;
-                            $campusId=null;
-                            $statusID=null;
-                            $disableID=null;
-                            foreach ($StudentStatus_array as $StudentStatus){
-                                $studentStatusID=$StudentStatus['StudentStatusID'];
-                                if($studentID==$studentStatusID){
-                                    $statusID=$StudentStatus['statusID'];
-                                    $disableID=['StudentStatusID'];
-                                }
-                            }
-                            foreach ($Program_array as $Program)
-                            {
-                                $programID = $Program['ProgramID'];
-                                if ($studentID==$programID)
-                                {
-                                     $YearId = $Program['YearID'];
-                                     $semesterId = $Program['SemesterID'];
-                                     $majorId = $Program['MajorID'];
-                                     $shiftId = $Program['ShiftID'];
-                                     $campusId = $Program['CampusID'];
-                                }
-                            }
-                        ?>
-                      <tr>
-                          <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php echo $StudentRow['StudentID']?></strong></td><!--id-->
-                          <td><?php echo $StudentRow['NameInLatin']?></td>
-                          <td><?php echo $StudentRow['NameInKHmer']?></td>
-                          <td><?php foreach ($Sex_array as $sex){$sexShow=$sex['SexID'];
-                          if($sexShow==$sexID){echo $sex['SexEN'];}} ?>
-                          </td><!-- Sex-->
-                          <td><?php echo $StudentRow['PhoneNumber']?></td>
-                          <td>
-                              <?php foreach ($Year_array as $Year){$YearShow=$Year['YearID'];
-                                  if($YearShow==$YearId){echo $Year['Year'];}} ?>
-                          </td> <!--year-->
-                          <td>
-                              <?php foreach ($Semester_array as $Semester){$SemesterShow=$Semester['SemesterID'];
-                                  if($semesterId==$SemesterShow){echo $Semester['SemesterEN'];}} ?>
-                          </td> <!--semester-->
-                          <td>
-                              <?php foreach ($Major_array as $Major){$MajorShow=$Major['MajorID'];
-                                  if($majorId==$MajorShow){echo $Major['MajorEN'];}} ?>
-                          </td> <!--Major-->
-                          <td>
-                              <?php foreach ($Shift_array as $shift){$shiftShow=$shift['ShiftID'];
-                                  if($shiftId==$shiftShow){echo $shift['ShiftEN'];}} ?>
-                          </td> <!--shift-->
-                          <td>
-                              <?php foreach ($Campus_array as $Campus){$CampusShow=$Campus['CampusID'];
-                                  if($campusId==$CampusShow){echo $Campus['CampusEN'];}} ?>
-                          </td> <!--Campus-->
-                          <td>
-                              <?php if(1==$statusID){echo $StatusShow='<span class="badge rounded-pill bg-label-success">Active</span>';}
-                                 elseif(null==$statusID){echo $StatusShow='<span class="badge rounded-pill bg-label-warning">Pending</span>';}
-                                    elseif(2==$statusID){echo $StatusShow='<span class="badge rounded-pill bg-label-warning">Pending</span>';}
-                                    elseif(3==$statusID){echo$StatusShow='<span class="badge rounded-pill bg-label-danger">Disable</span>';}
-                              ?>
-                          </td>
-                          <td>
-                              <div class="dropdown">
-                                  <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      <i class="bx bx-dots-vertical-rounded"></i>
-                                  </button>
-                                  <div class="dropdown-menu">
-                                      <a class="dropdown-item" href="../FrontEnd/view_pdf.php?ViewID=<?php echo $StudentRow['StudentID']?>" target="_blank"
-                                      ><i class="bx bx-edit-alt me-1"></i> ViewFull Information</a
-                                      >
-                                      <a class="dropdown-item" href="../FrontEnd/ViewInformation.php?EditID=<?php echo $StudentRow['StudentID']?>"
-                                      ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                                      >
-                                      <a class="dropdown-item" href="statusForm.php?StatusID=<?php echo $StudentRow['StudentID']?>"
-                                      ><i class="bx bx-cog me-1"></i>Approve</a
-                                      >
-                                  </div>
-                              </div>
-                          </td>
-                      </tr>
-                    <?php  }?>
-                    <!--Row End-->
-                    </tbody>
-                  </table>
-                </div>
+                     </div>
+                     
+              </form>
               </div>
               <!-- Bootstrap Table with Header - Light -->
           <!-- Content wrapper -->

@@ -44,10 +44,8 @@
           <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
           <li class="nav-item"><a href="#courses" class="nav-link">Courses</a></li>
           <li class="nav-item"><a href="#teacher" class="nav-link">Teacher</a></li>
-          <li class="nav-item"><a href="FrontEnd/ViewInformation.php" class="nav-link">ViewInformation</a></li>
-          <li class="nav-item"><a href="FrontEnd/dashboard.php" class="nav-link">Dash Board</a></li>
           <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-          <li class="nav-item cta mt-3"><a href="FrontEnd/multipleForm.php"nav-link><span>Apply Now!</span></a></li>
+          <li class="nav-item cta mt-3"><a href="FrontEnd/login.php"nav-link><span>Login</span></a></li>
         </ul>
       </div>
     </div>
@@ -64,7 +62,7 @@
               <h2 class="mb-12" style="font-size: 40px; color: white; font-family: 'Khmer OS Muol'">គុណភាព ប្រសិទ្ធិភាព ឧត្តមភាព សីលធម៍ គុណធម៍</h2>
 <!--              Quality, Efficiency, Excellence, Morality, Virtue-->
               <br>
-            <p><a href="#" class="btn btn-primary px-4 py-3">Apply Now</a> <a href="#" class="btn btn-secondary px-4 py-3">View Courses</a></p>
+            <p><a href="../webAss/FrontEnd/multipleForm.php" class="btn btn-primary px-4 py-3">Apply Now</a> <a href="#" class="btn btn-secondary px-4 py-3">View Courses</a></p>
           </div>
         </div>
       </div>

@@ -1,92 +1,76 @@
 <?php
-require_once '../BackEnd/db.php';
-
-$sqlStudentInformation="select * from tblstudentinfo";
-$studentInformationQuery=mysqli_query($conn,$sqlStudentInformation);
+require_once ('../BackEnd/db.php');
+$StudentEditID=$_GET['StatusID'];
 $sqlSex="select * from tblsex";
 $resultSex=mysqli_query($conn,$sqlSex);
-$sqlProgram="select * from tblprogram";
-$resultProgram=mysqli_query($conn,$sqlProgram);
-$sqlMajor="select * from tblmajor";
-$resultMajor=mysqli_query($conn,$sqlMajor);
-$sqlCampus = "Select *From tblCampus";
-$CampusQuery = mysqli_query($conn, $sqlCampus);
-$sqlYear = "Select *From tblyear";
-$YearQuery = mysqli_query($conn, $sqlYear);
-$sqlSemester = "Select *From tblsemester";
-$SemesterQuery = mysqli_query($conn, $sqlSemester);
-$sqlShift = "Select *From tblshift";
-$ShiftQuery = mysqli_query($conn, $sqlShift);
-$sqlStudentStatus="Select *From tblstudentstatus";
-$StudentStatusQuery=mysqli_query($conn,$sqlStudentStatus);
-$Student_Array=array();
-$Sex_array=array();
-$Major_array=array();
-$Program_array=array();
-$Campus_array=array();
-$Year_array=array();
-$Semester_array=array();
-$Shift_array=array();
-$StudentStatus_array=array();
-while($StudentRow=mysqli_fetch_assoc($studentInformationQuery)){
-    $Student_Array[]=$StudentRow;
+$sqlNationality="select * from tblnationality";
+$resultNationality=mysqli_query($conn,$sqlNationality);
+$sqlCountry="select * from tblcountry";
+$resultCountry=mysqli_query($conn,$sqlCountry);
+$sqlFaculty ="select * from tblfaculty";
+$resultFaculty=mysqli_query($conn,$sqlFaculty);
+$sqlOccupation="select * from tbloccupation";
+$resultOccupation=mysqli_query($conn,$sqlOccupation);
+$Nationality_array=array();
+$Country_array=array();
+$Occupation_array=array();
+while($nationality=mysqli_fetch_assoc($resultNationality)){
+    $Nationality_array[]=$nationality;
 }
-while($sex=mysqli_fetch_assoc($resultSex)){
-    $Sex_array[]=$sex;
+while($occupation=mysqli_fetch_assoc($resultOccupation)){
+    $Occupation_array[]=$occupation;
 }
-while($Major=mysqli_fetch_assoc($resultMajor)){
-    $Major_array[]=$Major;
+while($country=mysqli_fetch_assoc($resultCountry)){
+    $Country_array[]=$country;
 }
-while($Program=mysqli_fetch_assoc($resultProgram)){
-    $Program_array[]=$Program;
-}
-while($Campus=mysqli_fetch_assoc($CampusQuery)){
-    $Campus_array[]=$Campus;
-}
-while($Year=mysqli_fetch_assoc($YearQuery)){
-    $Year_array[]=$Year;
-}
-while($Semester=mysqli_fetch_assoc($SemesterQuery)){
-    $Semester_array[]=$Semester;
-}
-while($Shift=mysqli_fetch_assoc($ShiftQuery)){
-    $Shift_array[]=$Shift;
-}
-while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
-   $StudentStatus_array[]=$StudentStatus;
-}
-
+$StudentEditQuery="select * from tblstudentInfo where StudentID=$StudentEditID";
+$StudentEditResult=mysqli_query($conn,$StudentEditQuery);
+$FamilyEditQuery="select * from tblfamiltybackground where FamilyBackgroundID=$StudentEditID";
+$FamilyEditResult=mysqli_query($conn,$FamilyEditQuery);
+$EducationEditQuery="select * from tbleducationalbackground where EducationalBackgroundID=$StudentEditID";
+$EducationEditResult=mysqli_query($conn,$EducationEditQuery);
+$ProgramEditQuery="select * from tblprogram where ProgramID=$StudentEditID";
+$ProgramEditResult=mysqli_query($conn,$ProgramEditQuery);
 ?>
-
 <!DOCTYPE html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+    #regiration_form fieldset:not(:first-of-type) {
+        display: none;
+    }
+</style>
 <html
-  lang="en"
-  class="light-style layout-menu-fixed"
-  dir="ltr"
-  data-theme="theme-default"
-  data-assets-path="../assets/"
-  data-template="vertical-menu-template-free"
+        lang="en"
+        class="light-style layout-menu-fixed"
+        dir="ltr"
+        data-theme="theme-default"
+        data-assets-path="../assets/"
+        data-template="vertical-menu-template-free"
 >
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-<title>DashBoard</title>
+    <title>Approve Status Information</title>
+
     <meta name="description" content="" />
 
     <!-- Favicon -->
-      <link rel="icon" type="image/x-icon"
-            href="https://belteigroup.com.kh/images/beltei_international_university_in_cambodia.png"/>
+    <link rel="icon" type="image/x-icon"
+          href="https://belteigroup.com.kh/images/beltei_international_university_in_cambodia.png"/>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-      rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet"
     />
 
     <!-- Icons. Uncomment required icon fonts -->
@@ -108,11 +92,11 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="../assets/js/config.js"></script>
-  </head>
+</head>
 
-  <body>
-    <!-- Layout wrapper -->
-    <div class="layout-wrapper layout-content-navbar">
+<body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
         <!-- Menu -->
 
@@ -343,203 +327,196 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
             </div>
           </nav>
 
-          <!-- / Navbar -->
+            <!-- / Navbar -->
 
-          <!-- Content wrapper -->
-          <div class="content-wrapper">
-            <!-- Content -->
-            <div class="container-fluid flex-grow-1 container-p-y">
-                <div class="row mt-5">
-                    <?php
-                    if(isset($_GET['msg'])){
-                        $msg=$_GET['msg'];
-                        echo'<div class="alert alert-primary" role="alert">
-                        '.$msg.'</div';}
-                    ?>
-                </div>
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Student Information </h4>
+            <!-- Content wrapper -->
+            <div class="content-wrapper">
+                <!-- Content -->
 
-              <!-- Bootstrap Table with Header - Light -->
-              <div class="card">
-                <div class="card-header">
-                    <div class="navbar-nav">
-                        <div class="nav-item d-flex align-items-center">
-                            <i class="bx bx-search fs-4 lh-0"></i>
-                            <input
-                                    id="LiveSearch"
-                                    autocomplete="off"
-                                    type="text"
-                                    class="form-control border-0 shadow-none"
-                                    placeholder="Search..."
-                                    aria-label="Search..."
+                <div class="container-xxl flex-grow-1 container-p-y">
+                    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Approve Status Information</h4>
+
+                    <!-- Bootstrap Table with Header - Light -->
+                    <?php if($StudentEditRow=mysqli_fetch_assoc($StudentEditResult)){?>
+                    <div class="card-body">
+                        <div class="d-flex align-items-start align-items-sm-center gap-4">
+                            <img
+                                    src="../BackEnd/images/<?php echo $StudentEditRow['Photo'] ?>"
+                                    alt="user-avatar"
+                                    class="d-block rounded"
+                                    height="200"
+                                    width="200"
+                                    style="object-fit: contain"
+                                    id="uploadedAvatar"
                             />
                         </div>
                     </div>
-                </div>
+                    <hr class="my-0" />
+                    <div class="card-body">
+                        <form id="regiration_form" novalidate action="../BackEnd/Edit.php" enctype="multipart/form-data" method="post">
+                            <!-- Form Student Infomation Done-->
+                            <fieldset>
+                                <h2> Personnel Details</h2>
+                                        <input hidden="hidden" name="StudentID" value="<?php echo $StudentEditRow['StudentID'] ?>">
+                                <div class="row mb-2 ">
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Name Latin: </label>
+                                        <label class="col col-form-label" for="basic-icon-default-company"><strong><?php echo $StudentEditRow['NameInLatin']?></strong></label>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Name In Khmer: </label>
+                                        <label class="col col-form-label" for="basic-icon-default-company"><strong><?php echo $StudentEditRow['NameInKHmer']?></strong></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-2 ">
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Family Name: </label>
+                                        <label class="col col-form-label" for="basic-icon-default-company"><strong><?php echo $StudentEditRow['FamilyName']?></strong></label>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Given Name: </label>
+                                        <label class="col col-form-label" for="basic-icon-default-company"><strong><?php echo $StudentEditRow['GivenName']?></strong></label>
+                                    </div>
+                                </div>
 
-                <div class="table-responsive text-nowrap">
-                  <table class="table">
-                    <thead class="table-light">
-                      <tr class="text-capitalize">
-                          <th>ID#</th>
-                          <th>Latin Name</th>
-                          <th>Name In Khmer</th>
-                          <th>Sex</th>
-                          <th>Phone Number</th>
-                          <th>Year</th>
-                          <th>Semester</th>
-                          <th>Major</th>
-                          <th>Shift</th>
-                          <th>Campus</th>
-                          <th>Status</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                      <tbody class="table-border-bottom-0" id="DashboredSeach"></tbody>
+                                <div class="row mb-2 ">
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Sex: </label>
+                                        <label class="col col-form-label" for="basic-icon-default-company"><strong>
+                                        <?php 
+                                           while ($rowSex= mysqli_fetch_assoc($resultSex)){
+                                            if($StudentEditRow['SexID']== $rowSex['SexID']){$gender=$rowSex['SexEN'];}
+                                        }   echo $gender;
+                                           ?>
+                                        
+                                        </strong></label>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">PassportNO ID: </label>
+                                        <label class="col col-form-label" for="basic-icon-default-company"><strong><?php echo $StudentEditRow['IDPassportNo']?></strong></label>
+                                    </div>
+                                </div>
 
-                    <tbody class="table-border-bottom-0" id="Dashbored">
-                    <!-- Row Start-->
-                    <?php
-                        foreach($Student_Array as $StudentRow){
-                            $studentID=$StudentRow['StudentID'];
-                            $sexID=$StudentRow['SexID'];
-                            $YearId=null;
-                            $semesterId=null;
-                            $majorId=null;
-                            $shiftId=null;
-                            $campusId=null;
-                            $statusID=null;
-                            $disableID=null;
-                            foreach ($StudentStatus_array as $StudentStatus){
-                                $studentStatusID=$StudentStatus['StudentStatusID'];
-                                if($studentID==$studentStatusID){
-                                    $statusID=$StudentStatus['statusID'];
-                                    $disableID=['StudentStatusID'];
-                                }
-                            }
-                            foreach ($Program_array as $Program)
-                            {
-                                $programID = $Program['ProgramID'];
-                                if ($studentID==$programID)
-                                {
-                                     $YearId = $Program['YearID'];
-                                     $semesterId = $Program['SemesterID'];
-                                     $majorId = $Program['MajorID'];
-                                     $shiftId = $Program['ShiftID'];
-                                     $campusId = $Program['CampusID'];
-                                }
-                            }
-                        ?>
-                      <tr>
-                          <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php echo $StudentRow['StudentID']?></strong></td><!--id-->
-                          <td><?php echo $StudentRow['NameInLatin']?></td>
-                          <td><?php echo $StudentRow['NameInKHmer']?></td>
-                          <td><?php foreach ($Sex_array as $sex){$sexShow=$sex['SexID'];
-                          if($sexShow==$sexID){echo $sex['SexEN'];}} ?>
-                          </td><!-- Sex-->
-                          <td><?php echo $StudentRow['PhoneNumber']?></td>
-                          <td>
-                              <?php foreach ($Year_array as $Year){$YearShow=$Year['YearID'];
-                                  if($YearShow==$YearId){echo $Year['Year'];}} ?>
-                          </td> <!--year-->
-                          <td>
-                              <?php foreach ($Semester_array as $Semester){$SemesterShow=$Semester['SemesterID'];
-                                  if($semesterId==$SemesterShow){echo $Semester['SemesterEN'];}} ?>
-                          </td> <!--semester-->
-                          <td>
-                              <?php foreach ($Major_array as $Major){$MajorShow=$Major['MajorID'];
-                                  if($majorId==$MajorShow){echo $Major['MajorEN'];}} ?>
-                          </td> <!--Major-->
-                          <td>
-                              <?php foreach ($Shift_array as $shift){$shiftShow=$shift['ShiftID'];
-                                  if($shiftId==$shiftShow){echo $shift['ShiftEN'];}} ?>
-                          </td> <!--shift-->
-                          <td>
-                              <?php foreach ($Campus_array as $Campus){$CampusShow=$Campus['CampusID'];
-                                  if($campusId==$CampusShow){echo $Campus['CampusEN'];}} ?>
-                          </td> <!--Campus-->
-                          <td>
-                              <?php if(1==$statusID){echo $StatusShow='<span class="badge rounded-pill bg-label-success">Active</span>';}
-                                 elseif(null==$statusID){echo $StatusShow='<span class="badge rounded-pill bg-label-warning">Pending</span>';}
-                                    elseif(2==$statusID){echo $StatusShow='<span class="badge rounded-pill bg-label-warning">Pending</span>';}
-                                    elseif(3==$statusID){echo$StatusShow='<span class="badge rounded-pill bg-label-danger">Disable</span>';}
-                              ?>
-                          </td>
-                          <td>
-                              <div class="dropdown">
-                                  <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      <i class="bx bx-dots-vertical-rounded"></i>
-                                  </button>
-                                  <div class="dropdown-menu">
-                                      <a class="dropdown-item" href="../FrontEnd/view_pdf.php?ViewID=<?php echo $StudentRow['StudentID']?>" target="_blank"
-                                      ><i class="bx bx-edit-alt me-1"></i> ViewFull Information</a
-                                      >
-                                      <a class="dropdown-item" href="../FrontEnd/ViewInformation.php?EditID=<?php echo $StudentRow['StudentID']?>"
-                                      ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                                      >
-                                      <a class="dropdown-item" href="statusForm.php?StatusID=<?php echo $StudentRow['StudentID']?>"
-                                      ><i class="bx bx-cog me-1"></i>Approve</a
-                                      >
-                                  </div>
-                              </div>
-                          </td>
-                      </tr>
-                    <?php  }?>
-                    <!--Row End-->
-                    </tbody>
-                  </table>
+                                <div class="row mb-2 ">
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Nationality: </label>
+                                        <label class="col col-form-label" for="basic-icon-default-company"><strong>
+                                        <?php 
+                                           foreach ($Nationality_array as $nationality){
+                                            if($StudentEditRow['NationalityID']==$nationality['NationalityID']){$nationalityShow=$nationality['NationalityEN'];}
+                                        }
+                                        echo $nationalityShow;
+                                           ?>
+                                        
+                                        </strong></label>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Country: </label>
+                                        <label class="col col-form-label" for="basic-icon-default-company"><strong>
+                                            <?php 
+                                                foreach ($Country_array as $country){
+                                                    if($StudentEditRow['CountryID']==$country['CountryID']){$CountryShow=$country['CountryEN'];}
+                                                }
+                                                echo $CountryShow;
+                                            ?>
+                                        </strong></label>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-2 ">
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Date Of Birth: </label>
+                                        <label class="col col-form-label" for="basic-icon-default-company"><strong>
+                                   
+                                         <?php echo $StudentEditRow['DOB']?>
+                                     
+                                        
+                                        </strong></label>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Place Of Birth: </label>
+                                        <label class="col col-form-label" for="basic-icon-default-company"><strong>
+                                            <?php 
+                                              echo $StudentEditRow['POB']
+                                            ?>
+                                        </strong></label>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-2 ">
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Email: </label>
+                                        <label class="col col-form-label" for="basic-icon-default-company"><strong>
+                                   
+                                         <?php echo $StudentEditRow['Email']?>
+                                     
+                                        
+                                        </strong></label>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Phone Number: </label>
+                                        <label class="col col-form-label" for="basic-icon-default-company"><strong>
+                                            <?php 
+                                              echo $StudentEditRow['PhoneNumber']
+                                            ?>
+                                        </strong></label>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-2 ">
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Current Address: </label>
+                                        <label class="col col-form-label" for="basic-icon-default-company"><strong>
+                                   
+                                         <?php echo $StudentEditRow['CurrentAddress']?>
+                                     
+                                        
+                                        </strong></label>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="col col-form-label" for="basic-icon-default-company">Current Address PP(Optional): </label>
+                                        <label class="col col-form-label" for="basic-icon-default-company"><strong>
+                                            <?php 
+                                              echo $StudentEditRow['CurrentAddressPP']
+                                            ?>
+                                        </strong></label>
+                                    </div>
+                                </div>
+                                <?php }?>
+                                <!--button-->
+                                <input type="button" name="Disable" class="next btn btn-danger" value="Disable" />                           
+                                <input type="button" name="Approve" class="next btn btn-success" value="Approve" />
+
+                            <!--Form 5-->
+                        </form>
+                    </div>
+                    <!-- Bootstrap Table with Header - Light -->
+                    <!-- Content wrapper -->
                 </div>
-              </div>
-              <!-- Bootstrap Table with Header - Light -->
-          <!-- Content wrapper -->
+                <!-- / Layout page -->
+            </div>
+
+            <!-- Overlay -->
+            <div class="layout-overlay layout-menu-toggle"></div>
         </div>
-        <!-- / Layout page -->
-      </div>
+        <!-- Core JS -->
+        <!-- build:js assets/vendor/js/core.js -->
+        <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+        <script src="../assets/vendor/libs/popper/popper.js"></script>
+        <script src="../assets/vendor/js/bootstrap.js"></script>
+        <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-      <!-- Overlay -->
-      <div class="layout-overlay layout-menu-toggle"></div>
-    </div>
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../assets/vendor/js/bootstrap.js"></script>
-    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+        <script src="../assets/vendor/js/menu.js"></script>
+        <!-- endbuild -->
 
-    <script src="../assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
+        <!-- Vendors JS -->
 
-    <!-- Vendors JS -->
+        <!-- Main JS -->
+        <script src="../assets/js/main.js"></script>
 
-    <!-- Main JS -->
-    <script src="../assets/js/main.js"></script>
+        <!-- Page JS -->
 
-    <!-- Page JS -->
-
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-  </body>
+        <!-- Place this tag in your head or just before your close body tag. -->
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
 </html>
-<script type="text/javascript">
-$(document).ready(function (){
-    $("#LiveSearch").keyup(function (){
-        var input =$(this).val();
-        if(input!=null){
-            $("#Dashbored").css("display","none")
-            $.ajax({
-                url:'../jquery/Search.php',
-                method:"POST",
-                data:{input:input},
-                success:function (data){
-                    $("#DashboredSeach").html(data);
-                }
-            });
-        }
-        else
-        {
-        $("#DashboredSeach").css("display","none")
-        }
-    });
-});
-
-</script>

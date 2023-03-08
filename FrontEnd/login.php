@@ -1,20 +1,33 @@
-<?php 
+<?php
+ session_start();
 
-   if(isset($_POST['Login'])){
+require_once '../BackEnd/db.php';
 
-       $user = $_POST['username'];
-       $pass = $_POST['password'];
+if(isset($_SESSION['id'])!="") {
+    header("Location: dashboard.php");
+}
 
-       if($user == "admin" && $pass == "123"){
-        header("Location:dashboard.php");
-       }
-       else{
-        echo '<script>alert("Fail to login")</script>';
-       }
+if (isset($_POST['submit'])) {
 
-   }
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
+    $result = mysqli_query($conn, "SELECT * FROM tblusers WHERE username = '" . $username. "' and password = '" . $password. "'");
 
+   if(!empty($result)){
+        if ($row = mysqli_fetch_array($result)) {
+             $_SESSION['username'] = $row['username'];
+             $_SESSION['password'] = $row['password'];
+            // $_SESSION['user_name'] = $row['name'];
+            header("Location:dashboard.php");
+        } 
+    }else {
+        $error_message = "FAIL TO LOGIN. Please try again!!!";
+        echo     '<div class="alert alert-primary" role="alert">'.                 
+                      $error_message.'    
+               </div'>'';
+    }
+}
 ?>
 
 
@@ -80,7 +93,12 @@
 
 </head>
 <body>
-           <div class="form"  method="post" action= "login.php">
+
+                
+
+
+           <form method="post" action= "<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>">
+
            <div class="container" style="margin-top: 20vh;">
                 <div class="card">
                     <div class="card card-header align-items-center">
@@ -123,10 +141,10 @@
                                        <input
                                                required
                                                name="password"
-                                               type="text"
+                                               type="password"
                                                id=""
                                                class="form-control"
-                                               placeholder="Paassword"
+                                               placeholder="Password"
                                        />
                                    </div>
                                </div>
@@ -136,7 +154,7 @@
                     <div class="row mt-4 mb-4">
                         <div class="col col-lg-2"></div>
                         <div class="col col-lg-8">
-                        <input type="button" value="Login" class="btn btn-primary" name="Login">
+                        <input type="submit" value="Login" class="btn btn-primary" name="submit">
                         </div>
                         <div class="col col-lg-2"></div>
                     </div>
@@ -144,6 +162,6 @@
                     </div>
                 </div>
             </div>
-           </div>
+           </form>
 </body>
 </html>
