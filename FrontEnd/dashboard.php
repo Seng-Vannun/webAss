@@ -1,6 +1,6 @@
 <?php
 require_once '../BackEnd/db.php';
-
+$input ='v';
 $sqlStudentInformation="select * from tblstudentinfo";
 $studentInformationQuery=mysqli_query($conn,$sqlStudentInformation);
 $sqlSex="select * from tblsex";

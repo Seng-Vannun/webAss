@@ -1,6 +1,10 @@
 <?php
 require_once ('../BackEnd/db.php');
 $StudentEditID=$_GET['EditID'];
+if($StudentEditID==null)
+{
+    header("Location: ../FrontEnd/dashboard.php");
+}
 $sqlSex="select * from tblsex";
 $resultSex=mysqli_query($conn,$sqlSex);
 $sqlNationality="select * from tblnationality";

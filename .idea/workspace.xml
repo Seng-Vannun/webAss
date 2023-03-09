@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b73c77c2-c1e9-4c35-bb16-4977fd605d27" name="Changes" comment="Finish Search And Edit">
+    <list default="true" id="b73c77c2-c1e9-4c35-bb16-4977fd605d27" name="Changes" comment="Finish Veiw_pdf Form">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/Edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Edit.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FrontEnd/ViewInformation.php" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/ViewInformation.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FrontEnd/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrontEnd/view_pdf.php" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/view_pdf.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jquery/Search.php" beforeDir="false" afterPath="$PROJECT_DIR$/jquery/Search.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +21,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -106,6 +106,10 @@
       <workItem from="1676463995835" duration="2000" />
       <workItem from="1676781294002" duration="5743000" />
       <workItem from="1676976984642" duration="4358000" />
+      <workItem from="1677236683783" duration="1471000" />
+      <workItem from="1677847014676" duration="1000" />
+      <workItem from="1677996897557" duration="5505000" />
+      <workItem from="1678002460589" duration="48000" />
     </task>
     <task id="LOCAL-00001" summary="Add Jquery">
       <created>1675250661891</created>
@@ -156,7 +160,21 @@
       <option name="project" value="LOCAL" />
       <updated>1676375456375</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Finish Veiw_pdf Form">
+      <created>1677236741024</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1677236741024</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Finish Veiw_pdf Form">
+      <created>1677236781489</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1677236781489</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,6 +196,7 @@
     <MESSAGE value="Change multi Form" />
     <MESSAGE value="Finish dash Board" />
     <MESSAGE value="Finish Search And Edit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finish Search And Edit" />
+    <MESSAGE value="Finish Veiw_pdf Form" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish Veiw_pdf Form" />
   </component>
 </project>
