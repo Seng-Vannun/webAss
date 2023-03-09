@@ -3,9 +3,9 @@
 
 require_once '../BackEnd/db.php';
 
-if(isset($_SESSION['id'])!="") {
-    header("Location: dashboard.php");
-}
+//if(isset($_SESSION['id'])!="") {
+//    header("Location: dashboard.php");
+//}
 
 if (isset($_POST['submit'])) {
 
@@ -18,8 +18,9 @@ if (isset($_POST['submit'])) {
         if ($row = mysqli_fetch_array($result)) {
              $_SESSION['username'] = $row['username'];
              $_SESSION['password'] = $row['password'];
+             $UserId=$row['UserId'];
             // $_SESSION['user_name'] = $row['name'];
-            header("Location:dashboard.php");
+            header("Location:dashboard.php?UserId=".$UserId);
         } 
     }else {
         $error_message = "FAIL TO LOGIN. Please try again!!!";

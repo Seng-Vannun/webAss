@@ -1,12 +1,14 @@
-
-<?php 
-
- include_once '../BackEnd/db.php';
-
- $sqlPermission = 'Select *From tblpermission';
- $resultPermission = mysqli_query($conn,$sqlPermission);
-
-
+<?php
+require_once '../BackEnd/db.php';
+$UserId=null;
+if(isset($_GET['UserId'])){
+    $UserId=$_GET['UserId'];
+}
+echo $UserId;
+$UserSql="select * from tblusers where UserId=$UserId";
+$ResultUser=mysqli_query($conn,$UserSql);
+if ($User = mysqli_fetch_assoc($ResultUser)){
+?>
 ?>
 
 
@@ -60,9 +62,6 @@
 
     <!-- Helpers -->
     <script src="../assets/vendor/js/helpers.js"></script>
-
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="../assets/js/config.js"></script>
   </head>
 
@@ -98,35 +97,35 @@
                   </a>
                   <ul class="menu-sub">
                       <li class="menu-item active">
-                          <a href="../FrontEnd/dashboard.php" class="menu-link" target="_self">
+                          <a href="../FrontEnd/dashboard.php?UserId=<?php echo $User['UserId']?>" class="menu-link" target="_self">
                               <div data-i18n="Basic">Admin Dashboard</div>
                           </a>
                       </li>
                   </ul>
               </li>
-            <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div data-i18n="Account Settings">Account Settings</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="pages-account-settings-account.html" class="menu-link">
-                    <div data-i18n="Account">Account</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="pages-account-settings-notifications.html" class="menu-link">
-                    <div data-i18n="Notifications">Notifications</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="pages-account-settings-connections.html" class="menu-link">
-                    <div data-i18n="Connections">Connections</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
+<!--            <li class="menu-item">-->
+<!--              <a href="javascript:void(0);" class="menu-link menu-toggle">-->
+<!--                <i class="menu-icon tf-icons bx bx-dock-top"></i>-->
+<!--                <div data-i18n="Account Settings">Account Settings</div>-->
+<!--              </a>-->
+<!--              <ul class="menu-sub">-->
+<!--                <li class="menu-item">-->
+<!--                  <a href="pages-account-settings-account.html" class="menu-link">-->
+<!--                    <div data-i18n="Account">Account</div>-->
+<!--                  </a>-->
+<!--                </li>-->
+<!--                <li class="menu-item">-->
+<!--                  <a href="pages-account-settings-notifications.html" class="menu-link">-->
+<!--                    <div data-i18n="Notifications">Notifications</div>-->
+<!--                  </a>-->
+<!--                </li>-->
+<!--                <li class="menu-item">-->
+<!--                  <a href="pages-account-settings-connections.html" class="menu-link">-->
+<!--                    <div data-i18n="Connections">Connections</div>-->
+<!--                  </a>-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--            </li>-->
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
@@ -150,34 +149,34 @@
                 </li>
               </ul>
             </li>
-              <li class="menu-item">
-                  <a href="javascript:void(0);" class="menu-link menu-toggle">
-                      <i class="menu-icon tf-icons bx bx-user"></i>
-                      <div data-i18n="Authentications">Student</div>
-                  </a>
-                  <ul class="menu-sub">
-                      <li class="menu-item active">
-                          <a href="#" class="menu-link" target="_self">
-                              <div data-i18n="Basic">All Student</div>
-                          </a>
-                      </li>
-                      <li class="menu-item">
-                          <a href="Active.php" class="menu-link" target="_self">
-                              <div data-i18n="Basic">Active</div>
-                          </a>
-                      </li>
-                      <li class="menu-item">
-                          <a href="Pending.php" class="menu-link" target="_self">
-                              <div data-i18n="Basic">Pending</div>
-                          </a>
-                      </li>
-                      <li class="menu-item">
-                          <a href="Disable.php" class="menu-link" target="_self">
-                              <div data-i18n="Basic">Disable</div>
-                          </a>
-                      </li>
-                  </ul>
-              </li>
+<!--              <li class="menu-item">-->
+<!--                  <a href="javascript:void(0);" class="menu-link menu-toggle">-->
+<!--                      <i class="menu-icon tf-icons bx bx-user"></i>-->
+<!--                      <div data-i18n="Authentications">Student</div>-->
+<!--                  </a>-->
+<!--                  <ul class="menu-sub">-->
+<!--                      <li class="menu-item active">-->
+<!--                          <a href="#" class="menu-link" target="_self">-->
+<!--                              <div data-i18n="Basic">All Student</div>-->
+<!--                          </a>-->
+<!--                      </li>-->
+<!--                      <li class="menu-item">-->
+<!--                          <a href="Active.php" class="menu-link" target="_self">-->
+<!--                              <div data-i18n="Basic">Active</div>-->
+<!--                          </a>-->
+<!--                      </li>-->
+<!--                      <li class="menu-item">-->
+<!--                          <a href="Pending.php" class="menu-link" target="_self">-->
+<!--                              <div data-i18n="Basic">Pending</div>-->
+<!--                          </a>-->
+<!--                      </li>-->
+<!--                      <li class="menu-item">-->
+<!--                          <a href="Disable.php" class="menu-link" target="_self">-->
+<!--                              <div data-i18n="Basic">Disable</div>-->
+<!--                          </a>-->
+<!--                      </li>-->
+<!--                  </ul>-->
+<!--              </li>-->
 
               <li class="menu-item">
                   <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -242,57 +241,62 @@
               </div> -->
               <!-- /Search -->
 
-              <ul class="navbar-nav flex-row align-items-center ms-auto">
-                <!-- User -->
-                <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                    <div class="avatar avatar-online">
-                      <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                    </div>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <div class="d-flex">
-                          <div class="flex-shrink-0 me-3">
+                <ul class="navbar-nav flex-row align-items-center ms-auto">
+                    <!-- User -->
+                    <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                        <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                             <div class="avatar avatar-online">
-                              <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+
+                                <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
-                          </div>
-                          <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
-                            <small class="text-muted">Admin</small>
-                          </div>
-                        </div>
-                      </a>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 me-3">
+                                            <div class="avatar avatar-online">
+                                                <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow-1">
+
+                                            <span class="fw-semibold d-block"><?php echo $User['Name']?></span>
+                                            <small class="text-muted"><?php if($User['roleid']==1) {echo "Admin";} else{echo "User";}?></small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <div class="dropdown-divider"></div>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="bx bx-user me-2"></i>
+                                    <span class="align-middle">My Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="bx bx-cog me-2"></i>
+                                    <span class="align-middle">Settings</span>
+                                </a>
+                            </li>
+                            <li>
+                            </li>
+                            <li>
+                                <div class="dropdown-divider"></div>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="../FrontEnd/login.php">
+                                    <i class="bx bx-power-off me-2"></i>
+                                    <span class="align-middle">Log Out</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                      <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-user me-2"></i>
-                        <span class="align-middle">My Profile</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-cog me-2"></i>
-                        <span class="align-middle">Settings</span>
-                      </a>
-                    </li>
-                    <li>
-                    </li>
-                    <li>
-                      <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="../FrontEnd/login.php">
-                        <i class="bx bx-power-off me-2"></i>
-                        <span class="align-middle">Log Out</span>
-                      </a>
-                    </li>
-                  </ul>
+                    <!--/ User -->
+                </ul>
                 </li>
                 <!--/ User -->
               </ul>
@@ -304,15 +308,21 @@
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
+
             <div class="container-fluid flex-grow-1 container-p-y">
 
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin Dashboard</h4>
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> <?php
+                    if(isset($_GET['msg'])){
+                        $msg=$_GET['msg'];
+                        echo'<div class="alert alert-primary" role="alert">
+                        '.$msg.'</div';}
+                    ?></h4>
 
               <!-- Bootstrap Table with Header - Light -->
+              <form action="../BackEnd/UsersInput.php" enctype="multipart/form-data" method="post">
               <div class="card">
                
               <div class="card card-body">
-              <form method="post" active= "../BackEnd/registerUsers.php">
                      <h1 class="text-center">Register Users</h1>
 
                      <div class="row">
@@ -364,29 +374,54 @@
                                                             placeholder="Confirm-Password"
                                                     />
                                     </div>
-                     <div class="col">
+                                    </div>
+                     </div>
+                         <div class="row">
+
+                             <div class="col">
+                                 <label for="">Name</label>
+                                 <div class="input-group input-group-merge">
+                                                    <span id="basic-icon-default-fullname2" class="input-group-text"
+                                                    ><i class="bx bx-user"></i
+                                                        ></span>
+                                     <input
+                                             name="name"
+                                             type="text"
+                                             id=""
+                                             class="form-control"
+                                             placeholder="Name"
+                                     />
+                                 </div>
+                             </div>
+                         </div>
+                                        <div class="col">
                         <label for="">Permission</label>
                      <div class="input-group input-group-merge">
 
-                     <select name="Sex" id="" class="form-control form-select form-select mb-3" >
+                     <select name="roleid" id="" class="form-control form-select form-select mb-3" >
                                            <option selected disabled>--Select--</option>
-                                           <?php while ($rowPermission= mysqli_fetch_assoc($resultPermission)){?>
-                                               <option value="<?php echo $rowPermission['permissionID']?>"><?php echo $rowPermission['permissionEN']?></option>
-                                           <?php }?>
+                                           <option value="1">Admin</option>
+                                           <option value="2">User</option>
                                        </select>
                      </div>
 
-                     </div> 
-
+                     </div>
+                                        <div class="col">
+                                            <label for="">Permission</label>
+                                            <div class="input-group input-group-merge">
+                                                <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                                <input class="form-control" name="NewImg" type="file" id="formFile" />
+                                            </div>
+                                        </div>
                      <div class="row mt-3">
                         <div class="col align-items-center">
-                            <input type="button" value="submit" name="submit" class="btn btn-primary">
+                            <input type="Submit" name="Submit" class="submit btn btn-success" value="Submit" />
+                            <a type="button" href="../FrontEnd/dashboard.php?UserId=<?php echo $User['UserId']?>"  class="btn btn-outline-danger">Cancel</a>
                         </div>
                      </div>
-                     
-              </form>
+
               </div>
-              <!-- Bootstrap Table with Header - Light -->
+
           <!-- Content wrapper -->
         </div>
         <!-- / Layout page -->
@@ -395,6 +430,8 @@
       <!-- Overlay -->
       <div class="layout-overlay layout-menu-toggle"></div>
     </div>
+    </form>
+
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script src="../assets/vendor/libs/jquery/jquery.js"></script>
@@ -416,26 +453,4 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
 </html>
-<script type="text/javascript">
-$(document).ready(function (){
-    $("#LiveSearch").keyup(function (){
-        var input =$(this).val();
-        if(input!=null){
-            $("#Dashbored").css("display","none")
-            $.ajax({
-                url:'../jquery/Search.php',
-                method:"POST",
-                data:{input:input},
-                success:function (data){
-                    $("#DashboredSeach").html(data);
-                }
-            });
-        }
-        else
-        {
-        $("#DashboredSeach").css("display","none")
-        }
-    });
-});
-
-</script>
+<?php }?>

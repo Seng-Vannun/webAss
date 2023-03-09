@@ -1,6 +1,14 @@
 <?php
 require_once '../BackEnd/db.php';
-$input ='v';
+//if(isset($_SESSION['UserId'])=="") {
+//    header("Location: login.php");
+//}
+$UserId=null;
+if(isset($_GET['UserId'])){
+$UserId=$_GET['UserId'];
+}
+$UserSql="select * from tblusers where UserId=$UserId";
+$ResultUser=mysqli_query($conn,$UserSql);
 $sqlStudentInformation="select * from tblstudentinfo";
 $studentInformationQuery=mysqli_query($conn,$sqlStudentInformation);
 $sqlSex="select * from tblsex";
@@ -148,6 +156,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                       </li>
                   </ul>
               </li>
+              <?php if ($User=mysqli_fetch_assoc($ResultUser)){?>
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
@@ -183,7 +192,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="register.php" class="menu-link" target="_blank">
+                  <a href="register.php?UserId=<?php echo $User['UserId']?>"class="menu-link" target="_blank">
                     <div data-i18n="Basic">Register</div>
                   </a>
                 </li>
@@ -205,21 +214,21 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                               <div data-i18n="Basic">All Student</div>
                           </a>
                       </li>
-                      <li class="menu-item">
-                          <a href="Active.php" class="menu-link" target="_self">
-                              <div data-i18n="Basic">Active</div>
-                          </a>
-                      </li>
-                      <li class="menu-item">
-                          <a href="Pending.php" class="menu-link" target="_self">
-                              <div data-i18n="Basic">Pending</div>
-                          </a>
-                      </li>
-                      <li class="menu-item">
-                          <a href="Disable.php" class="menu-link" target="_self">
-                              <div data-i18n="Basic">Disable</div>
-                          </a>
-                      </li>
+<!--                      <li class="menu-item">-->
+<!--                          <a href="Active.php" class="menu-link" target="_self">-->
+<!--                              <div data-i18n="Basic">Active</div>-->
+<!--                          </a>-->
+<!--                      </li>-->
+<!--                      <li class="menu-item">-->
+<!--                          <a href="Pending.php" class="menu-link" target="_self">-->
+<!--                              <div data-i18n="Basic">Pending</div>-->
+<!--                          </a>-->
+<!--                      </li>-->
+<!--                      <li class="menu-item">-->
+<!--                          <a href="Disable.php" class="menu-link" target="_self">-->
+<!--                              <div data-i18n="Basic">Disable</div>-->
+<!--                          </a>-->
+<!--                      </li>-->
                   </ul>
               </li>
 
@@ -304,8 +313,10 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
-                            <small class="text-muted">Admin</small>
+
+                            <span class="fw-semibold d-block"><?php echo $User['Name']?></span>
+                            <small class="text-muted"><?php if($User['roleid']==1) {echo "Admin";} else{echo "User";}?></small>
+                            <?php }?>
                           </div>
                         </div>
                       </a>
