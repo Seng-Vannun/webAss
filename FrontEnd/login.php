@@ -1,26 +1,26 @@
 <?php
- session_start();
-
 require_once '../BackEnd/db.php';
 
-//if(isset($_SESSION['id'])!="") {
-//    header("Location: dashboard.php");
-//}
+if($_SESSION!=null){
+    header("Location:../FrontEnd/dashboard.php");
+}
 
 if (isset($_POST['submit'])) {
 
     $username = $_POST['username'];
     $password = $_POST['password'];
-
-    $result = mysqli_query($conn, "SELECT * FROM tblusers WHERE username = '" . $username. "' and password = '" . $password. "'");
+    $hashpassword=md5($password);
+    $result = mysqli_query($conn, "SELECT * FROM tblusers WHERE username = '" . $username. "' and password = '" . $hashpassword. "'");
 
    if(!empty($result)){
         if ($row = mysqli_fetch_array($result)) {
              $_SESSION['username'] = $row['username'];
              $_SESSION['password'] = $row['password'];
-             $UserId=$row['UserId'];
-            // $_SESSION['user_name'] = $row['name'];
-            header("Location:dashboard.php?UserId=".$UserId);
+             $_SESSION['role']=$row['roleid'];
+             $_SESSION['image']=$row['Image'];
+             $_SESSION['id']=$row['UserId'];
+             $_SESSION['name']=$row['Name'];
+            header("Location:dashboard.php");
         } 
     }else {
         $error_message = "FAIL TO LOGIN. Please try again!!!";

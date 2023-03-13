@@ -8,5 +8,5 @@ if(!$conn)
 {
 echo("Error".mysqli_error($conn));
 }
-
+session_start();
 ?>

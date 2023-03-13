@@ -1,14 +1,8 @@
 <?php
 require_once '../BackEnd/db.php';
-//if(isset($_SESSION['UserId'])=="") {
-//    header("Location: login.php");
-//}
-$UserId=null;
-if(isset($_GET['UserId'])){
-$UserId=$_GET['UserId'];
+if(isset($_SESSION['id'])==null) {
+    header("Location: login.php");
 }
-$UserSql="select * from tblusers where UserId=$UserId";
-$ResultUser=mysqli_query($conn,$UserSql);
 $sqlStudentInformation="select * from tblstudentinfo";
 $studentInformationQuery=mysqli_query($conn,$sqlStudentInformation);
 $sqlSex="select * from tblsex";
@@ -63,9 +57,13 @@ while($Shift=mysqli_fetch_assoc($ShiftQuery)){
 while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
    $StudentStatus_array[]=$StudentStatus;
 }
-
+if($_SESSION['role']!=1){
 ?>
-
+<style>
+    #AccountSetting{display: none}
+    #AddUser{display: none}
+    #status{display: none}
+</style><?php }?>
 <!DOCTYPE html>
 <html
   lang="en"
@@ -156,8 +154,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                       </li>
                   </ul>
               </li>
-              <?php if ($User=mysqli_fetch_assoc($ResultUser)){?>
-            <li class="menu-item">
+            <li class="menu-item" id="AccountSetting">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="Account Settings">Account Settings</div>
@@ -180,7 +177,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                 </li>
               </ul>
             </li>
-            <li class="menu-item">
+            <li class="menu-item" id="AddUser">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                 <div data-i18n="Authentications">Authentications</div>
@@ -192,7 +189,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="register.php?UserId=<?php echo $User['UserId']?>"class="menu-link" target="_blank">
+                  <a href="register.php"class="menu-link" target="_self">
                     <div data-i18n="Basic">Register</div>
                   </a>
                 </li>
@@ -232,7 +229,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                   </ul>
               </li>
 
-              <li class="menu-item">
+              <li class="menu-item" id="adminFuntion" >
                   <a href="javascript:void(0);" class="menu-link menu-toggle">
                       <i class="menu-icon tf-icons bx bx-book"></i>
                       <div data-i18n="Authentications">Function</div>
@@ -300,7 +297,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                      <img src="../BackEnd/images/<?php echo $_SESSION['image']?>" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -309,14 +306,13 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                              <img src="../BackEnd/images/<?php echo $_SESSION['image']?>" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                           </div>
                           <div class="flex-grow-1">
 
-                            <span class="fw-semibold d-block"><?php echo $User['Name']?></span>
-                            <small class="text-muted"><?php if($User['roleid']==1) {echo "Admin";} else{echo "User";}?></small>
-                            <?php }?>
+                            <span class="fw-semibold d-block"><?php echo $_SESSION['name']?></span>
+                            <small class="text-muted"><?php if($_SESSION['role']==1) {echo "Admin";} else{echo "User";}?></small>
                           </div>
                         </div>
                       </a>
@@ -342,7 +338,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="../FrontEnd/login.php">
+                      <a class="dropdown-item" href="../BackEnd/logout.php">
                         <i class="bx bx-power-off me-2"></i>
                         <span class="align-middle">Log Out</span>
                       </a>
@@ -488,7 +484,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                                       <a class="dropdown-item" href="../FrontEnd/ViewInformation.php?EditID=<?php echo $StudentRow['StudentID']?>"
                                       ><i class="bx bx-edit-alt me-1"></i> Edit</a
                                       >
-                                      <a class="dropdown-item" href="statusForm.php?StatusID=<?php echo $StudentRow['StudentID']?>"
+                                      <a class="dropdown-item" id="status" href="statusForm.php?StatusID=<?php echo $StudentRow['StudentID']?>"
                                       ><i class="bx bx-cog me-1"></i>Approve</a
                                       >
                                   </div>

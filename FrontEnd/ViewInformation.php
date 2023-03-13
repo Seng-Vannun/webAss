@@ -5,6 +5,9 @@ if($StudentEditID==null)
 {
     header("Location: ../FrontEnd/dashboard.php");
 }
+if(isset($_SESSION['id'])==null) {
+    header("Location: login.php");
+}
 $sqlSex="select * from tblsex";
 $resultSex=mysqli_query($conn,$sqlSex);
 $sqlNationality="select * from tblnationality";
@@ -35,7 +38,12 @@ $EducationEditQuery="select * from tbleducationalbackground where EducationalBac
 $EducationEditResult=mysqli_query($conn,$EducationEditQuery);
 $ProgramEditQuery="select * from tblprogram where ProgramID=$StudentEditID";
 $ProgramEditResult=mysqli_query($conn,$ProgramEditQuery);
-?>
+if($_SESSION['role']!=1){
+    ?>
+    <style>
+        #AccountSetting{display: none}
+        #AddUser{display: none}
+    </style><?php }?>
 <!DOCTYPE html>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -136,7 +144,7 @@ $ProgramEditResult=mysqli_query($conn,$ProgramEditQuery);
                       </li>
                   </ul>
               </li>
-            <li class="menu-item">
+            <li class="menu-item" id="AccountSetting">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="Account Settings">Account Settings</div>
@@ -159,7 +167,7 @@ $ProgramEditResult=mysqli_query($conn,$ProgramEditQuery);
                 </li>
               </ul>
             </li>
-            <li class="menu-item">
+            <li class="menu-item" id="AddUser">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                 <div data-i18n="Authentications">Authentications</div>
@@ -193,21 +201,21 @@ $ProgramEditResult=mysqli_query($conn,$ProgramEditQuery);
                               <div data-i18n="Basic">All Student</div>
                           </a>
                       </li>
-                      <li class="menu-item">
-                          <a href="Active.php" class="menu-link" target="_self">
-                              <div data-i18n="Basic">Active</div>
-                          </a>
-                      </li>
-                      <li class="menu-item">
-                          <a href="Pending.php" class="menu-link" target="_self">
-                              <div data-i18n="Basic">Pending</div>
-                          </a>
-                      </li>
-                      <li class="menu-item">
-                          <a href="Disable.php" class="menu-link" target="_self">
-                              <div data-i18n="Basic">Disable</div>
-                          </a>
-                      </li>
+<!--                      <li class="menu-item">-->
+<!--                          <a href="Active.php" class="menu-link" target="_self">-->
+<!--                              <div data-i18n="Basic">Active</div>-->
+<!--                          </a>-->
+<!--                      </li>-->
+<!--                      <li class="menu-item">-->
+<!--                          <a href="Pending.php" class="menu-link" target="_self">-->
+<!--                              <div data-i18n="Basic">Pending</div>-->
+<!--                          </a>-->
+<!--                      </li>-->
+<!--                      <li class="menu-item">-->
+<!--                          <a href="Disable.php" class="menu-link" target="_self">-->
+<!--                              <div data-i18n="Basic">Disable</div>-->
+<!--                          </a>-->
+<!--                      </li>-->
                   </ul>
               </li>
 
@@ -279,7 +287,7 @@ $ProgramEditResult=mysqli_query($conn,$ProgramEditQuery);
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                      <img src="../BackEnd/images/<?php echo $_SESSION['image']?>" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -288,12 +296,12 @@ $ProgramEditResult=mysqli_query($conn,$ProgramEditQuery);
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                              <img src="../BackEnd/images/<?php echo $_SESSION['image']?>" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
-                            <small class="text-muted">Admin</small>
+                            <span class="fw-semibold d-block"><?php echo $_SESSION['name']?></span>
+                            <small class="text-muted"><?php if($_SESSION['role']==1) {echo "Admin";} else{echo "User";}?></small>
                           </div>
                         </div>
                       </a>
@@ -319,7 +327,7 @@ $ProgramEditResult=mysqli_query($conn,$ProgramEditQuery);
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="../FrontEnd/login.php">
+                      <a class="dropdown-item" href="../BackEnd/logout.php">
                         <i class="bx bx-power-off me-2"></i>
                         <span class="align-middle">Log Out</span>
                       </a>

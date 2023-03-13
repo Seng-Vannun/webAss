@@ -1,14 +1,8 @@
 <?php
 require_once '../BackEnd/db.php';
-$UserId=null;
-if(isset($_GET['UserId'])){
-    $UserId=$_GET['UserId'];
+if($_SESSION['id']==null){
+    header("Location:../FrontEnd/login.php");
 }
-echo $UserId;
-$UserSql="select * from tblusers where UserId=$UserId";
-$ResultUser=mysqli_query($conn,$UserSql);
-if ($User = mysqli_fetch_assoc($ResultUser)){
-?>
 ?>
 
 
@@ -97,35 +91,12 @@ if ($User = mysqli_fetch_assoc($ResultUser)){
                   </a>
                   <ul class="menu-sub">
                       <li class="menu-item active">
-                          <a href="../FrontEnd/dashboard.php?UserId=<?php echo $User['UserId']?>" class="menu-link" target="_self">
+                          <a href="../FrontEnd/dashboard.php?UserId=<?php //echo $User['UserId']?>" class="menu-link" target="_self">
                               <div data-i18n="Basic">Admin Dashboard</div>
                           </a>
                       </li>
                   </ul>
               </li>
-<!--            <li class="menu-item">-->
-<!--              <a href="javascript:void(0);" class="menu-link menu-toggle">-->
-<!--                <i class="menu-icon tf-icons bx bx-dock-top"></i>-->
-<!--                <div data-i18n="Account Settings">Account Settings</div>-->
-<!--              </a>-->
-<!--              <ul class="menu-sub">-->
-<!--                <li class="menu-item">-->
-<!--                  <a href="pages-account-settings-account.html" class="menu-link">-->
-<!--                    <div data-i18n="Account">Account</div>-->
-<!--                  </a>-->
-<!--                </li>-->
-<!--                <li class="menu-item">-->
-<!--                  <a href="pages-account-settings-notifications.html" class="menu-link">-->
-<!--                    <div data-i18n="Notifications">Notifications</div>-->
-<!--                  </a>-->
-<!--                </li>-->
-<!--                <li class="menu-item">-->
-<!--                  <a href="pages-account-settings-connections.html" class="menu-link">-->
-<!--                    <div data-i18n="Connections">Connections</div>-->
-<!--                  </a>-->
-<!--                </li>-->
-<!--              </ul>-->
-<!--            </li>-->
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
@@ -149,35 +120,6 @@ if ($User = mysqli_fetch_assoc($ResultUser)){
                 </li>
               </ul>
             </li>
-<!--              <li class="menu-item">-->
-<!--                  <a href="javascript:void(0);" class="menu-link menu-toggle">-->
-<!--                      <i class="menu-icon tf-icons bx bx-user"></i>-->
-<!--                      <div data-i18n="Authentications">Student</div>-->
-<!--                  </a>-->
-<!--                  <ul class="menu-sub">-->
-<!--                      <li class="menu-item active">-->
-<!--                          <a href="#" class="menu-link" target="_self">-->
-<!--                              <div data-i18n="Basic">All Student</div>-->
-<!--                          </a>-->
-<!--                      </li>-->
-<!--                      <li class="menu-item">-->
-<!--                          <a href="Active.php" class="menu-link" target="_self">-->
-<!--                              <div data-i18n="Basic">Active</div>-->
-<!--                          </a>-->
-<!--                      </li>-->
-<!--                      <li class="menu-item">-->
-<!--                          <a href="Pending.php" class="menu-link" target="_self">-->
-<!--                              <div data-i18n="Basic">Pending</div>-->
-<!--                          </a>-->
-<!--                      </li>-->
-<!--                      <li class="menu-item">-->
-<!--                          <a href="Disable.php" class="menu-link" target="_self">-->
-<!--                              <div data-i18n="Basic">Disable</div>-->
-<!--                          </a>-->
-<!--                      </li>-->
-<!--                  </ul>-->
-<!--              </li>-->
-
               <li class="menu-item">
                   <a href="javascript:void(0);" class="menu-link menu-toggle">
                       <i class="menu-icon tf-icons bx bx-book"></i>
@@ -247,7 +189,7 @@ if ($User = mysqli_fetch_assoc($ResultUser)){
                         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                             <div class="avatar avatar-online">
 
-                                <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                <img src="../BackEnd/images/<?php echo $_SESSION['image']?>" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
@@ -256,13 +198,13 @@ if ($User = mysqli_fetch_assoc($ResultUser)){
                                     <div class="d-flex">
                                         <div class="flex-shrink-0 me-3">
                                             <div class="avatar avatar-online">
-                                                <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                                <img src="../BackEnd/images/<?php echo $_SESSION['image']?>" alt class="w-px-40 h-auto rounded-circle" />
                                             </div>
                                         </div>
                                         <div class="flex-grow-1">
 
-                                            <span class="fw-semibold d-block"><?php echo $User['Name']?></span>
-                                            <small class="text-muted"><?php if($User['roleid']==1) {echo "Admin";} else{echo "User";}?></small>
+                                            <span class="fw-semibold d-block"><?php echo $_SESSION['name']?></span>
+                                            <small class="text-muted"><?php if($_SESSION['role']==1) {echo "Admin";} else{echo "User";}?></small>
                                         </div>
                                     </div>
                                 </a>
@@ -288,7 +230,7 @@ if ($User = mysqli_fetch_assoc($ResultUser)){
                                 <div class="dropdown-divider"></div>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="../FrontEnd/login.php">
+                                <a class="dropdown-item" href="../BackEnd/logout.php">
                                     <i class="bx bx-power-off me-2"></i>
                                     <span class="align-middle">Log Out</span>
                                 </a>
@@ -311,12 +253,14 @@ if ($User = mysqli_fetch_assoc($ResultUser)){
 
             <div class="container-fluid flex-grow-1 container-p-y">
 
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> <?php
+                <div class="row mt-5">
+                    <?php
                     if(isset($_GET['msg'])){
                         $msg=$_GET['msg'];
                         echo'<div class="alert alert-primary" role="alert">
                         '.$msg.'</div';}
-                    ?></h4>
+                    ?>
+                </div>
 
               <!-- Bootstrap Table with Header - Light -->
               <form action="../BackEnd/UsersInput.php" enctype="multipart/form-data" method="post">
@@ -407,16 +351,16 @@ if ($User = mysqli_fetch_assoc($ResultUser)){
 
                      </div>
                                         <div class="col">
-                                            <label for="">Permission</label>
+                                            <label for="">Image</label>
                                             <div class="input-group input-group-merge">
                                                 <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-                                                <input class="form-control" name="NewImg" type="file" id="formFile" />
+                                                <input class="form-control" name="img" type="file" id="formFile" />
                                             </div>
                                         </div>
                      <div class="row mt-3">
                         <div class="col align-items-center">
                             <input type="Submit" name="Submit" class="submit btn btn-success" value="Submit" />
-                            <a type="button" href="../FrontEnd/dashboard.php?UserId=<?php echo $User['UserId']?>"  class="btn btn-outline-danger">Cancel</a>
+                            <a type="button" href="../FrontEnd/dashboard.php"  class="btn btn-outline-danger">Cancel</a>
                         </div>
                      </div>
 
@@ -453,4 +397,3 @@ if ($User = mysqli_fetch_assoc($ResultUser)){
     <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
 </html>
-<?php }?>

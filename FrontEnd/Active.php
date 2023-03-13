@@ -1,5 +1,8 @@
 <?php
 require_once '../BackEnd/db.php';
+if(isset($_SESSION['id'])==null) {
+    header("Location: login.php");
+}
 $sqlStudentInformation="select * from tblstudentinfo";
 $studentInformationQuery=mysqli_query($conn,$sqlStudentInformation);
 $sqlSex="select * from tblsex";
