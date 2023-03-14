@@ -55,7 +55,14 @@ while($Shift=mysqli_fetch_assoc($ShiftQuery)){
 while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
    $StudentStatus_array[]=$StudentStatus;
 }
-
+if($_SESSION['role']!=1){?>
+    <style>
+        #approve{display: none}
+        #adminFunction{display: none}
+        #register{display: none}
+        #Setting{display: none}
+    </style>
+<?php }
 ?>
 
 <!DOCTYPE html>
@@ -148,7 +155,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                       </li>
                   </ul>
               </li>
-            <li class="menu-item">
+            <li class="menu-item" id="Setting">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="Account Settings">Account Settings</div>
@@ -171,7 +178,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                 </li>
               </ul>
             </li>
-            <li class="menu-item">
+            <li class="menu-item" id="register">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                 <div data-i18n="Authentications">Authentications</div>
@@ -223,7 +230,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                   </ul>
               </li>
 
-              <li class="menu-item">
+              <li class="menu-item" id="adminFunction">
                   <a href="javascript:void(0);" class="menu-link menu-toggle">
                       <i class="menu-icon tf-icons bx bx-book"></i>
                       <div data-i18n="Authentications">Function</div>
@@ -366,9 +373,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                           <div class="row">
                           <h1>Total</h1>
                           <h1 style="color:darkblue">
-                          <?php 
-                            include_once "../BackEnd/db.php";
-
+                          <?php
                             $sql = "Select StudentID From tblstudentinfo Order By StudentID";
                             $result = mysqli_query($conn,$sql);
                             $row = mysqli_num_rows($result);
@@ -403,9 +408,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                           <div class="row">
                           <h1>Total</h1>
                           <h1 style="color:lightgreen">
-                          <?php 
-                            include_once "../BackEnd/db.php";
-
+                          <?php
                             $sql = "Select StudentStatusID From tblstudentstatus Where statusID = 1";
                             $result = mysqli_query($conn,$sql);
                             $row = mysqli_num_rows($result);
@@ -439,9 +442,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                           <div class="row">
                           <h1>Total</h1>
                           <h1 style="color:yellow">
-                          <?php 
-                            include_once "../BackEnd/db.php";
-
+                          <?php
                             $sql = "Select StudentStatusID From tblstudentstatus Where statusID = 2 ";
                             $result = mysqli_query($conn,$sql);
                             $row = mysqli_num_rows($result);
@@ -544,7 +545,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                             }
                         ?>
                       <tr>
-                          <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php echo $StudentRow['StudentID']?></strong></td><!--id-->
+                          <td> <strong><?php echo $StudentRow['StudentID']?></strong></td><!--id-->
                           <td><?php echo $StudentRow['NameInLatin']?></td>
                           <td><?php echo $StudentRow['NameInKHmer']?></td>
                           <td><?php foreach ($Sex_array as $sex){$sexShow=$sex['SexID'];
@@ -590,7 +591,7 @@ while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
                                       <a class="dropdown-item" href="../FrontEnd/ViewInformation.php?EditID=<?php echo $StudentRow['StudentID']?>"
                                       ><i class="bx bx-edit-alt me-1"></i> Edit</a
                                       >
-                                      <a class="dropdown-item" href="statusForm.php?StatusID=<?php echo $StudentRow['StudentID']?>"
+                                      <a class="dropdown-item" id="approve" href="statusForm.php?StatusID=<?php echo $StudentRow['StudentID']?>"
                                       ><i class="bx bx-cog me-1"></i>Approve</a
                                       >
                                   </div>

@@ -2,7 +2,7 @@
 $db="localhost";
 $username="root";
 $password="";
-$dbname="beltiewebdb";
+$dbname="btb5eg5studentregistration";
 $conn=mysqli_connect($db,$username,$password,"$dbname");
 if(!$conn)
 {

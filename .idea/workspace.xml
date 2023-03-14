@@ -22,6 +22,11 @@
       <change afterPath="$PROJECT_DIR$/BackEnd/images/20230314124056FB_IMG_1673873034475.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/BackEnd/images/20230314124143FB_IMG_1673873034475.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/BackEnd/images/20230314124302FB_IMG_1673873034475.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/db.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/db.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jquery/Search.php" beforeDir="false" afterPath="$PROJECT_DIR$/jquery/Search.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +132,7 @@
       <workItem from="1678370813057" duration="7661000" />
       <workItem from="1678410232657" duration="4251000" />
       <workItem from="1678710225227" duration="3310000" />
-      <workItem from="1678791330629" duration="2929000" />
+      <workItem from="1678791330629" duration="5339000" />
     </task>
     <task id="LOCAL-00001" summary="Add Jquery">
       <created>1675250661891</created>
@@ -220,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678794258629</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Fixing Resgister validation">
+      <created>1678794328475</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1678794328475</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

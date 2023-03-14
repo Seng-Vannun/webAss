@@ -87,7 +87,7 @@ if (isset($_POST['input'])) {
             }
             ?>
             <tr>
-                <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+                <td>
                     <strong><?php echo $StudentRow['StudentID'] ?></strong></td><!--id-->
                 <td><?php echo $StudentRow['NameInLatin'] ?></td>
                 <td><?php echo $StudentRow['NameInKHmer'] ?></td>
@@ -154,20 +154,18 @@ if (isset($_POST['input'])) {
                 <td>
                     <div class="dropdown">
                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
+                                aria-haspopup="true" aria-expanded="true">
                             <i class="bx bx-dots-vertical-rounded"></i>
                         </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="javascript:void(0);"
+                        <div class="dropdown-menu" aria-haspopup="true" aria-expanded="true">
+                            <a class="dropdown-item" href="../FrontEnd/view_pdf.php?ViewID=<?php echo $StudentRow['StudentID']?>" target="_blank"
                             ><i class="bx bx-edit-alt me-1"></i> ViewFull Information</a
                             >
-                            <a class="dropdown-item"
-                               href="../FrontEnd/ViewInformation.php?EditID=<?php echo $StudentRow['StudentID'] ?>"
+                            <a class="dropdown-item" href="../FrontEnd/ViewInformation.php?EditID=<?php echo $StudentRow['StudentID']?>"
                             ><i class="bx bx-edit-alt me-1"></i> Edit</a
                             >
-                            <a class="dropdown-item"
-                               href="../BackEnd/Disable.php?DisableID=<?php echo $StudentRow['StudentID'] ?>"
-                            ><i class="bx bx-trash me-1"></i> Delete</a
+                            <a class="dropdown-item" id="approve" href="statusForm.php?StatusID=<?php echo $StudentRow['StudentID']?>"
+                            ><i class="bx bx-cog me-1"></i>Approve</a
                             >
                         </div>
                     </div>

@@ -5,11 +5,6 @@ if($_SESSION['id']==null){
 }
 ?>
 
-
-
-
-
-
 <!DOCTYPE html>
 <html
   lang="en"
@@ -305,7 +300,7 @@ if($_SESSION['id']==null){
                     <?php
                     if(isset($_GET['msg'])){
                         $msg=$_GET['msg'];
-                        echo'<div class="alert alert-primary" role="alert">
+                        echo'<div class="alert alert-danger" role="alert">
                         '.$msg.'</div';}
                     ?>
                 </div>
