@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b73c77c2-c1e9-4c35-bb16-4977fd605d27" name="Changes" comment="Finishing login and dashboard and another function">
-      <change afterPath="$PROJECT_DIR$/BackEnd/User.php" afterDir="false" />
+    <list default="true" id="b73c77c2-c1e9-4c35-bb16-4977fd605d27" name="Changes" comment="Fixing Resgister validation">
       <change afterPath="$PROJECT_DIR$/BackEnd/images/202303130157524.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/BackEnd/images/202303130158204.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/BackEnd/images/202303130203064.jpg" afterDir="false" />
@@ -13,10 +12,16 @@
       <change afterPath="$PROJECT_DIR$/BackEnd/images/202303130207144.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/BackEnd/images/202303130217054.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/BackEnd/images/20230314120642Poker-sm-232-Kd.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/UsersInput.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/UsersInput.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrontEnd/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/register.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BackEnd/images/20230314123610Poker-sm-232-Kd.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BackEnd/images/20230314123622Poker-sm-232-Kd.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BackEnd/images/202303141236464.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BackEnd/images/20230314123703Poker-sm-232-Kd.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BackEnd/images/202303141237324.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BackEnd/images/20230314123839Poker-sm-232-Kd.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BackEnd/images/202303141238514.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BackEnd/images/20230314124056FB_IMG_1673873034475.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BackEnd/images/20230314124143FB_IMG_1673873034475.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BackEnd/images/20230314124302FB_IMG_1673873034475.jpg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +34,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -123,7 +127,7 @@
       <workItem from="1678370813057" duration="7661000" />
       <workItem from="1678410232657" duration="4251000" />
       <workItem from="1678710225227" duration="3310000" />
-      <workItem from="1678791330629" duration="2293000" />
+      <workItem from="1678791330629" duration="2929000" />
     </task>
     <task id="LOCAL-00001" summary="Add Jquery">
       <created>1675250661891</created>
@@ -209,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678711679899</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Fixing Resgister validation">
+      <created>1678794258629</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1678794258629</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,6 +246,7 @@
     <MESSAGE value="Finish Veiw_pdf Form" />
     <MESSAGE value="Finishing search" />
     <MESSAGE value="Finishing login and dashboard and another function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finishing login and dashboard and another function" />
+    <MESSAGE value="Fixing Resgister validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing Resgister validation" />
   </component>
 </project>
