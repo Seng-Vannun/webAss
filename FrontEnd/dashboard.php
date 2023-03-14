@@ -1,8 +1,6 @@
 <?php
 require_once '../BackEnd/db.php';
-if(isset($_SESSION['id'])==null) {
-    header("Location: login.php");
-}
+
 $sqlStudentInformation="select * from tblstudentinfo";
 $studentInformationQuery=mysqli_query($conn,$sqlStudentInformation);
 $sqlSex="select * from tblsex";
@@ -57,13 +55,9 @@ while($Shift=mysqli_fetch_assoc($ShiftQuery)){
 while($StudentStatus=mysqli_fetch_assoc($StudentStatusQuery)){
    $StudentStatus_array[]=$StudentStatus;
 }
-if($_SESSION['role']!=1){
+
 ?>
-<style>
-    #AccountSetting{display: none}
-    #AddUser{display: none}
-    #status{display: none}
-</style><?php }?>
+
 <!DOCTYPE html>
 <html
   lang="en"
@@ -105,7 +99,7 @@ if($_SESSION['role']!=1){
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Page CSS -->
 
     <!-- Helpers -->
@@ -154,7 +148,7 @@ if($_SESSION['role']!=1){
                       </li>
                   </ul>
               </li>
-            <li class="menu-item" id="AccountSetting">
+            <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="Account Settings">Account Settings</div>
@@ -177,24 +171,24 @@ if($_SESSION['role']!=1){
                 </li>
               </ul>
             </li>
-            <li class="menu-item" id="AddUser">
+            <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                 <div data-i18n="Authentications">Authentications</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="auth-login-basic.html" class="menu-link" target="_blank">
+                  <a href="../FrontEnd/login.php" class="menu-link">
                     <div data-i18n="Basic">Login</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="register.php"class="menu-link" target="_self">
+                  <a href="register.php" class="menu-link">
                     <div data-i18n="Basic">Register</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
+                  <a href="auth-forgot-password-basic.html" class="menu-link">
                     <div data-i18n="Basic">Forgot Password</div>
                   </a>
                 </li>
@@ -211,25 +205,25 @@ if($_SESSION['role']!=1){
                               <div data-i18n="Basic">All Student</div>
                           </a>
                       </li>
-<!--                      <li class="menu-item">-->
-<!--                          <a href="Active.php" class="menu-link" target="_self">-->
-<!--                              <div data-i18n="Basic">Active</div>-->
-<!--                          </a>-->
-<!--                      </li>-->
-<!--                      <li class="menu-item">-->
-<!--                          <a href="Pending.php" class="menu-link" target="_self">-->
-<!--                              <div data-i18n="Basic">Pending</div>-->
-<!--                          </a>-->
-<!--                      </li>-->
-<!--                      <li class="menu-item">-->
-<!--                          <a href="Disable.php" class="menu-link" target="_self">-->
-<!--                              <div data-i18n="Basic">Disable</div>-->
-<!--                          </a>-->
-<!--                      </li>-->
+                      <li class="menu-item">
+                          <a href="Active.php" class="menu-link" target="_self">
+                              <div data-i18n="Basic">Active</div>
+                          </a>
+                      </li>
+                      <li class="menu-item">
+                          <a href="Pending.php" class="menu-link" target="_self">
+                              <div data-i18n="Basic">Pending</div>
+                          </a>
+                      </li>
+                      <li class="menu-item">
+                          <a href="Disable.php" class="menu-link" target="_self">
+                              <div data-i18n="Basic">Disable</div>
+                          </a>
+                      </li>
                   </ul>
               </li>
 
-              <li class="menu-item" id="adminFuntion" >
+              <li class="menu-item">
                   <a href="javascript:void(0);" class="menu-link menu-toggle">
                       <i class="menu-icon tf-icons bx bx-book"></i>
                       <div data-i18n="Authentications">Function</div>
@@ -356,6 +350,118 @@ if($_SESSION['role']!=1){
           <div class="content-wrapper">
             <!-- Content -->
             <div class="container-fluid flex-grow-1 container-p-y">
+              <div class="row">
+                 <div class="col-lg-4">
+                  <div class="card card-body">
+                     <div class="container">
+                     <div class="row align-items-center">
+                        <div class="col-lg-6">
+                          <div class="user_icon" style="font-size: 80px;color: darkblue;">
+                          <i class="fa-sharp fa-solid fa-circle-user"></i>
+                          <h3>All Students</h3>
+                          </div>
+                          
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="row">
+                          <h1>Total</h1>
+                          <h1 style="color:darkblue">
+                          <?php 
+                            include_once "../BackEnd/db.php";
+
+                            $sql = "Select StudentID From tblstudentinfo Order By StudentID";
+                            $result = mysqli_query($conn,$sql);
+                            $row = mysqli_num_rows($result);
+
+                            if($row){
+                              echo $row;
+                            }else{
+                              echo '0';
+                            }
+                          //  mysqli_close($conn);
+                          ?>
+                        </h1>
+                          </div>
+                        </div>
+                      </div>
+                     </div>
+                  </div>
+                 </div>
+
+                 <div class="col-lg-4">
+                  <div class="card card-body">
+                     <div class="container">
+                     <div class="row align-items-center">
+                        <div class="col-lg-6">
+                          <div class="user_icon" style="font-size: 80px;color: lightgreen;">
+                          <i class="fa-solid fa-circle-up"></i>
+                          <h3>Active</h3>
+                          </div>
+                          
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="row">
+                          <h1>Total</h1>
+                          <h1 style="color:lightgreen">
+                          <?php 
+                            include_once "../BackEnd/db.php";
+
+                            $sql = "Select StudentStatusID From tblstudentstatus Where statusID = 1";
+                            $result = mysqli_query($conn,$sql);
+                            $row = mysqli_num_rows($result);
+
+                            if($row){
+                              echo $row;
+                            }else{
+                              echo '0';
+                            }
+                            //mysqli_close($conn);
+                          ?></h1>
+                          </div>
+                        </div>
+                      </div>
+                     </div>
+                  </div>
+                 </div>
+
+                 <div class="col-lg-4">
+                  <div class="card card-body">
+                     <div class="container">
+                     <div class="row align-items-center">
+                        <div class="col-lg-6">
+                          <div class="user_icon" style="font-size: 80px;color: yellow;">
+                          <i class="fa-solid fa-circle-info"></i>
+                          <h3>Pending</h3>
+                          </div>
+                          
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="row">
+                          <h1>Total</h1>
+                          <h1 style="color:yellow">
+                          <?php 
+                            include_once "../BackEnd/db.php";
+
+                            $sql = "Select StudentStatusID From tblstudentstatus Where statusID = 2 ";
+                            $result = mysqli_query($conn,$sql);
+                            $row = mysqli_num_rows($result);
+
+                            if($row){
+                              echo $row;
+                            }else{
+                              echo '0';
+                            }
+                            mysqli_close($conn);
+                          ?>
+                        </h1>
+                          </div>
+                        </div>
+                      </div>
+                     </div>
+                  </div>
+                 </div>
+              </div>
+
                 <div class="row mt-5">
                     <?php
                     if(isset($_GET['msg'])){
@@ -484,7 +590,7 @@ if($_SESSION['role']!=1){
                                       <a class="dropdown-item" href="../FrontEnd/ViewInformation.php?EditID=<?php echo $StudentRow['StudentID']?>"
                                       ><i class="bx bx-edit-alt me-1"></i> Edit</a
                                       >
-                                      <a class="dropdown-item" id="status" href="statusForm.php?StatusID=<?php echo $StudentRow['StudentID']?>"
+                                      <a class="dropdown-item" href="statusForm.php?StatusID=<?php echo $StudentRow['StudentID']?>"
                                       ><i class="bx bx-cog me-1"></i>Approve</a
                                       >
                                   </div>

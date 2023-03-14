@@ -91,13 +91,36 @@ if($_SESSION['id']==null){
                   </a>
                   <ul class="menu-sub">
                       <li class="menu-item active">
-                          <a href="../FrontEnd/dashboard.php?UserId=<?php //echo $User['UserId']?>" class="menu-link" target="_self">
+                          <a href="../FrontEnd/dashboard.php" class="menu-link" target="_self">
                               <div data-i18n="Basic">Admin Dashboard</div>
                           </a>
                       </li>
                   </ul>
               </li>
-            <li class="menu-item">
+            <li class="menu-item" id="AccountSetting">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div data-i18n="Account Settings">Account Settings</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="pages-account-settings-account.html" class="menu-link">
+                    <div data-i18n="Account">Account</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="pages-account-settings-notifications.html" class="menu-link">
+                    <div data-i18n="Notifications">Notifications</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="pages-account-settings-connections.html" class="menu-link">
+                    <div data-i18n="Connections">Connections</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item" id="AddUser">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                 <div data-i18n="Authentications">Authentications</div>
@@ -109,7 +132,7 @@ if($_SESSION['id']==null){
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="register.php" class="menu-link" target="_blank">
+                  <a href="register.php"class="menu-link" target="_self">
                     <div data-i18n="Basic">Register</div>
                   </a>
                 </li>
@@ -121,6 +144,35 @@ if($_SESSION['id']==null){
               </ul>
             </li>
               <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                      <i class="menu-icon tf-icons bx bx-user"></i>
+                      <div data-i18n="Authentications">Student</div>
+                  </a>
+                  <ul class="menu-sub">
+                      <li class="menu-item active">
+                          <a href="#" class="menu-link" target="_self">
+                              <div data-i18n="Basic">All Student</div>
+                          </a>
+                      </li>
+                      <li class="menu-item">
+                          <a href="Active.php" class="menu-link" target="_self">
+                              <div data-i18n="Basic">Active</div>
+                          </a>
+                      </li>
+                      <li class="menu-item">
+                          <a href="Pending.php" class="menu-link" target="_self">
+                              <div data-i18n="Basic">Pending</div>
+                          </a>
+                      </li>
+                      <li class="menu-item">
+                          <a href="Disable.php" class="menu-link" target="_self">
+                              <div data-i18n="Basic">Disable</div>
+                          </a>
+                       </li>
+                  </ul>
+              </li>
+
+              <li class="menu-item" id="adminFuntion" >
                   <a href="javascript:void(0);" class="menu-link menu-toggle">
                       <i class="menu-icon tf-icons bx bx-book"></i>
                       <div data-i18n="Authentications">Function</div>
@@ -183,62 +235,58 @@ if($_SESSION['id']==null){
               </div> -->
               <!-- /Search -->
 
-                <ul class="navbar-nav flex-row align-items-center ms-auto">
-                    <!-- User -->
-                    <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                        <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+              <ul class="navbar-nav flex-row align-items-center ms-auto">
+                <!-- User -->
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                      <img src="../BackEnd/images/<?php echo $_SESSION['image']?>" alt class="w-px-40 h-auto rounded-circle" />
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <div class="d-flex">
+                          <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-
-                                <img src="../BackEnd/images/<?php echo $_SESSION['image']?>" alt class="w-px-40 h-auto rounded-circle" />
+                              <img src="../BackEnd/images/<?php echo $_SESSION['image']?>" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <div class="d-flex">
-                                        <div class="flex-shrink-0 me-3">
-                                            <div class="avatar avatar-online">
-                                                <img src="../BackEnd/images/<?php echo $_SESSION['image']?>" alt class="w-px-40 h-auto rounded-circle" />
-                                            </div>
-                                        </div>
-                                        <div class="flex-grow-1">
+                          </div>
+                          <div class="flex-grow-1">
 
-                                            <span class="fw-semibold d-block"><?php echo $_SESSION['name']?></span>
-                                            <small class="text-muted"><?php if($_SESSION['role']==1) {echo "Admin";} else{echo "User";}?></small>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <div class="dropdown-divider"></div>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <i class="bx bx-user me-2"></i>
-                                    <span class="align-middle">My Profile</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <i class="bx bx-cog me-2"></i>
-                                    <span class="align-middle">Settings</span>
-                                </a>
-                            </li>
-                            <li>
-                            </li>
-                            <li>
-                                <div class="dropdown-divider"></div>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="../BackEnd/logout.php">
-                                    <i class="bx bx-power-off me-2"></i>
-                                    <span class="align-middle">Log Out</span>
-                                </a>
-                            </li>
-                        </ul>
+                            <span class="fw-semibold d-block"><?php echo $_SESSION['name']?></span>
+                            <small class="text-muted"><?php if($_SESSION['role']==1) {echo "Admin";} else{echo "User";}?></small>
+                          </div>
+                        </div>
+                      </a>
                     </li>
-                    <!--/ User -->
-                </ul>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="bx bx-user me-2"></i>
+                        <span class="align-middle">My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="bx bx-cog me-2"></i>
+                        <span class="align-middle">Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="../BackEnd/logout.php">
+                        <i class="bx bx-power-off me-2"></i>
+                        <span class="align-middle">Log Out</span>
+                      </a>
+                    </li>
+                  </ul>
                 </li>
                 <!--/ User -->
               </ul>

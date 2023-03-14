@@ -179,7 +179,7 @@ if($_SESSION['role']!=1){
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="register.php" class="menu-link" target="_blank">
+                  <a href="register.php"class="menu-link" target="_self">
                     <div data-i18n="Basic">Register</div>
                   </a>
                 </li>
@@ -201,25 +201,25 @@ if($_SESSION['role']!=1){
                               <div data-i18n="Basic">All Student</div>
                           </a>
                       </li>
-<!--                      <li class="menu-item">-->
-<!--                          <a href="Active.php" class="menu-link" target="_self">-->
-<!--                              <div data-i18n="Basic">Active</div>-->
-<!--                          </a>-->
-<!--                      </li>-->
-<!--                      <li class="menu-item">-->
-<!--                          <a href="Pending.php" class="menu-link" target="_self">-->
-<!--                              <div data-i18n="Basic">Pending</div>-->
-<!--                          </a>-->
-<!--                      </li>-->
-<!--                      <li class="menu-item">-->
-<!--                          <a href="Disable.php" class="menu-link" target="_self">-->
-<!--                              <div data-i18n="Basic">Disable</div>-->
-<!--                          </a>-->
-<!--                      </li>-->
+                      <li class="menu-item">
+                          <a href="Active.php" class="menu-link" target="_self">
+                              <div data-i18n="Basic">Active</div>
+                          </a>
+                      </li>
+                      <li class="menu-item">
+                          <a href="Pending.php" class="menu-link" target="_self">
+                              <div data-i18n="Basic">Pending</div>
+                          </a>
+                      </li>
+                      <li class="menu-item">
+                          <a href="Disable.php" class="menu-link" target="_self">
+                              <div data-i18n="Basic">Disable</div>
+                          </a>
+                       </li>
                   </ul>
               </li>
 
-              <li class="menu-item">
+              <li class="menu-item" id="adminFuntion" >
                   <a href="javascript:void(0);" class="menu-link menu-toggle">
                       <i class="menu-icon tf-icons bx bx-book"></i>
                       <div data-i18n="Authentications">Function</div>
@@ -300,6 +300,7 @@ if($_SESSION['role']!=1){
                             </div>
                           </div>
                           <div class="flex-grow-1">
+
                             <span class="fw-semibold d-block"><?php echo $_SESSION['name']?></span>
                             <small class="text-muted"><?php if($_SESSION['role']==1) {echo "Admin";} else{echo "User";}?></small>
                           </div>
